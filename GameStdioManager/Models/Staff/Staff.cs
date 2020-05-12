@@ -1,56 +1,74 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 
 namespace GameStdioManager.Models.Staff
 {
 
     #region 枚举
 
-    [Flags]
-    public enum Gender : uint
+    public enum Gender
     {
-        Male = 0x01,
-        Female = 0x02
+        Male,
+        Female
     }
 
-    [Flags]
-    public enum Rank : uint
+    public enum Rank
     {
         /// 实习生
-        Trainee = 0x01,
+        Trainee,
         /// 初级
-        Junior = 0x02,
+        Junior,
         /// 中级
-        Intermediate = 0x04,
+        Intermediate,
         /// 高级
-        Senior = 0x08,
+        Senior,
         /// 资深
-        Professional = 0x16,
+        Professional,
         /// 专家
-        Expert = 0x32,
+        Expert,
         /// 行业领袖
-        Leader = 0x64
+        Leader
+    }
+
+    public enum Occupation
+    {
+        /// 制作人
+        Producer,
+        /// 策划
+        Designer,
+        /// 美术
+        Artist,
+        /// 程序
+        Programmer,
+        /// 音乐
+        Musicians
     }
 
     [Flags]
-    public enum Occupation : uint
+    public enum Temperament : uint
     {
-        /// 制作人
-        Producer = 0x01,
-        /// 策划
-        Designer = 0x02,
-        /// 美术
-        Artist = 0x04,
-        /// 程序
-        Programmer = 0x08,
-        /// 音乐
-        Musicians = 0x16,
+        /// 友善
+        Friendly = 0x01,
+        /// 无主见
+        Indecisive = 0x02,
+        /// 有天赋
+        Gifted = 0x04,
+        /// 坏心肠
+        Malevolent = 0x08,
+        /// 领袖气质
+        Charisma = 0x16,
     }
+
+
     
 
     #endregion
 
     public class Staff
     {
+        #region 员工属性
+
         /// <summary>
         /// 员工工号
         /// </summary>
@@ -94,14 +112,9 @@ namespace GameStdioManager.Models.Staff
         public int StaffIntelligence { get; set; }
 
         /// <summary>
-        /// 责任心
+        /// 忠诚
         /// </summary>
-        public int StaffConscientiousness { get; set; }
-
-        /// <summary>
-        /// 叛逆性
-        /// </summary>
-        public int StaffRebelliousness { get; set; }
+        public int StaffLoyalty { get; set; }
 
         #endregion
 
@@ -110,6 +123,59 @@ namespace GameStdioManager.Models.Staff
         /// </summary>
         public int StaffProperty { get; }
 
-        public int Staff
+        /// <summary>
+        /// 员工劳休制度
+        /// </summary>
+        public struct StaffSchedule
+        {
+            /// <summary>
+            /// 上班时间
+            /// </summary>
+            public int TimeToWork { get; set; }
+            /// <summary>
+            /// 下班时间
+            /// </summary>
+            public int TimeToQuit { get; set; }
+
+            /// <summary>
+            /// 工作日长度
+            /// </summary>
+            public int WeekdaysLength { get; set; }
+        }
+
+        /// <summary>
+        /// 员工性格
+        /// </summary>
+        public Temperament StaffTemperament { get; }
+
+        /// <summary>
+        /// 员工关系
+        /// </summary>
+        public Dictionary<string,int> StaffRelationship = new Dictionary<string, int>();
+
+        /// <summary>
+        /// 员工所在公司
+        /// </summary>
+        public string StaffStudio { get; set; }
+
+        #endregion
+
+
+        public Staff(string staffNumber, string staffName, Gender staffGender, int staffSalary, Rank staffRank, Occupation staffOccupation, int staffStrength, int staffIntelligence, int staffLoyalty, int staffProperty, Temperament staffTemperament)
+        {
+            StaffNumber = staffNumber;
+            StaffName = staffName;
+            StaffGender = staffGender;
+            StaffSalary = staffSalary;
+            StaffRank = staffRank;
+            StaffOccupation = staffOccupation;
+            StaffStrength = staffStrength;
+            StaffIntelligence = staffIntelligence;
+            StaffLoyalty = staffLoyalty;
+            StaffProperty = staffProperty;
+            StaffTemperament = staffTemperament;
+        }
+
+
     }
 }
