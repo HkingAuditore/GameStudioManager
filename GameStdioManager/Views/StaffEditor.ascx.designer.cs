@@ -10,7 +10,7 @@
 namespace GameStdioManager.Views {
     
     
-    public partial class Inserter {
+    public partial class StaffEditor {
         
         /// <summary>
         /// StaffNumber 控件。

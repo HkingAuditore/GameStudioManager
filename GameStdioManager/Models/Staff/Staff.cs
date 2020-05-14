@@ -75,7 +75,7 @@ namespace GameStdioManager.Models.Staff
 
     #endregion
 
-    public class Staff
+    public class Staff :SimulatorBase
     {
         #region 员工属性
 
@@ -216,10 +216,7 @@ namespace GameStdioManager.Models.Staff
             return result.ToString();
         }
 
-        public object GetPropertyValue(string propertyName)
-        {
-            return GetType().GetProperty(propertyName)?.GetValue(this, null);
-        }
+
 
         #endregion
     }

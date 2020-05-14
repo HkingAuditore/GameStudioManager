@@ -7,72 +7,81 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace GameStdioManager {
+namespace GameStdioManager.Views {
     
     
-    public partial class Index {
+    public partial class StudioEditor {
         
         /// <summary>
-        /// form1 控件。
+        /// StudioNumber 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.TextBox StudioNumber;
         
         /// <summary>
-        /// ScriptManager1 控件。
+        /// StudioName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.TextBox StudioName;
         
         /// <summary>
-        /// UpdatePanel1 控件。
+        /// StudioProperty 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.TextBox StudioProperty;
         
         /// <summary>
-        /// Label1 控件。
+        /// StudioReputation 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.TextBox StudioReputation;
         
         /// <summary>
-        /// Timer1 控件。
+        /// Confirm 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.Timer Timer1;
+        protected global::System.Web.UI.WebControls.Button Confirm;
         
         /// <summary>
-        /// StaffEditor 控件。
+        /// ReadFromSQL 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::GameStdioManager.Views.StaffEditor StaffEditor;
+        protected global::System.Web.UI.WebControls.Button ReadFromSQL;
         
         /// <summary>
-        /// StudioEditor 控件。
+        /// Update 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::GameStdioManager.Views.StudioEditor StudioEditor;
+        protected global::System.Web.UI.WebControls.Button Update;
+        
+        /// <summary>
+        /// Reset 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Reset;
     }
 }

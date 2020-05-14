@@ -1,4 +1,5 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Inserter.ascx.cs" Inherits="GameStdioManager.Views.Inserter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="StaffEditor.ascx.cs" Inherits="GameStdioManager.Views.StaffEditor" %>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
@@ -78,6 +79,7 @@
 
     </div>
 </div>
+
      
  
              

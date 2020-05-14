@@ -1,6 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="GameStdioManager.Index" %>
 
-<%@ Register Src="~/Views/Inserter.ascx" TagPrefix="uc1" TagName="Inserter" %>
+<%@ Register Src="~/Views/StaffEditor.ascx" TagPrefix="uc1" TagName="StaffEditor" %>
+<%@ Register TagPrefix="uc1" Namespace="GameStdioManager.Views" Assembly="GameStdioManager" %>
+<%@ Register Src="~/Views/StudioEditor.ascx" TagPrefix="uc1" TagName="StudioEditor" %>
+
 
 <!DOCTYPE html>
 
@@ -20,7 +23,8 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
-        <uc1:Inserter runat="server" ID="Inserter" />
+        <uc1:StaffEditor runat="server" ID="StaffEditor" />
+        <uc1:StudioEditor runat="server" id="StudioEditor" />
     </form>
 </body>
 </html>

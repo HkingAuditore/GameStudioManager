@@ -15,7 +15,10 @@ namespace GameStdioManager.Models
 
     public class SimulatorBase
     {
-
+        public object GetPropertyValue(string propertyName)
+        {
+            return GetType().GetProperty(propertyName)?.GetValue(this, null);
+        }
     }
 
 }

@@ -123,6 +123,7 @@
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Staff\StaffSQLController.cs" />
+    <Compile Include="Controllers\Studio\StudioSQLController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -141,12 +142,19 @@
     <Compile Include="Models\Studio\PlayerStudio.cs" />
     <Compile Include="Models\Studio\Studio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\Inserter.ascx.cs">
-      <DependentUpon>Inserter.ascx</DependentUpon>
+    <Compile Include="Views\StaffEditor.ascx.cs">
+      <DependentUpon>StaffEditor.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Inserter.ascx.designer.cs">
-      <DependentUpon>Inserter.ascx</DependentUpon>
+    <Compile Include="Views\StaffEditor.ascx.designer.cs">
+      <DependentUpon>StaffEditor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudioEditor.ascx.cs">
+      <DependentUpon>StudioEditor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\StudioEditor.ascx.designer.cs">
+      <DependentUpon>StudioEditor.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -172,7 +180,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Views\Inserter.ascx" />
+    <Content Include="Views\StaffEditor.ascx" />
+    <Content Include="Views\StudioEditor.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -191,6 +200,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\Game\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

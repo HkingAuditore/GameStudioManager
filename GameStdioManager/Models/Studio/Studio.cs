@@ -1,7 +1,8 @@
 ﻿namespace GameStdioManager.Models.Studio
 {
-    public class Studio
+    public class Studio: SimulatorBase
     {
+
         /// <summary>
         /// 工作室编号
         /// </summary>
@@ -18,5 +19,22 @@
         /// 工作室声誉
         /// </summary>
         public int StudioReputation { get; set; }
+
+
+        public Studio(string studioNumber, string studioName, int studioProperty, int studioReputation)
+        {
+            StudioNumber = studioNumber;
+            StudioName = studioName;
+            StudioProperty = studioProperty;
+            StudioReputation = studioReputation;
+        }
+
+        #region 类基本操作
+
+
+
+        #endregion
+
+
     }
 }

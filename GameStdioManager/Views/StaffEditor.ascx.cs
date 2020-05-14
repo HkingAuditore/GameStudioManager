@@ -6,54 +6,47 @@ using GameStdioManager.Models.Staff;
 
 namespace GameStdioManager.Views
 {
-    public partial class Inserter : UserControl
+    public partial class StaffEditor : UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
         }
 
-        /// <summary>
-        /// 从当前页面的展示数据生成一个Staff
-        /// </summary>
-        /// <returns></returns>
-        private Staff GenerateStaffThisPanel()
-        {
-            var staff = new Staff(StaffNumber.Text,
-                StaffName.Text,
-                (Gender)GetStaffGender(),
-                int.Parse(StaffSalary.Text),
-                (Rank)int.Parse(StaffRank.Text),
-                (Occupation)int.Parse(StaffOccupation.Text),
-                int.Parse(StaffStrength.Text),
-                int.Parse(StaffIntelligence.Text),
-                int.Parse(StaffLoyalty.Text),
-                int.Parse(StaffProperty.Text),
-                GetStaffTemperament(),
-                int.Parse(TimeToWork.Text),
-                int.Parse(TimeToQuit.Text),
-                int.Parse(WeekdaysLength.Text),
-                StaffStudio.Text
-            );
-            return staff;
-        }
+        #region 操作逻辑
 
         /// <summary>
-        /// 新增Staff
+        ///     从当前页面的展示数据生成一个Staff
+        /// </summary>
+        /// <returns></returns>
+        private Staff GenerateStaffThisPanel() => new Staff(StaffNumber.Text,
+                                                            StaffName.Text,
+                                                            (Gender) GetStaffGender(),
+                                                            int.Parse(StaffSalary.Text),
+                                                            (Rank) int.Parse(StaffRank.Text),
+                                                            (Occupation) int.Parse(StaffOccupation.Text),
+                                                            int.Parse(StaffStrength.Text),
+                                                            int.Parse(StaffIntelligence.Text),
+                                                            int.Parse(StaffLoyalty.Text),
+                                                            int.Parse(StaffProperty.Text),
+                                                            GetStaffTemperament(),
+                                                            int.Parse(TimeToWork.Text),
+                                                            int.Parse(TimeToQuit.Text),
+                                                            int.Parse(WeekdaysLength.Text),
+                                                            StaffStudio.Text
+                                                           );
+
+        /// <summary>
+        ///     新增Staff
         /// </summary>
         private void InsertStaff()
         {
-            
             StaffSQLController.InsertStaffInfoSql(GenerateStaffThisPanel());
         }
 
-        
-        protected void Confirm_OnClick(object sender, EventArgs e)
-        {
-            InsertStaff();
-        }
+
 
         /// <summary>
-        /// 从当前页面信息获取性格数据
+        ///     从当前页面信息获取性格数据
         /// </summary>
         /// <returns></returns>
         private Temperament GetStaffTemperament()
@@ -68,7 +61,7 @@ namespace GameStdioManager.Views
         }
 
         /// <summary>
-        /// 从当前页面信息获取性别
+        ///     从当前页面信息获取性别
         /// </summary>
         /// <returns></returns>
         private int GetStaffGender()
@@ -76,17 +69,9 @@ namespace GameStdioManager.Views
             return Male.Checked ? 0 : 1;
         }
 
-        protected void ReadFromSQL_OnClick(object sender, EventArgs e)
-        {
-            var target = StaffNumber.Text;
-            var staff  = StaffSQLController.ReadStaffInfoSql(target.Trim());
-            ResetStaffInfoPanel();
-            ShowStaffInfo(staff);
-            StaffNumber.ReadOnly = true;
-        }
 
         /// <summary>
-        /// 重置页面
+        ///     重置页面
         /// </summary>
         private void ResetStaffInfoPanel()
         {
@@ -115,7 +100,7 @@ namespace GameStdioManager.Views
         }
 
         /// <summary>
-        /// 在当前页面显示Staff数据
+        ///     在当前页面显示Staff数据
         /// </summary>
         /// <param name="staff">目标Staff对象</param>
         private void ShowStaffInfo(Staff staff)
@@ -149,11 +134,15 @@ namespace GameStdioManager.Views
                 }
         }
 
+        #endregion
+
+        #region 交互
+
         protected void Update_OnClick(object sender, EventArgs e)
         {
             Staff origin = StaffSQLController.ReadStaffInfoSql(StaffNumber.Text);
             Staff target = GenerateStaffThisPanel();
-            StaffSQLController.UpdateStaffInfoSql(origin,target);
+            StaffSQLController.UpdateStaffInfoSql(origin, target);
         }
 
         protected void Reset_OnClick(object sender, EventArgs e)
@@ -161,5 +150,22 @@ namespace GameStdioManager.Views
             StaffNumber.ReadOnly = false;
             ResetStaffInfoPanel();
         }
+
+        protected void ReadFromSQL_OnClick(object sender, EventArgs e)
+        {
+            var staff  = StaffSQLController.ReadStaffInfoSql(StaffNumber.Text.Trim());
+            ResetStaffInfoPanel();
+            ShowStaffInfo(staff);
+            StaffNumber.ReadOnly = true;
+        }
+
+        protected void Confirm_OnClick(object sender, EventArgs e)
+        {
+            InsertStaff();
+        }
+
+        #endregion
+
+
     }
 }

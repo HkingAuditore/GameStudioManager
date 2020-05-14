@@ -17,7 +17,6 @@ namespace GameStdioManager.Controllers.Staff
         public static Models.Staff.Staff ReadStaffInfoSql(string staffNumber)
         {
             Models.Staff.Staff staff = null;
-            SqlDataReader      result;
 
             using (var sqlConnection = new SqlConnection(ConString))
             {
@@ -29,7 +28,7 @@ namespace GameStdioManager.Controllers.Staff
                 sqlCommand.Parameters.Add(targetSqlParameter);
 
                 sqlConnection.Open();
-                result = sqlCommand.ExecuteReader();
+                var result = sqlCommand.ExecuteReader();
 
                 if (result.HasRows)
                 {
@@ -67,7 +66,6 @@ namespace GameStdioManager.Controllers.Staff
         {
             using (var sqlConnection = new SqlConnection(ConString))
             {
-                // 使用了Target占位符表示目标ID
                 var sqlCommand = new SqlCommand("INSERT INTO StaffInfo VALUES ("
                                               + ConvertStringToSql(staff.StaffNumber) + ","
                                               + ConvertStringToSql(staff.StaffName)   + ","
