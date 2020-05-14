@@ -26,7 +26,8 @@ namespace GameStdioManager.Views
 
         protected void Update_OnClick(object sender, EventArgs e)
         {
-            StudioSQLController.UpdateStudioInfoSql(StudioSQLController.ReadStudioInfoSql(StudioNumber.Text.Trim()),GenerateStudioThisPanel());
+            StudioSQLController.UpdateStudioInfoSql(StudioSQLController.ReadStudioInfoSql(StudioNumber.Text.Trim()),
+                                                    GenerateStudioThisPanel());
         }
 
         protected void Reset_OnClick(object sender, EventArgs e)
@@ -43,13 +44,9 @@ namespace GameStdioManager.Views
         ///     根据当前页面信息生成Studio对象
         /// </summary>
         /// <returns></returns>
-        private Studio GenerateStudioThisPanel()
-        {
-            return new Studio(StudioNumber.Text,
-                              StudioName.Text,
-                              int.Parse(StudioProperty.Text),
-                              int.Parse(StudioReputation.Text));
-        }
+        private Studio GenerateStudioThisPanel() => new Studio(StudioNumber.Text, StudioName.Text,
+                                                               int.Parse(StudioProperty.Text),
+                                                               int.Parse(StudioReputation.Text));
 
         /// <summary>
         ///     重置界面
