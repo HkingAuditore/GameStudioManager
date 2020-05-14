@@ -26,7 +26,7 @@ namespace GameStdioManager.Models
 
         public StudioBehavior()
         {
-            GameTimer = new SimulatorTimer();
+            GameTimer = new SimulatorTimer(false);
 
             GameStart += GameTimer.TimerStart;
             

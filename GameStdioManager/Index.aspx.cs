@@ -11,19 +11,21 @@ namespace GameStdioManager
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // var staff = StaffSQLController.ReadStaffInfoSql("0");
+
             if (game == null)
             {
                 game = new StudioBehavior();
                 game.Start();
             }
             Label1.Text = game.GameTimer.GameTimeNow.ToString();
-            
+            // if(!IsPostBack)Show();
         }
 
-        private void Show(object sender, EventArgs e)
+        private void Show()
         {
-            Response.Write("<script>alert('" + game.GameTimer.GameTimeNow + "')</script>");
+            var staff = StaffSQLController.ReadStaffInfoSql("1");
+            Response.Write("<script>alert('" + staff.ToString() + "')</script>");
+
         }
     }
 }
