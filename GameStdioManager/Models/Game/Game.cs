@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using GameStdioManager.Models.Checkpoint;
 
 namespace GameStdioManager.Models.Game
 {
@@ -36,6 +38,8 @@ namespace GameStdioManager.Models.Game
 
     public class Game : SimulatorBase
     {
+        #region 基本属性
+
         /// <summary>
         ///     游戏编号
         /// </summary>
@@ -82,8 +86,12 @@ namespace GameStdioManager.Models.Game
         /// </summary>
         public Genres GameGenres { get; }
 
+        #endregion
 
-        public Game(string gameNumber, string gameName, int gamePrice, int gameFun, int gameArt, int gameMusic, int gameSales, string gameStudio, Genres gameGenres)
+        #region 构造函数
+
+        public Game(string gameNumber, string gameName,   int    gamePrice, int gameFun, int gameArt, int gameMusic,
+                    int    gameSales,  string gameStudio, Genres gameGenres)
         {
             GameNumber = gameNumber;
             GameName   = gameName;
@@ -96,6 +104,40 @@ namespace GameStdioManager.Models.Game
             GameGenres = gameGenres;
         }
 
+        public Game(string gameNumber, string gameName)
+        {
+            GameNumber = gameNumber;
+            GameName = gameName;
+        }
 
+        #endregion
+
+        #region 逻辑
+
+        #region 开发
+
+        public void StartDevelop(int hours)
+        {
+            var arg = new CheckpointArgs(hours);
+            var cp = new Checkpoint.Checkpoint(0, 
+                                               SimulatorTimer.GetTimeAfterHours(hours), 
+                                               "OnGameFinishDevelop", 
+                                               arg,
+                                               this
+                                               );
+            SimulatorTimer.TimeTable.Add(cp);
+            CheckpointsProcessing.OnGameFinishDevelop += (sender, args) => Debug.WriteLine(this.GameNumber +" Game ends in " + args.Parm +" hours.");
+            CheckpointsProcessing.OnGameFinishDevelop += EndDevelop;
+        }
+
+        public void EndDevelop(object sender,CheckpointArgs args)
+        {
+            Game game = (Game) sender;
+            Debug.WriteLine(game.GameName);
+        }
+
+        #endregion
+
+        #endregion
     }
 }

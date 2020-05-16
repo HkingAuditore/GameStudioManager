@@ -2,6 +2,7 @@
 using System.Web.UI;
 using GameStdioManager.Controllers.Staff;
 using GameStdioManager.Models;
+using GameStdioManager.Models.Game;
 
 namespace GameStdioManager
 {
@@ -16,8 +17,10 @@ namespace GameStdioManager
             {
                 game = new StudioBehavior();
                 game.Start();
+                var develop = new Game("99","The Last of Us");
+                develop.StartDevelop(1);
             }
-            Label1.Text = game.GameTimer.GameTimeNow.ToString();
+            Label1.Text = SimulatorTimer.GameTimeNow.ToString();
             // if(!IsPostBack)Show();
         }
 

@@ -12,23 +12,23 @@ namespace GameStdioManager.Models
         /// <summary>
         /// 时间管理类
         /// </summary>
-        public SimulatorTimer GameTimer;
+        // public SimulatorTimer GameTimer;
 
         /// <summary>
         /// 游戏开始
         /// </summary>
-        public event EventHandler<StudioBehaviorArgs> GameStart;
+        public static event EventHandler<StudioBehaviorArgs> GameStart;
 
         /// <summary>
         /// 游戏加载
         /// </summary>
-        public event EventHandler<StudioBehaviorArgs> GameReload;
+        public static event EventHandler<StudioBehaviorArgs> GameReload;
 
         public StudioBehavior()
         {
-            GameTimer = new SimulatorTimer(false);
+            var timer = new SimulatorTimer(false);
 
-            GameStart += GameTimer.TimerStart;
+            GameStart += SimulatorTimer.TimerUpdate;
             
         }
 
