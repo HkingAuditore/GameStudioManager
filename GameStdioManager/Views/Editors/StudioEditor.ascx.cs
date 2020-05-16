@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Linq;
 using System.Web.UI;
+using System.Web.UI.WebControls;
+using GameStdioManager.Controllers;
 using GameStdioManager.Controllers.Studio;
 using GameStdioManager.Models.Studio;
+using WebGrease.Css.Extensions;
 
-namespace GameStdioManager.Views
+namespace GameStdioManager.Views.Editors
 {
-    public partial class StudioEditor : UserControl
+    public partial class StudioEditor : CustomUserEditorControlBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -15,7 +19,7 @@ namespace GameStdioManager.Views
 
         protected void Confirm_OnClick(object sender, EventArgs e)
         {
-            StudioSQLController.InsertStudioInfoSql(GenerateStudioThisPanel());
+            ControllerBase.InsertInfoSql(GenerateStudioThisPanel());
         }
 
         protected void ReadFromSQL_OnClick(object sender, EventArgs e)
@@ -53,10 +57,10 @@ namespace GameStdioManager.Views
         /// </summary>
         private void ResetStudioInfoPanel()
         {
-            StudioName.Text       = "";
-            StudioProperty.Text   = "";
-            StudioReputation.Text = "";
-            StudioNumber.Text     = "";
+            (from Control ct in Controls
+             where ct.GetType().ToString()
+                     .Equals("System.Web.UI.WebControls.TextBox")
+             select (TextBox)ct).ForEach(textBox => textBox.Text = "");
         }
 
         /// <summary>

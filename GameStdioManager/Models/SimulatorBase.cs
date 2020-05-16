@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace GameStdioManager.Models
 {
@@ -13,12 +14,18 @@ namespace GameStdioManager.Models
         public int EnumInt { get; }
     }
 
-    public class SimulatorBase
+    public interface IPropertyGetter
     {
-        public object GetPropertyValue(string propertyName)
-        {
-            return GetType().GetProperty(propertyName)?.GetValue(this, null);
-        }
+        object GetPropertyValue(string propertyName);
+        string GetTypeName();
+    }
+
+    public class SimulatorBase : IPropertyGetter
+    {
+        public object GetPropertyValue(string propertyName) => GetType().GetProperty(propertyName)?.GetValue(this, null);
+
+        public string GetTypeName() => GetType().Name;
+
     }
 
 }

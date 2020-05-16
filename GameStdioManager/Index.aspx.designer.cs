@@ -64,7 +64,7 @@ namespace GameStdioManager {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::GameStdioManager.Views.StaffEditor StaffEditor;
+        protected global::GameStdioManager.Views.Editors.StaffEditor StaffEditor;
         
         /// <summary>
         /// StudioEditor 控件。
@@ -73,6 +73,15 @@ namespace GameStdioManager {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::GameStdioManager.Views.StudioEditor StudioEditor;
+        protected global::GameStdioManager.Views.Editors.StudioEditor StudioEditor;
+        
+        /// <summary>
+        /// GameEditor 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::GameStdioManager.Views.Editors.GameEditor GameEditor;
     }
 }

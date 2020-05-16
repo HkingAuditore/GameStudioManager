@@ -4,28 +4,30 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
-using GameStdioManager.Models.Studio;
+using GameStdioManager.Models.Game;
 
-namespace GameStdioManager.Controllers.Studio
+namespace GameStdioManager.Controllers.Game
 {
-    public class StudioSQLController : ControllerBase
+    public class GameSQLController : ControllerBase
     {
+
+
         /// <summary>
-        ///     从数据库中读取工作室数据并生成对象
+        /// 从数据库中读取游戏数据并生成实例
         /// </summary>
-        /// <param name="staffNumber">工作室编号</param>
+        /// <param name="gameNumber"></param>
         /// <returns></returns>
-        public static Models.Studio.Studio ReadStudioInfoSql(string studioNumber)
+        public static Models.Game.Game ReadGameInfoSql(string gameNumber)
         {
-            Models.Studio.Studio studio = null;
+            Models.Game.Game game = null;
 
             using (var sqlConnection = new SqlConnection(ConString))
             {
                 // 使用了Target占位符表示目标ID
-                var sqlCommand = new SqlCommand("SELECT * FROM StudioInfo WHERE StudioNumber = @Target", sqlConnection);
+                var sqlCommand = new SqlCommand("SELECT * FROM GameInfo WHERE GameNumber = @Target", sqlConnection);
                 // 构造Parameter对象
                 var targetSqlParameter = new SqlParameter("@Target", SqlDbType.VarChar, 255);
-                targetSqlParameter.Value = studioNumber;
+                targetSqlParameter.Value = gameNumber;
                 sqlCommand.Parameters.Add(targetSqlParameter);
 
                 sqlConnection.Open();
@@ -34,32 +36,36 @@ namespace GameStdioManager.Controllers.Studio
                 if (result.HasRows)
                 {
                     result.Read();
-                    studio = new Models.Studio.Studio(result["StudioNumber"].ToString(),
-                                                      result["StudioName"].ToString(),
-                                                      int.Parse(result["StudioProperty"].ToString()),
-                                                      int.Parse(result["StudioReputation"].ToString())
+                    game = new Models.Game.Game(result["GameNumber"].ToString(),
+                                                      result["GameName"].ToString(),
+                                                      int.Parse(result["GamePrice"].ToString()),
+                                                      int.Parse(result["GameFun"].ToString()),
+                                                      int.Parse(result["GameArt"].ToString()),
+                                                      int.Parse(result["GameMusic"].ToString()),
+                                                      int.Parse(result["GameSales"].ToString()),
+                                                      result["GameStudio"].ToString(),
+                                                      (Genres)int.Parse(result["GameGenres"].ToString())
                                                      );
                 }
 
                 result.Close();
             }
 
-            return studio;
+            return game;
         }
 
-
         /// <summary>
-        /// 向数据库插入工作室数据
+        /// 根据实例向数据库插入信息
         /// </summary>
-        /// <param name="studio"></param>
+        /// <param name="game"></param>
         [Obsolete("使用基类的 InsertInfoSql<T>(t)")]
-        public static void InsertStudioInfoSql(Models.Studio.Studio studio)
+        public static void InsertGameInfoSql(Models.Game.Game game)
         {
             using (var sqlConnection = new SqlConnection(ConString))
             {
-                StringBuilder commandStringBuilderFirstPart = new StringBuilder("INSERT INTO StudioInfo (");
+                StringBuilder commandStringBuilderFirstPart = new StringBuilder("INSERT INTO GameInfo (");
                 StringBuilder commandStringBuilderSecondPart = new StringBuilder(") VALUES (");
-                var properties = studio.GetType().GetProperties();
+                var properties = game.GetType().GetProperties();
 
                 // 抓取属性名称生成SQL语句
                 int cur = 1;
@@ -68,11 +74,11 @@ namespace GameStdioManager.Controllers.Studio
                     commandStringBuilderFirstPart.Append(property.Name);
                     if (property.PropertyType.Name == "String")
                     {
-                        commandStringBuilderSecondPart.Append(ConvertStringToSql((string)studio.GetPropertyValue(property.Name)));
+                        commandStringBuilderSecondPart.Append(ConvertStringToSql((string)game.GetPropertyValue(property.Name)));
                     }
                     else
                     {
-                        commandStringBuilderSecondPart.Append((int)studio.GetPropertyValue(property.Name));
+                        commandStringBuilderSecondPart.Append((int)game.GetPropertyValue(property.Name));
                     }
                     if (cur++ < properties.Length)
                     {
@@ -83,19 +89,20 @@ namespace GameStdioManager.Controllers.Studio
 
                 string command = commandStringBuilderFirstPart.ToString() + commandStringBuilderSecondPart.ToString() +
                                  ")";
-                SqlCommand sqlCommand = new SqlCommand(command,sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
 
                 sqlConnection.Open();
                 sqlCommand.ExecuteNonQuery();
             }
         }
 
+
         /// <summary>
-        /// 更新数据库的Studio数据
+        /// 比对两个Game实例生成SQL语句
         /// </summary>
         /// <param name="origin">旧实例</param>
         /// <param name="target">新实例</param>
-        public static void UpdateStudioInfoSql(Models.Studio.Studio origin, Models.Studio.Studio target)
+        public static void UpdateGameInfoSql(Models.Game.Game origin, Models.Game.Game target)
         {
             // 属性比对，生成的SQL语句只包含要修改的部分
             var properties = origin.GetType().GetProperties();
@@ -105,23 +112,31 @@ namespace GameStdioManager.Controllers.Studio
                     updateList.Add(property);
 
             // 生成SQL语句
-            var commandStringBuilder = new StringBuilder("UPDATE StudioInfo SET ");
+            var commandStringBuilder = new StringBuilder("UPDATE GameInfo SET ");
 
             var cur = 1;
             foreach (var targetProperty in updateList)
             {
                 if (targetProperty.PropertyType.Name == "String")
+                {
                     commandStringBuilder.Append(targetProperty.Name + " = " +
                                                 ConvertStringToSql((string)target
                                                                       .GetPropertyValue(targetProperty.Name)));
+                }else if(targetProperty.PropertyType.Name == "Genres")
+                {
+                    commandStringBuilder.Append(targetProperty.Name + " = " +
+                                                (int)(Genres)target.GetPropertyValue(targetProperty.Name));
+
+                }
                 else
+                {
                     commandStringBuilder.Append(targetProperty.Name + " = " +
                                                 (int)target.GetPropertyValue(targetProperty.Name));
-
+                }
                 if (cur++ < updateList.Count) commandStringBuilder.Append(", ");
             }
 
-            commandStringBuilder.Append(" WHERE StudioNumber = " + ConvertStringToSql(origin.StudioNumber));
+            commandStringBuilder.Append(" WHERE GameNumber = " + ConvertStringToSql(origin.GameNumber));
 
             // 执行
             using (var sqlConnection = new SqlConnection(ConString))
@@ -132,6 +147,7 @@ namespace GameStdioManager.Controllers.Studio
                 sqlCommand.ExecuteNonQuery();
             }
         }
+
 
     }
 }

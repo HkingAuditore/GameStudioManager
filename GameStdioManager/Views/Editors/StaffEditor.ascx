@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="StaffEditor.ascx.cs" Inherits="GameStdioManager.Views.StaffEditor" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="StaffEditor.ascx.cs" Inherits="GameStdioManager.Views.Editors.StaffEditor" %>
 
 <div class="container-fluid">
     <div class="row">
@@ -10,8 +10,8 @@
         </div>
         <div class="col-lg-12">
             性别：
-                男<asp:RadioButton ID="Male" runat="server" GroupName="Gender" />
-                女<asp:RadioButton ID="Female" runat="server" GroupName="Gender" />
+                <asp:RadioButton ID="Male" runat="server" GroupName="Gender" Text="男"/>
+                <asp:RadioButton ID="Female" runat="server" GroupName="Gender" Text="女"/>
         </div>
         <div class="col-lg-12">
             薪水：<asp:TextBox ID="StaffSalary" runat="server"></asp:TextBox>
@@ -59,11 +59,11 @@
         </div>
         <div class="col-lg-12" ID="Temperament" runat="server">
             性格：
-            友善<asp:CheckBox ID="Friendly" runat="server" GroupName="Tenmperament" />
-            无主见<asp:CheckBox ID="Indecisive" runat="server" GroupName="Tenmperament" />
-            有天赋<asp:CheckBox ID="Gifted" runat="server" GroupName="Tenmperament" />
-            坏心肠<asp:CheckBox ID="Malevolent" runat="server" GroupName="Tenmperament" />
-            领袖气质<asp:CheckBox ID="Charisma" runat="server" GroupName="Tenmperament" />
+            <asp:CheckBox ID="Friendly" runat="server"  Text="友善" GroupName="Tenmperament" />
+            <asp:CheckBox ID="Indecisive" runat="server" Text="无主见" GroupName="Tenmperament" />
+            <asp:CheckBox ID="Gifted" runat="server" Text="有天赋" GroupName="Tenmperament" />
+            <asp:CheckBox ID="Malevolent" runat="server" Text="坏心肠" GroupName="Tenmperament" />
+            <asp:CheckBox ID="Charisma" runat="server" Text="领袖气质" GroupName="Tenmperament" />
         </div>
         <div class="col-lg-12">
             所属公司：<asp:TextBox ID="StaffStudio" runat="server"></asp:TextBox>

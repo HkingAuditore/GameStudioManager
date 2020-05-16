@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="StudioEditor.ascx.cs" Inherits="GameStdioManager.Views.StudioEditor" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="StudioEditor.ascx.cs" Inherits="GameStdioManager.Views.Editors.StudioEditor" %>
 
 <div class="container-fluid">
     <div class="row">

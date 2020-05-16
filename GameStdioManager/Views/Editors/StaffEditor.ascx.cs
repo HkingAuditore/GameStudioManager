@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using GameStdioManager.Controllers;
 using GameStdioManager.Controllers.Staff;
 using GameStdioManager.Models.Staff;
+using WebGrease.Css.Extensions;
 
-namespace GameStdioManager.Views
+namespace GameStdioManager.Views.Editors
 {
-    public partial class StaffEditor : UserControl
+    public partial class StaffEditor : CustomUserEditorControlBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,7 +43,7 @@ namespace GameStdioManager.Views
         /// </summary>
         private void InsertStaff()
         {
-            StaffSQLController.InsertStaffInfoSql(GenerateStaffThisPanel());
+            ControllerBase.InsertInfoSql(GenerateStaffThisPanel());
         }
 
 
@@ -75,28 +78,32 @@ namespace GameStdioManager.Views
         /// </summary>
         private void ResetStaffInfoPanel()
         {
-            StaffNumber.Text       = "";
-            StaffName.Text         = "";
-            StaffSalary.Text       = "";
-            StaffStrength.Text     = "";
-            StaffIntelligence.Text = "";
-            StaffLoyalty.Text      = "";
-            StaffProperty.Text     = "";
-            TimeToWork.Text        = "";
-            TimeToQuit.Text        = "";
-            WeekdaysLength.Text    = "";
-            StaffStudio.Text       = "";
+            (from Control ct in Controls
+             where ct.GetType().ToString()
+                     .Equals("System.Web.UI.WebControls.TextBox")
+             select (TextBox)ct).ForEach(textBox => textBox.Text = "");
 
-            StaffRank.SelectedIndex       = 0;
-            StaffOccupation.SelectedIndex = 0;
+            (from Control ct in Controls
+             where ct.GetType().ToString()
+                     .Equals("System.Web.UI.WebControls.DropDownList")
+             select (DropDownList)ct).ForEach(dropDownList => dropDownList.SelectedIndex = 0);
+
+            // (from Control ct in Controls
+            //  where ct.GetType().ToString()
+            //          .Equals("System.Web.UI.WebControls.CheckBox")
+            //  select (CheckBox)ct).ForEach(checkBox => checkBox.Checked = false);
+
+            (from Control ct in Temperament.Controls
+             where ct.GetType().ToString()
+                     .Equals("System.Web.UI.WebControls.CheckBox")
+             select (CheckBox)ct).ForEach(checkBox => checkBox.Checked = false);
+
+
+
 
             Male.Checked       = false;
             Female.Checked     = false;
-            Friendly.Checked   = false;
-            Indecisive.Checked = false;
-            Gifted.Checked     = false;
-            Malevolent.Checked = false;
-            Charisma.Checked   = false;
+
         }
 
         /// <summary>

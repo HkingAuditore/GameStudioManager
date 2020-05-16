@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace GameStdioManager.Views {
+namespace GameStdioManager.Views.Editors {
     
     
     public partial class StudioEditor {
