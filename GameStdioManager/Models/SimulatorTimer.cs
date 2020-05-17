@@ -51,6 +51,8 @@ namespace GameStdioManager.Models
             _gameTimer = new Timer(1000);
         }
 
+        #region 纯时间操作
+
         /// <summary>
         /// 重载时间
         /// </summary>
@@ -69,12 +71,14 @@ namespace GameStdioManager.Models
             _gameTimer.AutoReset = true;
             // 每次时间步进的操作
             _gameTimer.Elapsed += (s, ea) => { GameTimeNow = GameTimeNow.AddMinutes(_timeSpeed); };
-            _gameTimer.Elapsed += CheckCheckpoints;
+            _gameTimer.Elapsed += Update;
 
 
             _gameTimer.Enabled = true;
             _gameTimer.Start();
         }
+
+        
 
         /// <summary>
         /// 获取当前时间n个小时后的时间
@@ -92,27 +96,41 @@ namespace GameStdioManager.Models
             return temp.AddHours(n);
         }
 
+        #endregion
+
         #region 时间步进详细行为
 
         /// <summary>
-        /// 时间表
+        /// 确定时间表
         /// </summary>
-        public static List<Checkpoint.Checkpoint> TimeTable = new List<Checkpoint.Checkpoint>();
+        private static List<Checkpoint.Checkpoint> _timeTable = new List<Checkpoint.Checkpoint>();
 
-        private static void CheckCheckpoints(object sender,ElapsedEventArgs e)
+        public static void AddCheckpoint(Checkpoint.Checkpoint checkpoint) => _timeTable.Add(checkpoint);
+
+
+        public static void RemoveCheckpoint(Checkpoint.Checkpoint checkpoint) => _timeTable.Remove(checkpoint);
+
+
+        /// <summary>
+        /// 刷新
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void Update(object sender,ElapsedEventArgs e)
         {
-            if (TimeTable.Count != 0)
+            for (int i = 0; i < _timeTable.Count; i++)
             {
-                for (var i = 0; i < TimeTable.Count; i++)
+                if (_timeTable[i].CheckFinish())
                 {
-                    var checkpoint = TimeTable[i];
-                    if (GameTimeNow >= checkpoint.CheckpointTime)
-                    {
-                        checkpoint.InvokeCheckpointEvent();
-                        TimeTable.Remove(checkpoint);
-                    }
+                    _timeTable[i].InvokeCheckpointEvent();
+                    RemoveCheckpoint(_timeTable[i]);
+                    continue;
                 }
+                _timeTable[i].UpdateCheckpoint();
+
             }
+
+
         }
 
         #endregion

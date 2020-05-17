@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using GameStdioManager.Models.Checkpoint;
 
@@ -116,20 +117,50 @@ namespace GameStdioManager.Models.Game
 
         #region 开发
 
-        public void StartDevelop(int hours)
+        /// <summary>
+        /// 开发者
+        /// </summary>
+        private List<Staff.Staff> developers = new List<Staff.Staff>();
+
+        /// <summary>
+        /// 开始开发
+        /// </summary>
+        /// <param name="hours">开发时长</param>
+        /// <param name="staff">开发人员</param>
+        public void StartDevelop(int hours,int speed)
         {
-            var arg = new CheckpointArgs(hours);
+            var arg = new CheckpointArgs();
+            arg.CheckParm = hours;
+            arg.UpdateParm = 0;
+
             var cp = new Checkpoint.Checkpoint(0, 
-                                               SimulatorTimer.GetTimeAfterHours(hours), 
-                                               "OnGameFinishDevelop", 
-                                               arg,
-                                               this
-                                               );
-            SimulatorTimer.TimeTable.Add(cp);
-            CheckpointsProcessing.OnGameFinishDevelop += (sender, args) => Debug.WriteLine(this.GameNumber +" Game ends in " + args.Parm +" hours.");
-            CheckpointsProcessing.OnGameFinishDevelop += EndDevelop;
+                                               SimulatorTimer.GetTimeAfterHours(hours),
+                                               this,
+                                               arg
+                                              );
+
+            cp.SetCheckMethod((sender, args) =>
+                              {
+                                  return (args.UpdateParm >= 100 || SimulatorTimer.GameTimeNow >= cp.CheckpointTime);
+                              });
+            cp.AddUpdateProcess((sender,args) =>
+                                {
+                                    Debug.WriteLine(this.GameName + " Processing:" + args.UpdateParm +"%");
+                                    args.UpdateParm += speed;
+                                });
+
+            SimulatorTimer.AddCheckpoint(cp);
+
+            cp.AddCheckProcess((sender, args) => Debug.WriteLine(this.GameName +" Game FINISHED!"));
+            cp.AddCheckProcess(EndDevelop);
+
         }
 
+        /// <summary>
+        /// 开发结束
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         public void EndDevelop(object sender,CheckpointArgs args)
         {
             Game game = (Game) sender;

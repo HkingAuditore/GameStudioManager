@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace GameStdioManager.Models.Checkpoint
 {
-
-
     /// <summary>
     ///     检查点处理委托
     /// </summary>
@@ -13,6 +10,8 @@ namespace GameStdioManager.Models.Checkpoint
     public class Checkpoint : SimulatorBase
     {
         #region 基本属性
+
+        #region 公共属性
 
         /// <summary>
         ///     检查点序号
@@ -25,11 +24,6 @@ namespace GameStdioManager.Models.Checkpoint
         public DateTime CheckpointTime { get; }
 
         /// <summary>
-        ///     检查点执行事件
-        /// </summary>
-        public string CheckpointProcess;
-
-        /// <summary>
         ///     检查点事件传参
         /// </summary>
         public CheckpointArgs CheckpointTransferArgs;
@@ -39,29 +33,53 @@ namespace GameStdioManager.Models.Checkpoint
         /// </summary>
         public object CheckpointTransferObject;
 
+        /// <summary>
+        ///     检查点执行事件
+        /// </summary>
+        public event CheckpointHandler CheckpointProcess;
+
+        /// <summary>
+        /// 每一次检查时进行的操作
+        /// </summary>
+        public event CheckpointHandler CheckUpdateProcess;
+
+
+        #endregion
+
+
+        #region 私有字段
+
+        /// <summary>
+        ///     事件完成检查方法,只能有一个
+        /// </summary>
+        private CheckpointChecker _checkFinishMethod;
+
+
+        #endregion
+
         #endregion
 
         #region 构造函数
 
         public Checkpoint(int checkpointNumber, DateTime checkpointTime)
         {
-            CheckpointNumber = checkpointNumber;
-            CheckpointTime   = checkpointTime;
+            CheckpointNumber   = checkpointNumber;
+            CheckpointTime     = checkpointTime;
+
+            _checkFinishMethod = (sender, args) => false;
         }
 
-        /// <summary>
-        /// </summary>
-        /// <param name="checkpointNumber"></param>
-        /// <param name="checkpointTime"></param>
-        /// <param name="checkpointHandler">格式：完整类名.方法</param>
-        public Checkpoint(int            checkpointNumber,       DateTime checkpointTime, string checkpointProcess,
-                          CheckpointArgs checkpointTransferArgs, object   checkpointTransferObject)
+
+        public Checkpoint(int    checkpointNumber,         DateTime       checkpointTime, 
+                          object checkpointTransferObject, CheckpointArgs checkpointTransferArgs)
         {
             CheckpointNumber         = checkpointNumber;
             CheckpointTime           = checkpointTime;
-            CheckpointProcess        = checkpointProcess;
+
             CheckpointTransferArgs   = checkpointTransferArgs;
             CheckpointTransferObject = checkpointTransferObject;
+
+            _checkFinishMethod = (sender, args) => false;
         }
 
         #endregion
@@ -69,22 +87,39 @@ namespace GameStdioManager.Models.Checkpoint
         #region 事件处理
 
         /// <summary>
-        ///     从事件名在CheckpointProcessing中触发对应事件
+        ///     检查事件完成性
         /// </summary>
-        /// <param name="target">目标事件名称</param>
         /// <returns></returns>
-        public void InvokeCheckpointEvent()
-        {
-            Debug.WriteLine("Invoke" + CheckpointProcess);
-            typeof(CheckpointsProcessing)
-               .GetMethod("Invoke" + CheckpointProcess)
-              ?.Invoke(this,
-                       new[]
-                       {
-                           CheckpointTransferObject,
-                           CheckpointTransferArgs
-                       });
-        }
+        public bool CheckFinish() => _checkFinishMethod(CheckpointTransferObject, CheckpointTransferArgs);
+
+        /// <summary>
+        ///     激发事件处理
+        /// </summary>
+        public void InvokeCheckpointEvent() => CheckpointProcess?.Invoke(CheckpointTransferObject, CheckpointTransferArgs);
+
+        /// <summary>
+        /// 添加完成操作
+        /// </summary>
+        /// <param name="process"></param>
+        public void AddCheckProcess(CheckpointHandler process) => CheckpointProcess += process;
+
+        /// <summary>
+        /// 设置检查方法
+        /// </summary>
+        /// <param name="checker"></param>
+        public void SetCheckMethod(CheckpointChecker checker) => _checkFinishMethod = checker;
+
+        /// <summary>
+        /// 添加刷新操作
+        /// </summary>
+        /// <param name="process"></param>
+        public void AddUpdateProcess(CheckpointHandler process) => CheckUpdateProcess += process;
+
+        /// <summary>
+        /// 刷新检查点
+        /// </summary>
+        public void UpdateCheckpoint() => CheckUpdateProcess?.Invoke(CheckpointTransferObject, CheckpointTransferArgs);
+
 
         #endregion
     }
