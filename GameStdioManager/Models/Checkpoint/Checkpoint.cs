@@ -69,12 +69,14 @@ namespace GameStdioManager.Models.Checkpoint
         /// <summary>
         ///     检查点执行事件
         /// </summary>
-        public event CheckpointHandler CheckpointProcess;
+        private event CheckpointHandler CheckpointProcess;
 
         /// <summary>
         ///     每一次检查时进行的操作
         /// </summary>
-        public event CheckpointHandler CheckUpdateProcess;
+        private event CheckpointHandler CheckUpdateProcess;
+
+        private Type _soureceType = null;
 
         #endregion
 
@@ -178,25 +180,24 @@ namespace GameStdioManager.Models.Checkpoint
         /// </summary>
         private void GenerateCheckpoint()
         {
-            Type sourceType = null;
-
+            // 绑定类型
             switch (CheckpointTypeIndicator)
             {
                 case "Game":
-                    sourceType = typeof(Game.Game);
+                    _soureceType = typeof(Game.Game);
                     break;
                 case "Staff":
-                    sourceType = typeof(Staff.Staff);
+                    _soureceType = typeof(Staff.Staff);
                     break;
                 case "Studio":
-                    sourceType = typeof(Studio.Studio);
+                    _soureceType = typeof(Studio.Studio);
                     break;
             }
 
-            if (sourceType != null)
+            if (_soureceType != null)
             {
                 (from st in CheckpointProcessIndicator
-                 select sourceType.GetMethod(st)
+                 select _soureceType.GetMethod(st)
                  into pc
                  where pc != null
                  select pc).ForEach(process => CheckpointProcess +=
@@ -205,7 +206,7 @@ namespace GameStdioManager.Models.Checkpoint
                                                                            process));
 
                 (from st in CheckpointUpdateIndicator
-                 select sourceType.GetMethod(st)
+                 select _soureceType.GetMethod(st)
                  into pc
                  where pc != null
                  select pc).ForEach(process => CheckUpdateProcess +=

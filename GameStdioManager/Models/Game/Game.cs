@@ -116,6 +116,8 @@ namespace GameStdioManager.Models.Game
 
         #region 逻辑
 
+        #region 检查点相关，需要在检查点调用的方法务必使用Static
+
         #region 开发
 
         /// <summary>
@@ -128,11 +130,11 @@ namespace GameStdioManager.Models.Game
         /// </summary>
         /// <param name="hours">开发时长</param>
         /// <param name="staff">开发人员</param>
-        public void StartDevelop(int hours,int speed)
+        public void StartDevelop(int hours, int speed)
         {
             var arg = new CheckpointArgs();
-            arg.CheckParm = hours;
-            arg.UpdateParm = 0;
+            arg.CheckParm   = hours;
+            arg.UpdateParm  = 0;
             arg.UpdateSpeed = speed;
 
             var cp = new Checkpoint.Checkpoint(0, 
@@ -169,11 +171,13 @@ namespace GameStdioManager.Models.Game
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public static void EndDevelop(object sender,CheckpointArgs args)
+        public static void EndDevelop(object sender, CheckpointArgs args)
         {
             Game game = (Game) sender;
             Debug.WriteLine(game.GameName + " Game FINISHED!");
         }
+
+#endregion
 
         #endregion
 
