@@ -18,9 +18,9 @@ namespace GameStdioManager
                 game = new StudioBehavior();
                 game.Start();
                 var develop0 = new Game("99", "The Last of Us");
-                develop0.StartDevelop(10,20);
+                develop0.StartDevelop(10,50);
                 var develop1 = new Game("100", "Red Dead Redemption 2");
-                develop1.StartDevelop(3,10);
+                develop1.StartDevelop(2,10);
             }
             Label1.Text = SimulatorTimer.GameTimeNow.ToString();
             // if(!IsPostBack)Show();

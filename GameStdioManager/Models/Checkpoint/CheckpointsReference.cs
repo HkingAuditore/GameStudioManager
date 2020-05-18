@@ -13,6 +13,8 @@ namespace GameStdioManager.Models.Checkpoint
 
         public int UpdateParm;
 
+        public int UpdateSpeed;
+
         public CheckpointArgs()
         {
 

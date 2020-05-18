@@ -109,6 +109,7 @@ namespace GameStdioManager.Models.Game
         {
             GameNumber = gameNumber;
             GameName = gameName;
+
         }
 
         #endregion
@@ -132,29 +133,34 @@ namespace GameStdioManager.Models.Game
             var arg = new CheckpointArgs();
             arg.CheckParm = hours;
             arg.UpdateParm = 0;
+            arg.UpdateSpeed = speed;
 
             var cp = new Checkpoint.Checkpoint(0, 
                                                SimulatorTimer.GetTimeAfterHours(hours),
+                                               new[] {"EndDevelop"},
+                                               new[] {"UpdateDevelop"},
+                                               "CheckTimeAndProcess",
                                                this,
-                                               arg
+                                               arg,
+                                               this.GetTypeName()
                                               );
-
-            cp.SetCheckMethod((sender, args) =>
-                              {
-                                  return (args.UpdateParm >= 100 || SimulatorTimer.GameTimeNow >= cp.CheckpointTime);
-                              });
-            cp.AddUpdateProcess((sender,args) =>
-                                {
-                                    Debug.WriteLine(this.GameName + " Processing:" + args.UpdateParm +"%");
-                                    args.UpdateParm += speed;
-                                });
-
             SimulatorTimer.AddCheckpoint(cp);
 
-            cp.AddCheckProcess((sender, args) => Debug.WriteLine(this.GameName +" Game FINISHED!"));
-            cp.AddCheckProcess(EndDevelop);
-
         }
+
+
+        /// <summary>
+        /// 开发更新
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        public void UpdateDevelop(object sender, CheckpointArgs args)
+        {
+            Debug.WriteLine(this.GameName + " Processing:" + args.UpdateParm + "%. In " + SimulatorTimer.GameTimeNow);
+            args.UpdateParm += args.UpdateSpeed;
+        }
+
+        // public CheckpointHandler UpdateDevelop => UpdateDevelop_B;
 
         /// <summary>
         /// 开发结束
@@ -164,7 +170,7 @@ namespace GameStdioManager.Models.Game
         public void EndDevelop(object sender,CheckpointArgs args)
         {
             Game game = (Game) sender;
-            Debug.WriteLine(game.GameName);
+            Debug.WriteLine(this.GameName + " Game FINISHED!");
         }
 
         #endregion
