@@ -154,9 +154,11 @@ namespace GameStdioManager.Models.Game
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public void UpdateDevelop(object sender, CheckpointArgs args)
+        public static void UpdateDevelop(object sender, CheckpointArgs args)
         {
-            Debug.WriteLine(this.GameName + " Processing:" + args.UpdateParm + "%. In " + SimulatorTimer.GameTimeNow);
+            Game game = (Game)sender;
+
+            Debug.WriteLine(game.GameName + " Processing:" + args.UpdateParm + "%. In " + SimulatorTimer.GameTimeNow);
             args.UpdateParm += args.UpdateSpeed;
         }
 
@@ -167,10 +169,10 @@ namespace GameStdioManager.Models.Game
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public void EndDevelop(object sender,CheckpointArgs args)
+        public static void EndDevelop(object sender,CheckpointArgs args)
         {
             Game game = (Game) sender;
-            Debug.WriteLine(this.GameName + " Game FINISHED!");
+            Debug.WriteLine(game.GameName + " Game FINISHED!");
         }
 
         #endregion
