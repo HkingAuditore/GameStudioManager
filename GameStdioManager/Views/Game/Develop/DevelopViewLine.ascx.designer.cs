@@ -7,63 +7,81 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace GameStdioManager {
+namespace GameStdioManager.Views.Game.Develop {
     
     
-    public partial class Index {
+    public partial class DevelopViewLine {
         
         /// <summary>
-        /// form1 控件。
+        /// C_GameNumber 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Label C_GameNumber;
         
         /// <summary>
-        /// ScriptManager1 控件。
+        /// C_GameName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.Label C_GameName;
         
         /// <summary>
-        /// UpdatePanel1 控件。
+        /// C_GameStartDevelopTime 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.Label C_GameStartDevelopTime;
         
         /// <summary>
-        /// Label1 控件。
+        /// C_GameFinishDevelopTime 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label C_GameFinishDevelopTime;
         
         /// <summary>
-        /// Timer1 控件。
+        /// C_GameFun 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.Timer Timer1;
+        protected global::System.Web.UI.WebControls.Label C_GameFun;
         
         /// <summary>
-        /// DevelopView 控件。
+        /// C_GameArt 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::GameStdioManager.Views.Game.Develop.DevelopView DevelopView;
+        protected global::System.Web.UI.WebControls.Label C_GameArt;
+        
+        /// <summary>
+        /// C_GameMusic 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label C_GameMusic;
+        
+        /// <summary>
+        /// C_Developers 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl C_Developers;
     }
 }

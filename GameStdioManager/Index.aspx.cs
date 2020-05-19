@@ -19,8 +19,8 @@ namespace GameStdioManager
                 
                 SimulatorTimer.ReadCheckpointListXml();
 
-                Game newGame = new Game("10", "Test");
-                newGame.StartDevelop(2, 8);
+                // Game newGame = new Game("10", "Test");
+                // newGame.StartDevelop(2, 8);
 
                 // SimulatorTimer.SaveCheckpointListXml();
             }

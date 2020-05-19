@@ -1,10 +1,10 @@
-﻿using System;
+﻿using GameStdioManager.Models.Game;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
-using GameStdioManager.Models.Game;
 
 namespace GameStdioManager.Controllers.Game
 {
@@ -42,7 +42,7 @@ namespace GameStdioManager.Controllers.Game
                                                 int.Parse(result["GameMusic"].ToString()),
                                                 int.Parse(result["GameSales"].ToString()),
                                                 result["GameStudio"].ToString(),
-                                                (Genres) int.Parse(result["GameGenres"].ToString()),
+                                                (Genres)int.Parse(result["GameGenres"].ToString()),
                                                 Convert.ToBoolean(int.Parse(result["GameIsDeveloping"].ToString()))
                                                );
                 }
@@ -62,9 +62,9 @@ namespace GameStdioManager.Controllers.Game
         {
             using (var sqlConnection = new SqlConnection(ConString))
             {
-                var commandStringBuilderFirstPart  = new StringBuilder("INSERT INTO GameInfo (");
+                var commandStringBuilderFirstPart = new StringBuilder("INSERT INTO GameInfo (");
                 var commandStringBuilderSecondPart = new StringBuilder(") VALUES (");
-                var properties                     = game.GetType().GetProperties();
+                var properties = game.GetType().GetProperties();
 
                 // 抓取属性名称生成SQL语句
                 var cur = 1;
@@ -73,9 +73,9 @@ namespace GameStdioManager.Controllers.Game
                     commandStringBuilderFirstPart.Append(property.Name);
                     if (property.PropertyType.Name == "String")
                         commandStringBuilderSecondPart
-                           .Append(ConvertStringToSql((string) game.GetPropertyValue(property.Name)));
+                           .Append(ConvertStringToSql((string)game.GetPropertyValue(property.Name)));
                     else
-                        commandStringBuilderSecondPart.Append((int) game.GetPropertyValue(property.Name));
+                        commandStringBuilderSecondPart.Append((int)game.GetPropertyValue(property.Name));
                     if (cur++ < properties.Length)
                     {
                         commandStringBuilderFirstPart.Append(", ");
@@ -114,26 +114,38 @@ namespace GameStdioManager.Controllers.Game
             {
                 if (targetProperty.PropertyType.Name == "String")
                     commandStringBuilder.Append(targetProperty.Name + " = " +
-                                                ConvertStringToSql((string) target
+                                                ConvertStringToSql((string)target
                                                                       .GetPropertyValue(targetProperty.Name)));
                 else if (targetProperty.PropertyType.Name == "Genres")
                     commandStringBuilder.Append(targetProperty.Name + " = " +
-                                                (int) (Genres) target.GetPropertyValue(targetProperty.Name));
+                                                (int)(Genres)target.GetPropertyValue(targetProperty.Name));
+
+                else if (targetProperty.PropertyType.Name == "Boolean")
+                    commandStringBuilder.Append(targetProperty.Name + " = " +
+                                               Convert.ToInt32((bool)target.GetPropertyValue(targetProperty.Name)));
                 else
                     commandStringBuilder.Append(targetProperty.Name + " = " +
-                                                (int) target.GetPropertyValue(targetProperty.Name));
+                                                (int)target.GetPropertyValue(targetProperty.Name));
                 if (cur++ < updateList.Count) commandStringBuilder.Append(", ");
             }
 
             commandStringBuilder.Append(" WHERE GameNumber = " + ConvertStringToSql(origin.GameNumber));
 
             // 执行
-            using (var sqlConnection = new SqlConnection(ConString))
+            try
             {
-                var sqlCommand = new SqlCommand(commandStringBuilder.ToString(), sqlConnection);
+                using (var sqlConnection = new SqlConnection(ConString))
+                {
+                    var sqlCommand = new SqlCommand(commandStringBuilder.ToString(), sqlConnection);
 
-                sqlConnection.Open();
-                sqlCommand.ExecuteNonQuery();
+                    sqlConnection.Open();
+                    sqlCommand.ExecuteNonQuery();
+                }
+
+            }
+            catch
+            {
+                
             }
         }
     }

@@ -176,6 +176,27 @@
     <Compile Include="Views\Editors\StudioEditor.ascx.designer.cs">
       <DependentUpon>StudioEditor.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Game\Develop\Developer.ascx.cs">
+      <DependentUpon>Developer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Game\Develop\Developer.ascx.designer.cs">
+      <DependentUpon>Developer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Game\Develop\DevelopView.ascx.cs">
+      <DependentUpon>DevelopView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Game\Develop\DevelopView.ascx.designer.cs">
+      <DependentUpon>DevelopView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Game\Develop\DevelopViewLine.ascx.cs">
+      <DependentUpon>DevelopViewLine.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Game\Develop\DevelopViewLine.ascx.designer.cs">
+      <DependentUpon>DevelopViewLine.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -209,6 +230,9 @@
     <Content Include="Views\Editors\GameEditor.ascx" />
     <Content Include="Views\Editors\StaffEditor.ascx" />
     <Content Include="Views\Editors\StudioEditor.ascx" />
+    <Content Include="Views\Game\Develop\Developer.ascx" />
+    <Content Include="Views\Game\Develop\DevelopView.ascx" />
+    <Content Include="Views\Game\Develop\DevelopViewLine.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

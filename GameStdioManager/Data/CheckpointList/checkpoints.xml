@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CheckpointList>
-  <Checkpoint CheckpointNumber="0" CheckpointTime="2020-05-19T22:16:00" CheckpointCheckMethodIndicator="CheckTimeAndProcess" CheckpointTypeIndicator="Game" CheckpointTransferObject="1">
+  <Checkpoint CheckpointNumber="0" CheckpointTime="2020-05-20T10:16:00" CheckpointCheckMethodIndicator="CheckTimeAndProcess" CheckpointTypeIndicator="Game" CheckpointTransferObject="0">
     <CheckpointProcessIndicators>
       <CheckpointProcessIndicator target="EndDevelop" />
     </CheckpointProcessIndicators>

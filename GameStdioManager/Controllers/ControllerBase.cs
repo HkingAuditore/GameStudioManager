@@ -1,9 +1,9 @@
-﻿using System.Configuration;
-using System.Data.SqlClient;
-using System.Text;
-using GameStdioManager.Models;
+﻿using GameStdioManager.Models;
 using GameStdioManager.Models.Game;
 using GameStdioManager.Models.Staff;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Text;
 
 namespace GameStdioManager.Controllers
 {
@@ -33,7 +33,7 @@ namespace GameStdioManager.Controllers
                 var commandStringBuilderFirstPart =
                     new StringBuilder("INSERT INTO " + simulatorObject.GetTypeName() + "Info (");
                 var commandStringBuilderSecondPart = new StringBuilder(") VALUES (");
-                var properties                     = simulatorObject.GetType().GetProperties();
+                var properties = simulatorObject.GetType().GetProperties();
 
                 // 抓取属性名称生成SQL语句
                 var cur = 1;
@@ -42,15 +42,15 @@ namespace GameStdioManager.Controllers
                     commandStringBuilderFirstPart.Append(property.Name);
                     if (property.PropertyType.Name == "String")
                         commandStringBuilderSecondPart
-                           .Append(ConvertStringToSql((string) simulatorObject.GetPropertyValue(property.Name)));
+                           .Append(ConvertStringToSql((string)simulatorObject.GetPropertyValue(property.Name)));
                     else if (property.PropertyType.Name == "Temperament")
-                        commandStringBuilderSecondPart.Append((int) (Temperament)
+                        commandStringBuilderSecondPart.Append((int)(Temperament)
                                                               simulatorObject.GetPropertyValue(property.Name));
                     else if (property.PropertyType.Name == "Genres")
-                        commandStringBuilderSecondPart.Append((int) (Genres)
+                        commandStringBuilderSecondPart.Append((int)(Genres)
                                                               simulatorObject.GetPropertyValue(property.Name));
                     else
-                        commandStringBuilderSecondPart.Append((int) simulatorObject.GetPropertyValue(property.Name));
+                        commandStringBuilderSecondPart.Append((int)simulatorObject.GetPropertyValue(property.Name));
                     if (cur++ < properties.Length)
                     {
                         commandStringBuilderFirstPart.Append(", ");

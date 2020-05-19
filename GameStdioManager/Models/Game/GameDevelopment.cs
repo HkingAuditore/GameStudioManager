@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using GameStdioManager.Controllers.Game;
 using GameStdioManager.Models.Checkpoint;
 
 namespace GameStdioManager.Models.Game
@@ -16,7 +17,7 @@ namespace GameStdioManager.Models.Game
         /// <summary>
         ///     开发者
         /// </summary>
-        private List<Staff.Staff> _developers = new List<Staff.Staff>();
+        public List<Staff.Staff> Developers = new List<Staff.Staff>();
 
         /// <summary>
         /// 默认开发时间
@@ -47,6 +48,8 @@ namespace GameStdioManager.Models.Game
             SimulatorTimer.AddCheckpoint(cp);
         }
 
+        #region 更新
+
         /// <summary>
         ///     开发更新
         /// </summary>
@@ -58,8 +61,18 @@ namespace GameStdioManager.Models.Game
 
             Debug.WriteLine(game.GameName + " Processing:" + args.UpdateParm + "%. In " + SimulatorTimer.GameTimeNow);
             args.UpdateParm += args.UpdateSpeed;
+            UpdateDevelopEvent?.Invoke(sender, args);
         }
 
+        /// <summary>
+        /// 更新事件
+        /// </summary>
+        public static event CheckpointHandler UpdateDevelopEvent;
+
+        #endregion
+
+        #region 结束
+        
         /// <summary>
         ///     开发结束
         /// </summary>
@@ -68,8 +81,39 @@ namespace GameStdioManager.Models.Game
         public static void EndDevelop(SimulatorBase sender, CheckpointArgs args)
         {
             var game = (Game)sender;
+            game.GameIsDeveloping = false;
+
+            GameSQLController.UpdateGameInfoSql(GameSQLController.ReadGameInfoSql(game.GameNumber), game);
             Debug.WriteLine(game.GameName + " Game FINISHED!");
+            EndDevelopEvent?.Invoke(sender, args);
         }
+
+        /// <summary>
+        /// 结束事件
+        /// </summary>
+        public static event CheckpointHandler EndDevelopEvent;
+
+        #endregion
+
+
+        #region 开发人员
+
+        /// <summary>
+        /// 新增开发人员
+        /// </summary>
+        /// <param name="developer"></param>
+        public void AddDeveloper(Staff.Staff developer) => Developers.Add(developer);
+
+        /// <summary>
+        /// 移除开发人员
+        /// </summary>
+        /// <param name="developer"></param>
+        public void RemoveDeveloper(Staff.Staff developer) => Developers.Remove(developer);
+
+
+
+        #endregion
+
 
         #endregion 开发
 
