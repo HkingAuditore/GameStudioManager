@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Web.UI.WebControls;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 using GameStdioManager.Controllers.Game;
 using GameStdioManager.Controllers.Staff;
 using GameStdioManager.Controllers.Studio;
@@ -54,16 +59,30 @@ namespace GameStdioManager.Models.Checkpoint
                                        ?.Add(new XElement("CheckpointUpdateIndicator",
                                                           new XAttribute("target", str))));
 
-            root.Element("CheckpointTransferArgs")?.Add(new XElement("CheckParm",
-                                                                     new XAttribute("Parm",
-                                                                                    CheckpointTransferArgs.CheckParm)),
-                                                        new XElement("UpdateParm",
-                                                                     new XAttribute("Parm",
-                                                                                    CheckpointTransferArgs.UpdateParm)),
-                                                        new XElement("UpdateSpeed",
-                                                                     new XAttribute("Parm",
-                                                                                    CheckpointTransferArgs.UpdateSpeed))
-                                                       );
+            // root.Element("CheckpointTransferArgs")?.Add(new XElement("CheckParm",
+            //                                                          new XAttribute("Parm",
+            //                                                                         CheckpointTransferArgs.CheckParm)),
+            //                                             new XElement("UpdateParm",
+            //                                                          new XAttribute("Parm",
+            //                                                                         CheckpointTransferArgs.UpdateParm)),
+            //                                             new XElement("UpdateSpeed",
+            //                                                          new XAttribute("Parm",
+            //                                                                         CheckpointTransferArgs.UpdateSpeed))
+            //                                            );
+
+            using (StringWriter sw = new StringWriter())
+            {
+                XmlSerializer serializer = new XmlSerializer(this.CheckpointTransferArgs.GetType());
+                serializer.Serialize(sw, this.CheckpointTransferArgs);
+
+                // (from e in XDocument.Load((TextReader)new StringReader(sw.ToString())).Element("CheckpointArgs")?.Elements()
+                //  select e).ForEach(e => root.Element("CheckpointTransferArgs")?.Add(e));
+
+                root.Element("CheckpointTransferArgs")
+                   ?.Add(XDocument.Load((TextReader) new StringReader(sw.ToString())).Element("CheckpointArgs"));
+            }
+
+
 
             return root;
         }
@@ -85,15 +104,24 @@ namespace GameStdioManager.Models.Checkpoint
                                   ?.Elements("CheckpointUpdateIndicator")
                  select element.Attribute("target")?.Value).ToArray();
 
-            var args =
-                new
-                    CheckpointArgs(int.Parse(xe.Element("CheckpointTransferArgs")?.Element("CheckParm")?.FirstAttribute.Value 
-                                          ?? throw new InvalidOperationException()),
-                                   int.Parse(xe.Element("CheckpointTransferArgs")?.Element("CheckParm")?.FirstAttribute.Value 
-                                          ?? throw new InvalidOperationException()),
-                                   int.Parse(xe.Element("CheckpointTransferArgs")?.Element("UpdateSpeed")?.FirstAttribute.Value
-                                          ?? throw new InvalidOperationException())
-                                  );
+            // var args =
+            //     new
+            //         CheckpointArgs(int.Parse(xe.Element("CheckpointTransferArgs")?.Element("CheckParm")?.FirstAttribute.Value 
+            //                               ?? throw new InvalidOperationException()),
+            //                        int.Parse(xe.Element("CheckpointTransferArgs")?.Element("CheckParm")?.FirstAttribute.Value 
+            //                               ?? throw new InvalidOperationException()),
+            //                        int.Parse(xe.Element("CheckpointTransferArgs")?.Element("UpdateSpeed")?.FirstAttribute.Value
+            //                               ?? throw new InvalidOperationException())
+            //                       );
+
+            CheckpointArgs args = null;
+            using (StringReader sr = new StringReader(xe.Element("CheckpointTransferArgs")?.Element("CheckpointArgs")?.ToString() ?? throw new InvalidOperationException()))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(CheckpointArgs));
+                args = serializer.Deserialize(sr) as CheckpointArgs;
+            }
+
+
             SimulatorBase obj = null;
             switch (xe.Attribute("CheckpointTypeIndicator")?.Value)
             {

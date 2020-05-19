@@ -7,11 +7,11 @@ namespace GameStdioManager.Models.Checkpoint
     /// </summary>
     public class CheckpointArgs : EventArgs
     {
-        public int CheckParm;
+        public int CheckParm = 0;
 
-        public int UpdateParm;
+        public int UpdateParm = 0;
 
-        public int UpdateSpeed;
+        public int UpdateSpeed = 0;
 
         public CheckpointArgs()
         {

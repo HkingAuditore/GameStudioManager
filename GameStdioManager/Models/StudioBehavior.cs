@@ -14,6 +14,7 @@ namespace GameStdioManager.Models
 
             GameStart += SimulatorTimer.TimerUpdate;
         }
+
         /// <summary>
         /// 时间管理类
         /// </summary>

@@ -138,6 +138,7 @@
     <Compile Include="Models\Checkpoint\Checkpoint.cs" />
     <Compile Include="Models\Checkpoint\CheckpointXML.cs" />
     <Compile Include="Models\Game\Game.cs" />
+    <Compile Include="Models\Game\GameDevelopment.cs" />
     <Compile Include="Models\SimulatorBase.cs" />
     <Compile Include="Models\Staff\Staff.cs" />
     <Compile Include="Models\StaticBase.cs" />
