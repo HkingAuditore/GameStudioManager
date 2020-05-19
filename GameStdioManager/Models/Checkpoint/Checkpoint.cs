@@ -21,11 +21,11 @@ namespace GameStdioManager.Models.Checkpoint
         #region 解析逻辑
 
         /// <summary>
-        ///     根据Indicator布满事件与委托
+        ///     根据Indicator设置事件与委托
         /// </summary>
         private void GenerateCheckpoint()
         {
-            // 绑定类型
+            // 设置类型
             switch (CheckpointTypeIndicator)
             {
                 case "Game":
@@ -43,6 +43,7 @@ namespace GameStdioManager.Models.Checkpoint
 
             if (_soureceType != null)
             {
+                // 抓取process方法并订阅Process事件
                 (from st in CheckpointProcessIndicators
                  select _soureceType.GetMethod(st)
                  into pc
@@ -51,7 +52,7 @@ namespace GameStdioManager.Models.Checkpoint
                                                    (CheckpointHandler)
                                                    Delegate.CreateDelegate(typeof(CheckpointHandler),
                                                                            process));
-
+                // 抓取update方法并订阅Update事件
                 (from st in CheckpointUpdateIndicators
                  select _soureceType.GetMethod(st)
                  into pc

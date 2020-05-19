@@ -44,15 +44,15 @@ namespace GameStdioManager.Models.Checkpoint
                                    );
 
             // 将Process中的各个字符串输入XML文档
-            (from s in CheckpointProcessIndicators
-             select s).ForEach(s => root.Element("CheckpointProcessIndicators")
+            (from str in CheckpointProcessIndicators
+             select str).ForEach(str => root.Element("CheckpointProcessIndicators")
                                        ?.Add(new XElement("CheckpointProcessIndicator",
-                                                          new XAttribute("target", s))));
+                                                          new XAttribute("target", str))));
             // 将Update中的各个字符串输入XML文档
-            (from s in CheckpointUpdateIndicators
-             select s).ForEach(s => root.Element("CheckpointUpdateIndicators")
+            (from str in CheckpointUpdateIndicators
+             select str).ForEach(str => root.Element("CheckpointUpdateIndicators")
                                        ?.Add(new XElement("CheckpointUpdateIndicator",
-                                                          new XAttribute("target", s))));
+                                                          new XAttribute("target", str))));
 
             root.Element("CheckpointTransferArgs")?.Add(new XElement("CheckParm",
                                                                      new XAttribute("Parm",
@@ -71,59 +71,60 @@ namespace GameStdioManager.Models.Checkpoint
         /// <summary>
         ///     从XElement中读取Checkpoint
         /// </summary>
-        /// <param name="xd"></param>
+        /// <param name="xe"></param>
         /// <returns></returns>
-        public static Checkpoint ReadCheckpointXml(XElement xd)
+        public static Checkpoint ReadCheckpointXml(XElement xe)
         {
             var checkpointProcessIndicators =
-                (from element in xd.Element("CheckpointProcessIndicators")
+                (from element in xe.Element("CheckpointProcessIndicators")
                                   ?.Elements("CheckpointProcessIndicator")
                  select element.Attribute("target")?.Value).ToArray();
 
             var checkpointUpdateIndicators =
-                (from element in xd.Element("CheckpointUpdateIndicators")
+                (from element in xe.Element("CheckpointUpdateIndicators")
                                   ?.Elements("CheckpointUpdateIndicator")
                  select element.Attribute("target")?.Value).ToArray();
 
             var args =
                 new
-                    CheckpointArgs(int.Parse(xd.Element("CheckpointTransferArgs")?.Element("CheckParm")?.FirstAttribute.Value ?? throw new InvalidOperationException()),
-                                   int.Parse(xd.Element("CheckpointTransferArgs")?.Element("CheckParm")?.FirstAttribute
-                                               .Value ?? throw new InvalidOperationException()),
-                                   int.Parse(xd.Element("CheckpointTransferArgs")?.Element("UpdateSpeed")
-                                              ?.FirstAttribute.Value ?? throw new InvalidOperationException())
+                    CheckpointArgs(int.Parse(xe.Element("CheckpointTransferArgs")?.Element("CheckParm")?.FirstAttribute.Value 
+                                          ?? throw new InvalidOperationException()),
+                                   int.Parse(xe.Element("CheckpointTransferArgs")?.Element("CheckParm")?.FirstAttribute.Value 
+                                          ?? throw new InvalidOperationException()),
+                                   int.Parse(xe.Element("CheckpointTransferArgs")?.Element("UpdateSpeed")?.FirstAttribute.Value
+                                          ?? throw new InvalidOperationException())
                                   );
             SimulatorBase obj = null;
-            switch (xd.Attribute("CheckpointTypeIndicator")?.Value)
+            switch (xe.Attribute("CheckpointTypeIndicator")?.Value)
             {
                 case "Game":
                     obj =
                         GameSQLController
-                           .ReadGameInfoSql(xd.Attribute("CheckpointTransferObject")?.Value);
+                           .ReadGameInfoSql(xe.Attribute("CheckpointTransferObject")?.Value);
                     break;
 
                 case "Staff":
                     obj =
                         StaffSQLController
-                           .ReadStaffInfoSql(xd.Attribute("CheckpointTransferObject")?.Value);
+                           .ReadStaffInfoSql(xe.Attribute("CheckpointTransferObject")?.Value);
                     break;
 
                 case "Studio":
                     obj =
                         StudioSQLController
-                           .ReadStudioInfoSql(xd.Attribute("CheckpointTransferObject")?.Value);
+                           .ReadStudioInfoSql(xe.Attribute("CheckpointTransferObject")?.Value);
                     break;
             }
 
             return new
-                Checkpoint(int.Parse(xd.Attribute("CheckpointNumber")?.Value ?? throw new InvalidOperationException()),
-                           DateTime.Parse(xd.Attribute("CheckpointTime")?.Value),
+                Checkpoint(int.Parse(xe.Attribute("CheckpointNumber")?.Value ?? throw new InvalidOperationException()),
+                           DateTime.Parse(xe.Attribute("CheckpointTime")?.Value),
                            checkpointProcessIndicators,
                            checkpointUpdateIndicators,
-                           xd.Attribute("CheckpointCheckMethodIndicator")?.Value,
+                           xe.Attribute("CheckpointCheckMethodIndicator")?.Value,
                            obj,
                            args,
-                           xd.Attribute("CheckpointTypeIndicator")?.Value
+                           xe.Attribute("CheckpointTypeIndicator")?.Value
                           );
         }
 

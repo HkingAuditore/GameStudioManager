@@ -1,39 +1,110 @@
-Date : 2020-05-14 22:49:25
-Directory : f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views
-Total : 11 files,  424 codes, 280 comments, 103 blanks, all 807 lines
+Date : 2020-05-19 15:20:33
+Directory : f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager
+Total : 61 files,  27153 codes, 7273 comments, 4250 blanks, all 38676 lines
 
 Languages
 +-----------------+------------+------------+------------+------------+------------+
 | language        | files      | code       | comment    | blank      | total      |
 +-----------------+------------+------------+------------+------------+------------+
-| C#              |          4 |        218 |        280 |         78 |        576 |
-| aspnetcorerazor |          5 |        106 |          0 |          9 |        115 |
-| XML             |          2 |        100 |          0 |         16 |        116 |
+| JavaScript      |         13 |     17,398 |      6,315 |      3,800 |     27,513 |
+| CSS             |          5 |      7,341 |         29 |         10 |      7,380 |
+| C#              |         31 |      1,515 |        923 |        428 |      2,866 |
+| XML             |          6 |        743 |          6 |          3 |        752 |
+| aspnetcorerazor |          5 |        114 |          0 |          6 |        120 |
+| HTML            |          1 |         42 |          0 |          3 |         45 |
 +-----------------+------------+------------+------------+------------+------------+
 
 Directories
-+-----------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
-| path                                                                                                | files      | code       | comment    | blank      | total      |
-+-----------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
-| .                                                                                                   |         11 |        424 |        280 |        103 |        807 |
-| Home                                                                                                |          3 |         50 |          0 |          6 |         56 |
-| Shared                                                                                              |          2 |         56 |          0 |          3 |         59 |
-+-----------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                         | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                            |         61 |     27,153 |      7,273 |      4,250 |     38,676 |
+| App_Start                                                                                                    |          3 |         49 |          3 |          8 |         60 |
+| Content                                                                                                      |          5 |      7,341 |         29 |         10 |      7,380 |
+| Controllers                                                                                                  |          5 |        405 |         76 |         65 |        546 |
+| Controllers\Game                                                                                             |          1 |        104 |         20 |         16 |        140 |
+| Controllers\Staff                                                                                            |          1 |        136 |         25 |         19 |        180 |
+| Controllers\Studio                                                                                           |          1 |         94 |         20 |         17 |        131 |
+| Data                                                                                                         |          1 |         29 |          0 |          0 |         29 |
+| Data\CheckpointList                                                                                          |          1 |         29 |          0 |          0 |         29 |
+| Models                                                                                                       |         11 |        636 |        293 |        211 |      1,140 |
+| Models\Checkpoint                                                                                            |          3 |        247 |         88 |         71 |        406 |
+| Models\Game                                                                                                  |          1 |         95 |         61 |         42 |        198 |
+| Models\Staff                                                                                                 |          1 |        111 |         65 |         47 |        223 |
+| Models\Studio                                                                                                |          2 |         32 |         12 |          9 |         53 |
+| Properties                                                                                                   |          2 |         26 |         25 |         10 |         61 |
+| Scripts                                                                                                      |         13 |     17,398 |      6,315 |      3,800 |     27,513 |
+| Views                                                                                                        |         15 |        607 |        461 |        126 |      1,194 |
+| Views\Editors                                                                                                |         10 |        493 |        461 |        120 |      1,074 |
+| Views\Home                                                                                                   |          3 |         58 |          0 |          5 |         63 |
+| Views\Shared                                                                                                 |          2 |         56 |          0 |          1 |         57 |
+| fonts                                                                                                        |          1 |        288 |          0 |          0 |        288 |
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
 
 Files
-+-----------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
-| filename                                                                                            | language        | code       | comment    | blank      | total      |
-+-----------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Home\About.cshtml             | aspnetcorerazor |          6 |          0 |          2 |          8 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Home\Contact.cshtml           | aspnetcorerazor |         15 |          0 |          2 |         17 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Home\Index.cshtml             | aspnetcorerazor |         29 |          0 |          2 |         31 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Shared\Error.cshtml           | aspnetcorerazor |         14 |          0 |          1 |         15 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Shared\_Layout.cshtml         | aspnetcorerazor |         42 |          0 |          2 |         44 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\StaffEditor.ascx              | XML             |         77 |          0 |         11 |         88 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\StaffEditor.ascx.cs           | C#              |        124 |         22 |         25 |        171 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\StaffEditor.ascx.designer.cs  | C#              |         29 |        183 |         29 |        241 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\StudioEditor.ascx             | XML             |         23 |          0 |          5 |         28 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\StudioEditor.ascx.cs          | C#              |         53 |         11 |         12 |         76 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\StudioEditor.ascx.designer.cs | C#              |         12 |         64 |         12 |         88 |
-| Total                                                                                               |                 |        424 |        280 |        103 |        807 |
-+-----------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
++--------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| filename                                                                                                     | language        | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\App_Start\BundleConfig.cs                    | C#              |         21 |          3 |          5 |         29 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\App_Start\FilterConfig.cs                    | C#              |         11 |          0 |          1 |         12 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\App_Start\RouteConfig.cs                     | C#              |         17 |          0 |          2 |         19 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Content\Site.css                             | CSS             |         16 |          5 |          3 |         24 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Content\bootstrap-theme.css                  | CSS             |        581 |          6 |          0 |        587 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Content\bootstrap-theme.min.css              | CSS             |          1 |          5 |          0 |          6 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Content\bootstrap.css                        | CSS             |      6,742 |          8 |          7 |      6,757 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Content\bootstrap.min.css                    | CSS             |          1 |          5 |          0 |          6 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Controllers\ControllerBase.cs                | C#              |         53 |         11 |          8 |         72 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Controllers\Game\GameSQLController.cs        | C#              |        104 |         20 |         16 |        140 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Controllers\HomeController.cs                | C#              |         18 |          0 |          5 |         23 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Controllers\Staff\StaffSQLController.cs      | C#              |        136 |         25 |         19 |        180 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Controllers\Studio\StudioSQLController.cs    | C#              |         94 |         20 |         17 |        131 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Data\CheckpointList\checkpoints.xml          | XML             |         29 |          0 |          0 |         29 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\GameStdioManager.csproj                      | XML             |        278 |          6 |          0 |        284 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Global.asax.cs                               | C#              |         16 |          0 |          1 |         17 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Index.aspx                                   | HTML            |         42 |          0 |          3 |         45 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Index.aspx.cs                                | C#              |         26 |          1 |          4 |         31 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Index.aspx.designer.cs                       | C#              |         12 |         64 |         12 |         88 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\Checkpoint\Checkpoint.cs              | C#              |        113 |         64 |         47 |        224 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\Checkpoint\CheckpointXML.cs           | C#              |        113 |         21 |         17 |        151 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\Checkpoint\CheckpointsReference.cs    | C#              |         21 |          3 |          7 |         31 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\Game\Game.cs                          | C#              |         95 |         61 |         42 |        198 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\SimulatorBase.cs                      | C#              |         23 |          0 |          8 |         31 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\SimulatorTimer.cs                     | C#              |         97 |         51 |         27 |        175 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\Staff\Staff.cs                        | C#              |        111 |         65 |         47 |        223 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\StaticBase.cs                         | C#              |          6 |          0 |          0 |          6 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\StudioBehavior.cs                     | C#              |         25 |         16 |          7 |         48 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\Studio\PlayerStudio.cs                | C#              |         10 |          0 |          0 |         10 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\Studio\Studio.cs                      | C#              |         22 |         12 |          9 |         43 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Properties\AssemblyInfo.cs                   | C#              |         14 |         16 |          4 |         34 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Properties\Settings.Designer.cs              | C#              |         12 |          9 |          6 |         27 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Scripts\bootstrap.js                         | JavaScript      |      1,597 |        198 |        524 |      2,319 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Scripts\bootstrap.min.js                     | JavaScript      |          2 |          5 |          0 |          7 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Scripts\jquery-3.3.1.intellisense.js         | JavaScript      |        614 |      2,048 |          7 |      2,669 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Scripts\jquery-3.3.1.js                      | JavaScript      |      6,689 |      1,725 |      1,524 |      9,938 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Scripts\jquery-3.3.1.min.js                  | JavaScript      |          1 |          1 |          1 |          3 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Scripts\jquery-3.3.1.slim.js                 | JavaScript      |      5,306 |      1,396 |      1,224 |      7,926 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Scripts\jquery-3.3.1.slim.min.js             | JavaScript      |          1 |          1 |          1 |          3 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Scripts\jquery.validate-vsdoc.js             | JavaScript      |        917 |        224 |        138 |      1,279 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Scripts\jquery.validate.js                   | JavaScript      |      1,257 |        151 |        155 |      1,563 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Scripts\jquery.validate.min.js               | JavaScript      |          1 |          3 |          0 |          4 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Scripts\jquery.validate.unobtrusive.js       | JavaScript      |        403 |         21 |          5 |        429 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Scripts\jquery.validate.unobtrusive.min.js   | JavaScript      |          1 |         32 |          0 |         33 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Scripts\modernizr-2.8.3.js                   | JavaScript      |        609 |        510 |        221 |      1,340 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Editors\CustomUserEditorControlBase.cs | C#              |          7 |          0 |          1 |          8 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Editors\GameEditor.ascx                | XML             |         46 |          0 |          1 |         47 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Editors\GameEditor.ascx.cs             | C#              |         96 |         15 |         15 |        126 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Editors\GameEditor.ascx.designer.cs    | C#              |         26 |        162 |         26 |        214 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Editors\StaffEditor.ascx               | XML             |         79 |          0 |          1 |         80 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Editors\StaffEditor.ascx.cs            | C#              |        118 |         26 |         22 |        166 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Editors\StaffEditor.ascx.designer.cs   | C#              |         29 |        183 |         29 |        241 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Editors\StudioEditor.ascx              | XML             |         23 |          0 |          1 |         24 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Editors\StudioEditor.ascx.cs           | C#              |         57 |         11 |         12 |         80 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Editors\StudioEditor.ascx.designer.cs  | C#              |         12 |         64 |         12 |         88 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Home\About.cshtml                      | aspnetcorerazor |          6 |          0 |          1 |          7 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Home\Contact.cshtml                    | aspnetcorerazor |         15 |          0 |          2 |         17 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Home\Index.cshtml                      | aspnetcorerazor |         37 |          0 |          2 |         39 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Shared\Error.cshtml                    | aspnetcorerazor |         14 |          0 |          0 |         14 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Shared\_Layout.cshtml                  | aspnetcorerazor |         42 |          0 |          1 |         43 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\fonts\glyphicons-halflings-regular.svg       | XML             |        288 |          0 |          0 |        288 |
+| Total                                                                                                        |                 |     27,153 |      7,273 |      4,250 |     38,676 |
++--------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+

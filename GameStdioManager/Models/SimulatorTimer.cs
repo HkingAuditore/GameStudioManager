@@ -145,7 +145,8 @@ namespace GameStdioManager.Models
 
             foreach (var element in (xd.Element("CheckpointList")?.Elements("Checkpoint") ??
                                      throw new InvalidOperationException())
-               .Select(xe => xe)) AddCheckpoint(Checkpoint.Checkpoint.ReadCheckpointXml(element));
+                                    .Select(xe => xe))
+                AddCheckpoint(Checkpoint.Checkpoint.ReadCheckpointXml(element));
         }
 
         #endregion XML操作
