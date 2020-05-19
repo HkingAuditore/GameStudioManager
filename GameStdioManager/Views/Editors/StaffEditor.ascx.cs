@@ -46,8 +46,6 @@ namespace GameStdioManager.Views.Editors
             ControllerBase.InsertInfoSql(GenerateStaffThisPanel());
         }
 
-
-
         /// <summary>
         ///     从当前页面信息获取性格数据
         /// </summary>
@@ -67,11 +65,7 @@ namespace GameStdioManager.Views.Editors
         ///     从当前页面信息获取性别
         /// </summary>
         /// <returns></returns>
-        private int GetStaffGender()
-        {
-            return Male.Checked ? 0 : 1;
-        }
-
+        private int GetStaffGender() => Male.Checked ? 0 : 1;
 
         /// <summary>
         ///     重置页面
@@ -81,12 +75,12 @@ namespace GameStdioManager.Views.Editors
             (from Control ct in Controls
              where ct.GetType().ToString()
                      .Equals("System.Web.UI.WebControls.TextBox")
-             select (TextBox)ct).ForEach(textBox => textBox.Text = "");
+             select (TextBox) ct).ForEach(textBox => textBox.Text = "");
 
             (from Control ct in Controls
              where ct.GetType().ToString()
                      .Equals("System.Web.UI.WebControls.DropDownList")
-             select (DropDownList)ct).ForEach(dropDownList => dropDownList.SelectedIndex = 0);
+             select (DropDownList) ct).ForEach(dropDownList => dropDownList.SelectedIndex = 0);
 
             // (from Control ct in Controls
             //  where ct.GetType().ToString()
@@ -96,14 +90,10 @@ namespace GameStdioManager.Views.Editors
             (from Control ct in Temperament.Controls
              where ct.GetType().ToString()
                      .Equals("System.Web.UI.WebControls.CheckBox")
-             select (CheckBox)ct).ForEach(checkBox => checkBox.Checked = false);
+             select (CheckBox) ct).ForEach(checkBox => checkBox.Checked = false);
 
-
-
-
-            Male.Checked       = false;
-            Female.Checked     = false;
-
+            Male.Checked   = false;
+            Female.Checked = false;
         }
 
         /// <summary>
@@ -141,14 +131,14 @@ namespace GameStdioManager.Views.Editors
                 }
         }
 
-        #endregion
+        #endregion 操作逻辑
 
         #region 交互
 
         protected void Update_OnClick(object sender, EventArgs e)
         {
-            Staff origin = StaffSQLController.ReadStaffInfoSql(StaffNumber.Text);
-            Staff target = GenerateStaffThisPanel();
+            var origin = StaffSQLController.ReadStaffInfoSql(StaffNumber.Text);
+            var target = GenerateStaffThisPanel();
             StaffSQLController.UpdateStaffInfoSql(origin, target);
         }
 
@@ -160,7 +150,7 @@ namespace GameStdioManager.Views.Editors
 
         protected void ReadFromSQL_OnClick(object sender, EventArgs e)
         {
-            var staff  = StaffSQLController.ReadStaffInfoSql(StaffNumber.Text.Trim());
+            var staff = StaffSQLController.ReadStaffInfoSql(StaffNumber.Text.Trim());
             ResetStaffInfoPanel();
             ShowStaffInfo(staff);
             StaffNumber.ReadOnly = true;
@@ -171,8 +161,6 @@ namespace GameStdioManager.Views.Editors
             InsertStaff();
         }
 
-        #endregion
-
-
+        #endregion 交互
     }
 }

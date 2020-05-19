@@ -1,8 +1,7 @@
-﻿using System;
-using System.Web.UI;
-using GameStdioManager.Controllers.Staff;
+﻿using GameStdioManager.Controllers.Staff;
 using GameStdioManager.Models;
-using GameStdioManager.Models.Game;
+using System;
+using System.Web.UI;
 
 namespace GameStdioManager
 {
@@ -12,17 +11,14 @@ namespace GameStdioManager
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (game == null)
             {
                 game = new StudioBehavior();
                 game.Start();
-                var develop0 = new Game("99", "The Last of Us");
-                develop0.StartDevelop(10,50);
-                var develop1 = new Game("100", "Red Dead Redemption 2");
-                develop1.StartDevelop(2,10);
+                SimulatorTimer.ReadCheckpointListXml();
             }
             Label1.Text = SimulatorTimer.GameTimeNow.ToString();
+
             // if(!IsPostBack)Show();
         }
 
@@ -30,7 +26,6 @@ namespace GameStdioManager
         {
             var staff = StaffSQLController.ReadStaffInfoSql("1");
             Response.Write("<script>alert('" + staff.ToString() + "')</script>");
-
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GameStdioManager.Controllers;
@@ -15,7 +13,6 @@ namespace GameStdioManager.Views.Editors
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
         }
 
         #region 交互
@@ -33,7 +30,8 @@ namespace GameStdioManager.Views.Editors
 
         protected void Update_OnClick(object sender, EventArgs e)
         {
-            GameSQLController.UpdateGameInfoSql(GameSQLController.ReadGameInfoSql(GameNumber.Text),GenerateGameThisPanel());
+            GameSQLController.UpdateGameInfoSql(GameSQLController.ReadGameInfoSql(GameNumber.Text),
+                                                GenerateGameThisPanel());
         }
 
         protected void Reset_OnClick(object sender, EventArgs e)
@@ -42,14 +40,12 @@ namespace GameStdioManager.Views.Editors
             GameNumber.ReadOnly = false;
         }
 
-        #endregion
-
-
+        #endregion 交互
 
         #region 逻辑
 
         /// <summary>
-        /// 获取当前页面抓取的游戏类型
+        ///     获取当前页面抓取的游戏类型
         /// </summary>
         /// <returns></returns>
         private Genres GetGenresThisPanel() => (from Control ct in Genres.Controls
@@ -59,11 +55,11 @@ namespace GameStdioManager.Views.Editors
                                                 into cb
                                                 where cb.Checked
                                                 select cb)
-                                                .Aggregate<CheckBox, Genres>(0, (current, cb)
-                                                                                    => current | (Genres) Enum.Parse(typeof(Genres), cb.ID));
+           .Aggregate<CheckBox, Genres>(0, (current, cb)
+                                               => current | (Genres) Enum.Parse(typeof(Genres), cb.ID));
 
         /// <summary>
-        /// 从当前页面输入生成Game实例
+        ///     从当前页面输入生成Game实例
         /// </summary>
         /// <returns></returns>
         private Game GenerateGameThisPanel() => new Game(GameNumber.Text,
@@ -74,17 +70,19 @@ namespace GameStdioManager.Views.Editors
                                                          int.Parse(GameMusic.Text),
                                                          int.Parse(GameSales.Text),
                                                          GameStudio.Text,
-                                                         GetGenresThisPanel()
+                                                         GetGenresThisPanel(),
+                                                         false
                                                         );
+
         /// <summary>
-        /// 重置输入框
+        ///     重置输入框
         /// </summary>
         private void ResetGameInfoPanel()
         {
             (from Control ct in Controls
              where ct.GetType().ToString()
                      .Equals("System.Web.UI.WebControls.TextBox")
-             select (TextBox)ct).ForEach(textBox => textBox.Text = "");
+             select (TextBox) ct).ForEach(textBox => textBox.Text = "");
 
             (from Control ct in Genres.Controls
              where ct.GetType().ToString()
@@ -93,11 +91,10 @@ namespace GameStdioManager.Views.Editors
              into cb
              where cb.Checked
              select cb).ForEach(checkBox => checkBox.Checked = false);
-
         }
 
         /// <summary>
-        /// 在当前面板展示Game实例信息
+        ///     在当前面板展示Game实例信息
         /// </summary>
         /// <param name="game"></param>
         private void ShowGameInfo(Game game)
@@ -109,11 +106,11 @@ namespace GameStdioManager.Views.Editors
                              {
                                  try
                                  {
-                                     textBox.Text = (string)game.GetPropertyValue(textBox.ID);
+                                     textBox.Text = (string) game.GetPropertyValue(textBox.ID);
                                  }
                                  catch
                                  {
-                                     textBox.Text = ((int)game.GetPropertyValue(textBox.ID)).ToString();
+                                     textBox.Text = ((int) game.GetPropertyValue(textBox.ID)).ToString();
                                  }
                              });
 
@@ -123,7 +120,7 @@ namespace GameStdioManager.Views.Editors
                   .ForEach(checkBox => checkBox.Checked =
                                            game.GameGenres.HasFlag((Genres) Enum.Parse(typeof(Genres), checkBox.ID)));
         }
-        #endregion
 
+        #endregion 逻辑
     }
 }

@@ -10,10 +10,8 @@ namespace GameStdioManager.Controllers.Game
 {
     public class GameSQLController : ControllerBase
     {
-
-
         /// <summary>
-        /// 从数据库中读取游戏数据并生成实例
+        ///     从数据库中读取游戏数据并生成实例
         /// </summary>
         /// <param name="gameNumber"></param>
         /// <returns></returns>
@@ -37,15 +35,16 @@ namespace GameStdioManager.Controllers.Game
                 {
                     result.Read();
                     game = new Models.Game.Game(result["GameNumber"].ToString(),
-                                                      result["GameName"].ToString(),
-                                                      int.Parse(result["GamePrice"].ToString()),
-                                                      int.Parse(result["GameFun"].ToString()),
-                                                      int.Parse(result["GameArt"].ToString()),
-                                                      int.Parse(result["GameMusic"].ToString()),
-                                                      int.Parse(result["GameSales"].ToString()),
-                                                      result["GameStudio"].ToString(),
-                                                      (Genres)int.Parse(result["GameGenres"].ToString())
-                                                     );
+                                                result["GameName"].ToString(),
+                                                int.Parse(result["GamePrice"].ToString()),
+                                                int.Parse(result["GameFun"].ToString()),
+                                                int.Parse(result["GameArt"].ToString()),
+                                                int.Parse(result["GameMusic"].ToString()),
+                                                int.Parse(result["GameSales"].ToString()),
+                                                result["GameStudio"].ToString(),
+                                                (Genres) int.Parse(result["GameGenres"].ToString()),
+                                                Convert.ToBoolean(int.Parse(result["GameIsDeveloping"].ToString()))
+                                               );
                 }
 
                 result.Close();
@@ -55,7 +54,7 @@ namespace GameStdioManager.Controllers.Game
         }
 
         /// <summary>
-        /// 根据实例向数据库插入信息
+        ///     根据实例向数据库插入信息
         /// </summary>
         /// <param name="game"></param>
         [Obsolete("使用基类的 InsertInfoSql<T>(t)")]
@@ -63,23 +62,20 @@ namespace GameStdioManager.Controllers.Game
         {
             using (var sqlConnection = new SqlConnection(ConString))
             {
-                StringBuilder commandStringBuilderFirstPart = new StringBuilder("INSERT INTO GameInfo (");
-                StringBuilder commandStringBuilderSecondPart = new StringBuilder(") VALUES (");
-                var properties = game.GetType().GetProperties();
+                var commandStringBuilderFirstPart  = new StringBuilder("INSERT INTO GameInfo (");
+                var commandStringBuilderSecondPart = new StringBuilder(") VALUES (");
+                var properties                     = game.GetType().GetProperties();
 
                 // 抓取属性名称生成SQL语句
-                int cur = 1;
+                var cur = 1;
                 foreach (var property in properties)
                 {
                     commandStringBuilderFirstPart.Append(property.Name);
                     if (property.PropertyType.Name == "String")
-                    {
-                        commandStringBuilderSecondPart.Append(ConvertStringToSql((string)game.GetPropertyValue(property.Name)));
-                    }
+                        commandStringBuilderSecondPart
+                           .Append(ConvertStringToSql((string) game.GetPropertyValue(property.Name)));
                     else
-                    {
-                        commandStringBuilderSecondPart.Append((int)game.GetPropertyValue(property.Name));
-                    }
+                        commandStringBuilderSecondPart.Append((int) game.GetPropertyValue(property.Name));
                     if (cur++ < properties.Length)
                     {
                         commandStringBuilderFirstPart.Append(", ");
@@ -87,18 +83,17 @@ namespace GameStdioManager.Controllers.Game
                     }
                 }
 
-                string command = commandStringBuilderFirstPart.ToString() + commandStringBuilderSecondPart.ToString() +
-                                 ")";
-                SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
+                var command = commandStringBuilderFirstPart + commandStringBuilderSecondPart.ToString() +
+                              ")";
+                var sqlCommand = new SqlCommand(command, sqlConnection);
 
                 sqlConnection.Open();
                 sqlCommand.ExecuteNonQuery();
             }
         }
 
-
         /// <summary>
-        /// 比对两个Game实例生成SQL语句
+        ///     比对两个Game实例生成SQL语句
         /// </summary>
         /// <param name="origin">旧实例</param>
         /// <param name="target">新实例</param>
@@ -118,21 +113,15 @@ namespace GameStdioManager.Controllers.Game
             foreach (var targetProperty in updateList)
             {
                 if (targetProperty.PropertyType.Name == "String")
-                {
                     commandStringBuilder.Append(targetProperty.Name + " = " +
-                                                ConvertStringToSql((string)target
+                                                ConvertStringToSql((string) target
                                                                       .GetPropertyValue(targetProperty.Name)));
-                }else if(targetProperty.PropertyType.Name == "Genres")
-                {
+                else if (targetProperty.PropertyType.Name == "Genres")
                     commandStringBuilder.Append(targetProperty.Name + " = " +
-                                                (int)(Genres)target.GetPropertyValue(targetProperty.Name));
-
-                }
+                                                (int) (Genres) target.GetPropertyValue(targetProperty.Name));
                 else
-                {
                     commandStringBuilder.Append(targetProperty.Name + " = " +
-                                                (int)target.GetPropertyValue(targetProperty.Name));
-                }
+                                                (int) target.GetPropertyValue(targetProperty.Name));
                 if (cur++ < updateList.Count) commandStringBuilder.Append(", ");
             }
 
@@ -147,7 +136,5 @@ namespace GameStdioManager.Controllers.Game
                 sqlCommand.ExecuteNonQuery();
             }
         }
-
-
     }
 }

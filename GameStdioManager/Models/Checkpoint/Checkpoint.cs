@@ -9,8 +9,67 @@ namespace GameStdioManager.Models.Checkpoint
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="args"></param>
-    public class Checkpoint : SimulatorBase
+    public partial class Checkpoint : SimulatorBase
     {
+        #region 判定方法
+
+        public bool CheckTimeAndProcess(object sender, CheckpointArgs args) =>
+            args.UpdateParm >= 100 || SimulatorTimer.GameTimeNow >= CheckpointTime;
+
+        #endregion 判定方法
+
+        #region 解析逻辑
+
+        /// <summary>
+        ///     根据Indicator布满事件与委托
+        /// </summary>
+        private void GenerateCheckpoint()
+        {
+            // 绑定类型
+            switch (CheckpointTypeIndicator)
+            {
+                case "Game":
+                    _soureceType = typeof(Game.Game);
+                    break;
+
+                case "Staff":
+                    _soureceType = typeof(Staff.Staff);
+                    break;
+
+                case "Studio":
+                    _soureceType = typeof(Studio.Studio);
+                    break;
+            }
+
+            if (_soureceType != null)
+            {
+                (from st in CheckpointProcessIndicators
+                 select _soureceType.GetMethod(st)
+                 into pc
+                 where pc != null
+                 select pc).ForEach(process => CheckpointProcess +=
+                                                   (CheckpointHandler)
+                                                   Delegate.CreateDelegate(typeof(CheckpointHandler),
+                                                                           process));
+
+                (from st in CheckpointUpdateIndicators
+                 select _soureceType.GetMethod(st)
+                 into pc
+                 where pc != null
+                 select pc).ForEach(process => CheckUpdateProcess +=
+                                                   (CheckpointHandler)
+                                                   Delegate.CreateDelegate(typeof(CheckpointHandler),
+                                                                           process));
+            }
+
+            _checkFinishMethod = (CheckpointChecker) Delegate.CreateDelegate(typeof(CheckpointChecker), this,
+                                                                             GetType()
+                                                                                .GetMethod(CheckpointCheckMethodIndicator) ??
+                                                                             throw new InvalidOperationException());
+        }
+
+        #endregion 解析逻辑
+
         #region 基本属性
 
         #region 公共属性
@@ -33,18 +92,17 @@ namespace GameStdioManager.Models.Checkpoint
         /// <summary>
         ///     检查点事件传递对象
         /// </summary>
-        public object CheckpointTransferObject;
-
+        public SimulatorBase CheckpointTransferObject;
 
         /// <summary>
         ///     检查点操作指示器
         /// </summary>
-        public string[] CheckpointProcessIndicator;
+        public string[] CheckpointProcessIndicators;
 
         /// <summary>
         ///     检查点更新指示器
         /// </summary>
-        public string[] CheckpointUpdateIndicator;
+        public string[] CheckpointUpdateIndicators;
 
         /// <summary>
         ///     检查点更新指示器
@@ -56,8 +114,7 @@ namespace GameStdioManager.Models.Checkpoint
         /// </summary>
         public string CheckpointTypeIndicator;
 
-        #endregion
-
+        #endregion 公共属性
 
         #region 私有字段
 
@@ -76,11 +133,11 @@ namespace GameStdioManager.Models.Checkpoint
         /// </summary>
         private event CheckpointHandler CheckUpdateProcess;
 
-        private Type _soureceType = null;
+        private Type _soureceType;
 
-        #endregion
+        #endregion 私有字段
 
-        #endregion
+        #endregion 基本属性
 
         #region 构造函数
 
@@ -89,11 +146,11 @@ namespace GameStdioManager.Models.Checkpoint
                           string[] checkpointUpdateIndicator, string checkpointCheckMethodIndicator,
                           string   checkpointTypeIndicator)
         {
-            CheckpointNumber           = checkpointNumber;
-            CheckpointTime             = checkpointTime;
-            CheckpointProcessIndicator = checkpointProcessIndicator;
+            CheckpointNumber            = checkpointNumber;
+            CheckpointTime              = checkpointTime;
+            CheckpointProcessIndicators = checkpointProcessIndicator;
 
-            CheckpointUpdateIndicator      = checkpointUpdateIndicator;
+            CheckpointUpdateIndicators     = checkpointUpdateIndicator;
             CheckpointCheckMethodIndicator = checkpointCheckMethodIndicator;
             CheckpointTypeIndicator        = checkpointTypeIndicator;
 
@@ -101,31 +158,29 @@ namespace GameStdioManager.Models.Checkpoint
             GenerateCheckpoint();
         }
 
-
-        public Checkpoint(int      checkpointNumber, DateTime checkpointTime,
-                          string[] checkpointProcessIndicator,
-                          string[] checkpointUpdateIndicator, string         checkpointCheckMethodIndicator,
-                          object   checkpointTransferObject,  CheckpointArgs checkpointTransferArgs,
-                          string   checkpointTypeIndicator)
+        public Checkpoint(int           checkpointNumber, DateTime checkpointTime,
+                          string[]      checkpointProcessIndicator,
+                          string[]      checkpointUpdateIndicator, string         checkpointCheckMethodIndicator,
+                          SimulatorBase checkpointTransferObject,  CheckpointArgs checkpointTransferArgs,
+                          string        checkpointTypeIndicator)
         {
             CheckpointNumber = checkpointNumber;
             CheckpointTime   = checkpointTime;
 
-            CheckpointProcessIndicator = checkpointProcessIndicator;
+            CheckpointProcessIndicators = checkpointProcessIndicator;
 
-            CheckpointUpdateIndicator      = checkpointUpdateIndicator;
+            CheckpointUpdateIndicators     = checkpointUpdateIndicator;
             CheckpointCheckMethodIndicator = checkpointCheckMethodIndicator;
             CheckpointTransferObject       = checkpointTransferObject;
 
             CheckpointTransferArgs  = checkpointTransferArgs;
             CheckpointTypeIndicator = checkpointTypeIndicator;
 
-
             _checkFinishMethod = (sender, args) => false;
             GenerateCheckpoint();
         }
 
-        #endregion
+        #endregion 构造函数
 
         #region 事件处理
 
@@ -164,63 +219,6 @@ namespace GameStdioManager.Models.Checkpoint
         /// </summary>
         public void UpdateCheckpoint() => CheckUpdateProcess?.Invoke(CheckpointTransferObject, CheckpointTransferArgs);
 
-        #endregion
-
-        #region 判定方法
-
-        public bool CheckTimeAndProcess(object sender, CheckpointArgs args) =>
-            args.UpdateParm >= 100 || SimulatorTimer.GameTimeNow >= CheckpointTime;
-
-        #endregion
-
-        #region 解析逻辑
-
-        /// <summary>
-        ///     根据Indicator布满事件与委托
-        /// </summary>
-        private void GenerateCheckpoint()
-        {
-            // 绑定类型
-            switch (CheckpointTypeIndicator)
-            {
-                case "Game":
-                    _soureceType = typeof(Game.Game);
-                    break;
-                case "Staff":
-                    _soureceType = typeof(Staff.Staff);
-                    break;
-                case "Studio":
-                    _soureceType = typeof(Studio.Studio);
-                    break;
-            }
-
-            if (_soureceType != null)
-            {
-                (from st in CheckpointProcessIndicator
-                 select _soureceType.GetMethod(st)
-                 into pc
-                 where pc != null
-                 select pc).ForEach(process => CheckpointProcess +=
-                                                   (CheckpointHandler)
-                                                   Delegate.CreateDelegate(typeof(CheckpointHandler),
-                                                                           process));
-
-                (from st in CheckpointUpdateIndicator
-                 select _soureceType.GetMethod(st)
-                 into pc
-                 where pc != null
-                 select pc).ForEach(process => CheckUpdateProcess +=
-                                                   (CheckpointHandler)
-                                                   Delegate.CreateDelegate(typeof(CheckpointHandler),
-                                                                           process));
-            }
-
-            _checkFinishMethod = (CheckpointChecker) Delegate.CreateDelegate(typeof(CheckpointChecker),this,
-                                                                             GetType()
-                                                                                .GetMethod(CheckpointCheckMethodIndicator) ??
-                                                                             throw new InvalidOperationException());
-        }
-
-        #endregion
+        #endregion 事件处理
     }
 }

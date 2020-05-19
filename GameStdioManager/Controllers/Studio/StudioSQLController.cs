@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
-using GameStdioManager.Models.Studio;
 
 namespace GameStdioManager.Controllers.Studio
 {
@@ -47,9 +46,8 @@ namespace GameStdioManager.Controllers.Studio
             return studio;
         }
 
-
         /// <summary>
-        /// 向数据库插入工作室数据
+        ///     向数据库插入工作室数据
         /// </summary>
         /// <param name="studio"></param>
         [Obsolete("使用基类的 InsertInfoSql<T>(t)")]
@@ -57,23 +55,20 @@ namespace GameStdioManager.Controllers.Studio
         {
             using (var sqlConnection = new SqlConnection(ConString))
             {
-                StringBuilder commandStringBuilderFirstPart = new StringBuilder("INSERT INTO StudioInfo (");
-                StringBuilder commandStringBuilderSecondPart = new StringBuilder(") VALUES (");
-                var properties = studio.GetType().GetProperties();
+                var commandStringBuilderFirstPart  = new StringBuilder("INSERT INTO StudioInfo (");
+                var commandStringBuilderSecondPart = new StringBuilder(") VALUES (");
+                var properties                     = studio.GetType().GetProperties();
 
                 // 抓取属性名称生成SQL语句
-                int cur = 1;
+                var cur = 1;
                 foreach (var property in properties)
                 {
                     commandStringBuilderFirstPart.Append(property.Name);
                     if (property.PropertyType.Name == "String")
-                    {
-                        commandStringBuilderSecondPart.Append(ConvertStringToSql((string)studio.GetPropertyValue(property.Name)));
-                    }
+                        commandStringBuilderSecondPart
+                           .Append(ConvertStringToSql((string) studio.GetPropertyValue(property.Name)));
                     else
-                    {
-                        commandStringBuilderSecondPart.Append((int)studio.GetPropertyValue(property.Name));
-                    }
+                        commandStringBuilderSecondPart.Append((int) studio.GetPropertyValue(property.Name));
                     if (cur++ < properties.Length)
                     {
                         commandStringBuilderFirstPart.Append(", ");
@@ -81,9 +76,9 @@ namespace GameStdioManager.Controllers.Studio
                     }
                 }
 
-                string command = commandStringBuilderFirstPart.ToString() + commandStringBuilderSecondPart.ToString() +
-                                 ")";
-                SqlCommand sqlCommand = new SqlCommand(command,sqlConnection);
+                var command = commandStringBuilderFirstPart + commandStringBuilderSecondPart.ToString() +
+                              ")";
+                var sqlCommand = new SqlCommand(command, sqlConnection);
 
                 sqlConnection.Open();
                 sqlCommand.ExecuteNonQuery();
@@ -91,7 +86,7 @@ namespace GameStdioManager.Controllers.Studio
         }
 
         /// <summary>
-        /// 更新数据库的Studio数据
+        ///     更新数据库的Studio数据
         /// </summary>
         /// <param name="origin">旧实例</param>
         /// <param name="target">新实例</param>
@@ -112,11 +107,11 @@ namespace GameStdioManager.Controllers.Studio
             {
                 if (targetProperty.PropertyType.Name == "String")
                     commandStringBuilder.Append(targetProperty.Name + " = " +
-                                                ConvertStringToSql((string)target
+                                                ConvertStringToSql((string) target
                                                                       .GetPropertyValue(targetProperty.Name)));
                 else
                     commandStringBuilder.Append(targetProperty.Name + " = " +
-                                                (int)target.GetPropertyValue(targetProperty.Name));
+                                                (int) target.GetPropertyValue(targetProperty.Name));
 
                 if (cur++ < updateList.Count) commandStringBuilder.Append(", ");
             }
@@ -132,6 +127,5 @@ namespace GameStdioManager.Controllers.Studio
                 sqlCommand.ExecuteNonQuery();
             }
         }
-
     }
 }

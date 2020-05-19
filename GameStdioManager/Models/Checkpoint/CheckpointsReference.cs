@@ -1,6 +1,4 @@
 using System;
-using GameStdioManager.Models;
-using GameStdioManager.Models.Checkpoint;
 
 namespace GameStdioManager.Models.Checkpoint
 {
@@ -17,11 +15,17 @@ namespace GameStdioManager.Models.Checkpoint
 
         public CheckpointArgs()
         {
+        }
 
+        public CheckpointArgs(int checkParm, int updateParm, int updateSpeed)
+        {
+            CheckParm   = checkParm;
+            UpdateParm  = updateParm;
+            UpdateSpeed = updateSpeed;
         }
     }
 
-    public delegate void CheckpointHandler(Object sender, CheckpointArgs args);
+    public delegate void CheckpointHandler(SimulatorBase sender, CheckpointArgs args);
 
-    public delegate bool CheckpointChecker(Object sender, CheckpointArgs args);
+    public delegate bool CheckpointChecker(SimulatorBase sender, CheckpointArgs args);
 }

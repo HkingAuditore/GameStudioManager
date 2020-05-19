@@ -1,12 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Timers;
-using GameStdioManager.Models.Checkpoint;
+using System.Web;
+using System.Xml.Linq;
+using Microsoft.Ajax.Utilities;
 
 namespace GameStdioManager.Models
 {
     public class SimulatorTimer
     {
+        /// <summary>
+        /// </summary>
+        /// <param name="isReload">是否为重载游戏</param>
+        public SimulatorTimer(bool isReload)
+        {
+            if (!isReload)
+            {
+                GameStartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour,
+                                             DateTime.Now.Minute, 0);
+                GameTimeNow = GameStartTime;
+            }
+            else
+            {
+                ReloadTimer();
+            }
+
+            _gameTimer = new Timer(1000);
+        }
+
         #region 基本属性
 
         /// <summary>
@@ -29,36 +53,15 @@ namespace GameStdioManager.Models
         /// </summary>
         private static readonly int _timeSpeed = 20;
 
-        #endregion
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="isReload">是否为重载游戏</param>
-        public SimulatorTimer(bool isReload)
-        {
-            if (!isReload)
-            {
-                GameStartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour,
-                    DateTime.Now.Minute, 0);
-                GameTimeNow = GameStartTime;
-            }
-            else
-            {
-                ReloadTimer();
-            }
-
-            _gameTimer = new Timer(1000);
-        }
+        #endregion 基本属性
 
         #region 纯时间操作
 
         /// <summary>
-        /// 重载时间
+        ///     重载时间
         /// </summary>
         private void ReloadTimer()
         {
-            
         }
 
         /// <summary>
@@ -73,15 +76,12 @@ namespace GameStdioManager.Models
             _gameTimer.Elapsed += (s, ea) => { GameTimeNow = GameTimeNow.AddMinutes(_timeSpeed); };
             _gameTimer.Elapsed += Update;
 
-
             _gameTimer.Enabled = true;
             _gameTimer.Start();
         }
 
-        
-
         /// <summary>
-        /// 获取当前时间n个小时后的时间
+        ///     获取当前时间n个小时后的时间
         /// </summary>
         /// <param name="hour"></param>
         /// <returns></returns>
@@ -96,29 +96,68 @@ namespace GameStdioManager.Models
             return temp.AddHours(n);
         }
 
-        #endregion
+        #endregion 纯时间操作
 
         #region 时间步进详细行为
 
         /// <summary>
-        /// 确定时间表
+        ///     确定时间表
         /// </summary>
-        private static List<Checkpoint.Checkpoint> _timeTable = new List<Checkpoint.Checkpoint>();
-
-        public static void AddCheckpoint(Checkpoint.Checkpoint checkpoint) => _timeTable.Add(checkpoint);
-
-
-        public static void RemoveCheckpoint(Checkpoint.Checkpoint checkpoint) => _timeTable.Remove(checkpoint);
-
+        private static readonly List<Checkpoint.Checkpoint> _timeTable = new List<Checkpoint.Checkpoint>();
 
         /// <summary>
-        /// 刷新
+        ///     往timetable中加入Checkpoint
+        /// </summary>
+        /// <param name="checkpoint"></param>
+        public static void AddCheckpoint(Checkpoint.Checkpoint checkpoint) => _timeTable.Add(checkpoint);
+
+        /// <summary>
+        ///     从timetable中删去Checkpoint
+        /// </summary>
+        /// <param name="checkpoint"></param>
+        public static void RemoveCheckpoint(Checkpoint.Checkpoint checkpoint) => _timeTable.Remove(checkpoint);
+
+        #region XML操作
+
+        /// <summary>
+        ///     将timetable写入xml
+        /// </summary>
+        public static void SaveCheckpointListXml()
+        {
+            var xd = new XDocument(new XElement("CheckpointList"));
+            (from checkpoint in _timeTable
+             select checkpoint).ForEach(cp => xd.Element("CheckpointList")?.Add(cp.ConvertCheckpointToXElement()));
+            Debug.WriteLine(xd);
+
+            var path = HttpContext.Current.Server.MapPath("~/Data/CheckpointList/checkpoints.xml");
+            xd.Save(path);
+            if (File.Exists(path)) Debug.WriteLine("Saved!");
+            Debug.WriteLine(path);
+        }
+
+        /// <summary>
+        ///     从XML中读取CheckpointList
+        /// </summary>
+        public static void ReadCheckpointListXml()
+        {
+            var path = HttpContext.Current.Server.MapPath("~/Data/CheckpointList/checkpoints.xml");
+            var xd   = XDocument.Load(path);
+
+            foreach (var element in (xd.Element("CheckpointList")?.Elements("Checkpoint") ??
+                                     throw new InvalidOperationException())
+               .Select(xe => xe)) AddCheckpoint(Checkpoint.Checkpoint.ReadCheckpointXml(element));
+        }
+
+        #endregion XML操作
+
+        /// <summary>
+        ///     刷新
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private static void Update(object sender,ElapsedEventArgs e)
+        private static void Update(object sender, ElapsedEventArgs e)
         {
-            for (int i = 0; i < _timeTable.Count; i++)
+            for (var i = 0; i < _timeTable.Count; i++)
             {
                 if (_timeTable[i].CheckFinish())
                 {
@@ -126,15 +165,11 @@ namespace GameStdioManager.Models
                     RemoveCheckpoint(_timeTable[i]);
                     continue;
                 }
+
                 _timeTable[i].UpdateCheckpoint();
-
             }
-
-
         }
 
-        #endregion
+        #endregion 时间步进详细行为
     }
-
-
 }

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CheckpointList>
+  <Checkpoint CheckpointNumber="0" CheckpointTime="2020-05-20T00:13:00" CheckpointCheckMethodIndicator="CheckTimeAndProcess" CheckpointTypeIndicator="Game" CheckpointTransferObject="0">
+    <CheckpointProcessIndicators>
+      <CheckpointProcessIndicator target="EndDevelop" />
+    </CheckpointProcessIndicators>
+    <CheckpointUpdateIndicators>
+      <CheckpointUpdateIndicator target="UpdateDevelop" />
+    </CheckpointUpdateIndicators>
+    <CheckpointTransferArgs>
+      <CheckParm Parm="10" />
+      <UpdateParm Parm="0" />
+      <UpdateSpeed Parm="50" />
+    </CheckpointTransferArgs>
+  </Checkpoint>
+  <Checkpoint CheckpointNumber="1" CheckpointTime="2020-05-19T16:13:00" CheckpointCheckMethodIndicator="CheckTimeAndProcess" CheckpointTypeIndicator="Game" CheckpointTransferObject="1">
+    <CheckpointProcessIndicators>
+      <CheckpointProcessIndicator target="EndDevelop" />
+    </CheckpointProcessIndicators>
+    <CheckpointUpdateIndicators>
+      <CheckpointUpdateIndicator target="UpdateDevelop" />
+    </CheckpointUpdateIndicators>
+    <CheckpointTransferArgs>
+      <CheckParm Parm="2" />
+      <UpdateParm Parm="0" />
+      <UpdateSpeed Parm="10" />
+    </CheckpointTransferArgs>
+  </Checkpoint>
+</CheckpointList>

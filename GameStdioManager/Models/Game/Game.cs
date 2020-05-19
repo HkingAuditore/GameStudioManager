@@ -33,12 +33,17 @@ namespace GameStdioManager.Models.Game
         RTS = 0x40,
 
         /// Galgame
-        GAL = 0x80,
-
+        GAL = 0x80
     }
 
     public class Game : SimulatorBase
     {
+        #region 接口实现
+
+        public override string GetObjectNumber() => GameNumber;
+
+        #endregion 接口实现
+
         #region 基本属性
 
         /// <summary>
@@ -71,7 +76,6 @@ namespace GameStdioManager.Models.Game
         /// </summary>
         public int GameMusic { get; set; }
 
-
         /// <summary>
         ///     游戏销量
         /// </summary>
@@ -83,36 +87,46 @@ namespace GameStdioManager.Models.Game
         public string GameStudio { get; }
 
         /// <summary>
-        /// 游戏类型
+        ///     游戏类型
         /// </summary>
         public Genres GameGenres { get; }
 
-        #endregion
+        /// <summary>
+        ///     游戏是否正在开发中
+        /// </summary>
+        public bool GameIsDeveloping { get; set; }
+
+        /// <summary>
+        ///     游戏开发完毕时间
+        /// </summary>
+        public DateTime GameFinishDevelopTime { get; set; }
+
+        #endregion 基本属性
 
         #region 构造函数
 
-        public Game(string gameNumber, string gameName,   int    gamePrice, int gameFun, int gameArt, int gameMusic,
-                    int    gameSales,  string gameStudio, Genres gameGenres)
+        public Game(string gameNumber, string gameName,   int    gamePrice,  int  gameFun, int gameArt, int gameMusic,
+                    int    gameSales,  string gameStudio, Genres gameGenres, bool gameIsDeveloping)
         {
-            GameNumber = gameNumber;
-            GameName   = gameName;
-            GamePrice  = gamePrice;
-            GameFun    = gameFun;
-            GameArt    = gameArt;
-            GameMusic  = gameMusic;
-            GameSales  = gameSales;
-            GameStudio = gameStudio;
-            GameGenres = gameGenres;
+            GameNumber       = gameNumber;
+            GameName         = gameName;
+            GamePrice        = gamePrice;
+            GameFun          = gameFun;
+            GameArt          = gameArt;
+            GameMusic        = gameMusic;
+            GameSales        = gameSales;
+            GameStudio       = gameStudio;
+            GameGenres       = gameGenres;
+            GameIsDeveloping = gameIsDeveloping;
         }
 
         public Game(string gameNumber, string gameName)
         {
             GameNumber = gameNumber;
-            GameName = gameName;
-
+            GameName   = gameName;
         }
 
-        #endregion
+        #endregion 构造函数
 
         #region 逻辑
 
@@ -121,12 +135,12 @@ namespace GameStdioManager.Models.Game
         #region 开发
 
         /// <summary>
-        /// 开发者
+        ///     开发者
         /// </summary>
         private List<Staff.Staff> developers = new List<Staff.Staff>();
 
         /// <summary>
-        /// 开始开发
+        ///     开始开发
         /// </summary>
         /// <param name="hours">开发时长</param>
         /// <param name="staff">开发人员</param>
@@ -137,28 +151,26 @@ namespace GameStdioManager.Models.Game
             arg.UpdateParm  = 0;
             arg.UpdateSpeed = speed;
 
-            var cp = new Checkpoint.Checkpoint(0, 
+            var cp = new Checkpoint.Checkpoint(0,
                                                SimulatorTimer.GetTimeAfterHours(hours),
                                                new[] {"EndDevelop"},
                                                new[] {"UpdateDevelop"},
                                                "CheckTimeAndProcess",
                                                this,
                                                arg,
-                                               this.GetTypeName()
+                                               GetTypeName()
                                               );
             SimulatorTimer.AddCheckpoint(cp);
-
         }
 
-
         /// <summary>
-        /// 开发更新
+        ///     开发更新
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public static void UpdateDevelop(object sender, CheckpointArgs args)
+        public static void UpdateDevelop(SimulatorBase sender, CheckpointArgs args)
         {
-            Game game = (Game)sender;
+            var game = (Game) sender;
 
             Debug.WriteLine(game.GameName + " Processing:" + args.UpdateParm + "%. In " + SimulatorTimer.GameTimeNow);
             args.UpdateParm += args.UpdateSpeed;
@@ -167,20 +179,20 @@ namespace GameStdioManager.Models.Game
         // public CheckpointHandler UpdateDevelop => UpdateDevelop_B;
 
         /// <summary>
-        /// 开发结束
+        ///     开发结束
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public static void EndDevelop(object sender, CheckpointArgs args)
+        public static void EndDevelop(SimulatorBase sender, CheckpointArgs args)
         {
-            Game game = (Game) sender;
+            var game = (Game) sender;
             Debug.WriteLine(game.GameName + " Game FINISHED!");
         }
 
-#endregion
+        #endregion 开发
 
-        #endregion
+        #endregion 检查点相关，需要在检查点调用的方法务必使用Static
 
-        #endregion
+        #endregion 逻辑
     }
 }

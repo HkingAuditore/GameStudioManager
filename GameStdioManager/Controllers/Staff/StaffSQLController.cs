@@ -92,7 +92,7 @@ namespace GameStdioManager.Controllers.Staff
         }
 
         /// <summary>
-        /// 向数据库写入工人实例（自动生成）
+        ///     向数据库写入工人实例（自动生成）
         /// </summary>
         /// <param name="staff"></param>
         [Obsolete("使用基类的 InsertInfoSql<T>(t)")]
@@ -100,23 +100,20 @@ namespace GameStdioManager.Controllers.Staff
         {
             using (var sqlConnection = new SqlConnection(ConString))
             {
-                StringBuilder commandStringBuilderFirstPart = new StringBuilder("INSERT INTO StaffInfo (");
-                StringBuilder commandStringBuilderSecondPart = new StringBuilder(") VALUES (");
-                var properties = staff.GetType().GetProperties();
+                var commandStringBuilderFirstPart  = new StringBuilder("INSERT INTO StaffInfo (");
+                var commandStringBuilderSecondPart = new StringBuilder(") VALUES (");
+                var properties                     = staff.GetType().GetProperties();
 
                 // 抓取属性名称生成SQL语句
-                int cur = 1;
+                var cur = 1;
                 foreach (var property in properties)
                 {
                     commandStringBuilderFirstPart.Append(property.Name);
                     if (property.PropertyType.Name == "String")
-                    {
-                        commandStringBuilderSecondPart.Append(ConvertStringToSql((string)staff.GetPropertyValue(property.Name)));
-                    }
+                        commandStringBuilderSecondPart
+                           .Append(ConvertStringToSql((string) staff.GetPropertyValue(property.Name)));
                     else
-                    {
-                        commandStringBuilderSecondPart.Append((int)staff.GetPropertyValue(property.Name));
-                    }
+                        commandStringBuilderSecondPart.Append((int) staff.GetPropertyValue(property.Name));
                     if (cur++ < properties.Length)
                     {
                         commandStringBuilderFirstPart.Append(", ");
@@ -124,15 +121,14 @@ namespace GameStdioManager.Controllers.Staff
                     }
                 }
 
-                string command = commandStringBuilderFirstPart.ToString() + commandStringBuilderSecondPart.ToString() +
-                                 ")";
-                SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
+                var command = commandStringBuilderFirstPart + commandStringBuilderSecondPart.ToString() +
+                              ")";
+                var sqlCommand = new SqlCommand(command, sqlConnection);
 
                 sqlConnection.Open();
                 sqlCommand.ExecuteNonQuery();
             }
         }
-
 
         /// <summary>
         ///     比对两个Staff实例，将更新的部分提交SQL数据库进行更新

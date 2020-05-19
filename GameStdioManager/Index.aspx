@@ -5,8 +5,6 @@
 <%@ Register Src="~/Views/Editors/StudioEditor.ascx" TagPrefix="uc1" TagName="StudioEditor" %>
 <%@ Register Src="~/Views/Editors/GameEditor.ascx" TagPrefix="uc1" TagName="GameEditor" %>
 
-
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -33,12 +31,12 @@
             </div>
             <div class="row">
                 <div class="col-lg-12" style="margin-top: 2%">
-                    <uc1:StudioEditor runat="server" id="StudioEditor" />
+                    <uc1:StudioEditor runat="server" ID="StudioEditor" />
                 </div>
             </div>
             <div class="row" style="margin-top: 2%">
                 <div class="col-lg-12">
-                    <uc1:GameEditor runat="server" id="GameEditor" />
+                    <uc1:GameEditor runat="server" ID="GameEditor" />
                 </div>
             </div>
         </div>

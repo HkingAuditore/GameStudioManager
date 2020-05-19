@@ -40,7 +40,7 @@ namespace GameStdioManager.Views.Editors
             StudioNumber.ReadOnly = false;
         }
 
-        #endregion
+        #endregion 交互
 
         #region 逻辑
 
@@ -60,7 +60,7 @@ namespace GameStdioManager.Views.Editors
             (from Control ct in Controls
              where ct.GetType().ToString()
                      .Equals("System.Web.UI.WebControls.TextBox")
-             select (TextBox)ct).ForEach(textBox => textBox.Text = "");
+             select (TextBox) ct).ForEach(textBox => textBox.Text = "");
         }
 
         /// <summary>
@@ -75,6 +75,6 @@ namespace GameStdioManager.Views.Editors
             StudioReputation.Text = studio.StudioReputation.ToString();
         }
 
-        #endregion
+        #endregion 逻辑
     }
 }

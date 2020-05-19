@@ -73,10 +73,65 @@ namespace GameStdioManager.Models.Staff
         Charisma = 0x10
     }
 
-    #endregion
+    #endregion 枚举
 
-    public class Staff :SimulatorBase
+    public class Staff : SimulatorBase
     {
+        public Staff(string     staffNumber,     string staffName, Gender staffGender,
+                     int        staffSalary,     Rank   staffRank,
+                     Occupation staffOccupation, int    staffStrength, int staffIntelligence,
+                     int        staffLoyalty,
+                     int        staffProperty,  Temperament staffTemperament, int timeToWork, int timeToQuit,
+                     int        weekdaysLength, string      staffStudio)
+        {
+            StaffNumber       = staffNumber;
+            StaffName         = staffName;
+            StaffGender       = staffGender;
+            StaffSalary       = staffSalary;
+            StaffRank         = staffRank;
+            StaffOccupation   = staffOccupation;
+            StaffStrength     = staffStrength;
+            StaffIntelligence = staffIntelligence;
+            StaffLoyalty      = staffLoyalty;
+            StaffProperty     = staffProperty;
+            StaffTemperament  = staffTemperament;
+            TimeToWork        = timeToWork;
+            TimeToQuit        = timeToQuit;
+            WeekdaysLength    = weekdaysLength;
+            StaffStudio       = staffStudio;
+        }
+
+        #region 基本类型操作
+
+        public override string ToString()
+        {
+            var result = new StringBuilder();
+            result.Append("编号：" + StaffNumber       + ",");
+            result.Append("姓名：" + StaffName         + ",");
+            result.Append("性别：" + StaffGender       + ",");
+            result.Append("薪水：" + StaffSalary       + ",");
+            result.Append("职称：" + StaffRank         + ",");
+            result.Append("职务：" + StaffOccupation   + ",");
+            result.Append("体力：" + StaffStrength     + ",");
+            result.Append("智力：" + StaffIntelligence + ",");
+            result.Append("忠诚：" + StaffLoyalty      + ",");
+            result.Append("财产：" + StaffProperty     + ",");
+            result.Append("上班时间：" + TimeToWork      + ",");
+            result.Append("下班时间：" + TimeToQuit      + ",");
+            result.Append("工作日长度：" + WeekdaysLength + ",");
+            result.Append("性格：" + StaffTemperament  + ",");
+            result.Append("所在工作室：" + StaffStudio    + ",");
+            return result.ToString();
+        }
+
+        #endregion 基本类型操作
+
+        #region 接口实现
+
+        public override string GetObjectNumber() => StaffNumber;
+
+        #endregion 接口实现
+
         #region 员工属性
 
         /// <summary>
@@ -126,13 +181,12 @@ namespace GameStdioManager.Models.Staff
         /// </summary>
         public int StaffLoyalty { get; set; }
 
-        #endregion
+        #endregion 能力点数
 
         /// <summary>
         ///     员工财产
         /// </summary>
         public int StaffProperty { get; }
-
 
         /// <summary>
         ///     上班时间
@@ -149,7 +203,6 @@ namespace GameStdioManager.Models.Staff
         /// </summary>
         public int WeekdaysLength { get; set; }
 
-
         /// <summary>
         ///     员工性格
         /// </summary>
@@ -165,59 +218,6 @@ namespace GameStdioManager.Models.Staff
         /// </summary>
         public string StaffStudio { get; set; }
 
-        #endregion
-
-
-        public Staff(string     staffNumber,     string staffName, Gender staffGender,
-                     int        staffSalary,     Rank   staffRank,
-                     Occupation staffOccupation, int    staffStrength, int staffIntelligence,
-                     int        staffLoyalty,
-                     int        staffProperty,  Temperament staffTemperament, int timeToWork, int timeToQuit,
-                     int        weekdaysLength, string      staffStudio)
-        {
-            StaffNumber       = staffNumber;
-            StaffName         = staffName;
-            StaffGender       = staffGender;
-            StaffSalary       = staffSalary;
-            StaffRank         = staffRank;
-            StaffOccupation   = staffOccupation;
-            StaffStrength     = staffStrength;
-            StaffIntelligence = staffIntelligence;
-            StaffLoyalty      = staffLoyalty;
-            StaffProperty     = staffProperty;
-            StaffTemperament  = staffTemperament;
-            TimeToWork        = timeToWork;
-            TimeToQuit        = timeToQuit;
-            WeekdaysLength    = weekdaysLength;
-            StaffStudio       = staffStudio;
-        }
-
-
-        #region 基本类型操作
-
-        public override string ToString()
-        {
-            var result = new StringBuilder();
-            result.Append("编号："      + StaffNumber        + ",");
-            result.Append("姓名："      + StaffName          + ",");
-            result.Append("性别："      + StaffGender        + ",");
-            result.Append("薪水："      + StaffSalary        + ",");
-            result.Append("职称："      + StaffRank          + ",");
-            result.Append("职务："      + StaffOccupation    + ",");
-            result.Append("体力："      + StaffStrength      + ",");
-            result.Append("智力："      + StaffIntelligence  + ",");
-            result.Append("忠诚："      + StaffLoyalty       + ",");
-            result.Append("财产："      + StaffProperty      + ",");
-            result.Append("上班时间："   + TimeToWork         + ",");
-            result.Append("下班时间："   + TimeToQuit         + ",");
-            result.Append("工作日长度："  + WeekdaysLength    + ",");
-            result.Append("性格："       + StaffTemperament  + ",");
-            result.Append("所在工作室："  + StaffStudio       + ",");
-            return result.ToString();
-        }
-
-
-
-        #endregion
+        #endregion 员工属性
     }
 }
