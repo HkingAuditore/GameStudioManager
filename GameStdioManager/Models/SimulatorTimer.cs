@@ -6,6 +6,7 @@ using System.Linq;
 using System.Timers;
 using System.Web;
 using System.Xml.Linq;
+using GameStdioManager.Pages;
 using Microsoft.Ajax.Utilities;
 
 namespace GameStdioManager.Models
@@ -62,6 +63,7 @@ namespace GameStdioManager.Models
         /// </summary>
         private void ReloadTimer()
         {
+            GameTimeNow = PageBase.PagePlayer.PlayerNowTime;
         }
 
         /// <summary>

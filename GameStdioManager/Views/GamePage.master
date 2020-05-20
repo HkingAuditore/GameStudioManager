@@ -1,0 +1,20 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Views/MainMaster.Master" AutoEventWireup="true" CodeBehind="GamePage.master.cs" Inherits="GameStdioManager.Views.GamePage" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContentPlaceHolder" runat="server">
+    <div class="row" runat="server">
+        <div class="col-lg-1">
+            <asp:Button ID="L_GameDevelopment" runat="server" Text="开发" CssClass="title-link" />
+        </div>
+        <div class="col-lg-1">
+            <asp:Button ID="L_GameSales" runat="server" Text="消息" CssClass="title-link" />
+        </div>
+        <div class="col-lg-1">
+            <asp:Button ID="L_GameInfo" runat="server" Text="信息查看" CssClass="title-link" />
+        </div>
+    </div>
+    <asp:ContentPlaceHolder ID="GameContentPlaceHolder" runat="server">
+
+    </asp:ContentPlaceHolder>
+</asp:Content>
+

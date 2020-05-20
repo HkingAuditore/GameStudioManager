@@ -8,9 +8,15 @@ namespace GameStdioManager.Models
 
     public class StudioBehavior
     {
-        public StudioBehavior()
+        SimulatorTimer _timer;
+
+        public StudioBehavior(bool isReload)
         {
-            var timer = new SimulatorTimer(false);
+            
+            if (!isReload)
+                _timer = new SimulatorTimer(false);
+            else
+                _timer = new SimulatorTimer(true);
 
             GameStart += SimulatorTimer.TimerUpdate;
         }

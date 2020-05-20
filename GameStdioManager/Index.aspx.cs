@@ -14,7 +14,7 @@ namespace GameStdioManager
         {
             if (game == null)
             {
-                game = new StudioBehavior();
+                game = new StudioBehavior(true);
                 game.Start();
                 
                 SimulatorTimer.ReadCheckpointListXml();
