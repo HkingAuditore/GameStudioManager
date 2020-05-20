@@ -49,6 +49,15 @@ namespace GameStdioManager.Views {
         protected global::System.Web.UI.WebControls.Button L_Studio;
         
         /// <summary>
+        /// B_SaveGame 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button B_SaveGame;
+        
+        /// <summary>
         /// La_StudioName 控件。
         /// </summary>
         /// <remarks>

@@ -125,10 +125,18 @@ namespace GameStdioManager.Models.Game
             GameIsDeveloping = gameIsDeveloping;
         }
 
-        public Game(string gameNumber, string gameName)
+        /// <summary>
+        /// 在开发游戏时使用的构造函数
+        /// </summary>
+        /// <param name="gameNumber"></param>
+        /// <param name="gameName"></param>
+        public Game(string gameNumber, string gameName,string gameStudio)
         {
             GameNumber = gameNumber;
             GameName   = gameName;
+            GameStudio = gameStudio;
+            GameStartDevelopTime = SimulatorTimer.GameTimeNow;
+            GameIsDeveloping = true;
         }
 
         #endregion 构造函数

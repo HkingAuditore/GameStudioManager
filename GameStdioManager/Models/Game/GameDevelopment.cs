@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using GameStdioManager.Controllers;
 using GameStdioManager.Controllers.Game;
 using GameStdioManager.Models.Checkpoint;
 
@@ -22,7 +23,7 @@ namespace GameStdioManager.Models.Game
         /// <summary>
         /// 默认开发时间
         /// </summary>
-        private static int _developingTime = 800;
+        // private static int _developingTime = 800;
 
         /// <summary>
         ///     开始开发
@@ -35,6 +36,7 @@ namespace GameStdioManager.Models.Game
             arg.CheckParm = hours;
             arg.UpdateParm = 0;
             arg.UpdateSpeed = speed;
+            ControllerBase.InsertInfoSql(this);
 
             var cp = new Checkpoint.Checkpoint(0,
                                                SimulatorTimer.GetTimeAfterHours(hours),
@@ -82,6 +84,7 @@ namespace GameStdioManager.Models.Game
         {
             var game = (Game)sender;
             game.GameIsDeveloping = false;
+            game.GameFinishDevelopTime = SimulatorTimer.GameTimeNow;
 
             GameSQLController.UpdateGameInfoSql(GameSQLController.ReadGameInfoSql(game.GameNumber), game);
             Debug.WriteLine(game.GameName + " Game FINISHED!");

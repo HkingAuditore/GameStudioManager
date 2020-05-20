@@ -124,6 +124,7 @@
     <Compile Include="Controllers\Game\GameSQLController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Login\LoginController.cs" />
+    <Compile Include="Controllers\Player\PlayerSqlController.cs" />
     <Compile Include="Controllers\Staff\StaffSQLController.cs" />
     <Compile Include="Controllers\Studio\StudioSQLController.cs" />
     <Compile Include="Global.asax.cs">
@@ -260,6 +261,8 @@
     <Content Include="Pages\WebForm1.aspx" />
     <Content Include="Resource\UI\bg.png" />
     <Content Include="Resource\UI\Gamedev.gif" />
+    <Content Include="Resource\UI\Game\Development\Add.png" />
+    <Content Include="Resource\UI\Game\Development\Close.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Compile Include="Models\Checkpoint\CheckpointsReference.cs" />

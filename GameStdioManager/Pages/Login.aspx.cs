@@ -18,9 +18,11 @@ namespace GameStdioManager.Pages
 
         protected void Confirm_OnClick(object sender, EventArgs e)
         {
-            PageBase.PagePlayer = new LoginController(C_PlayerNumber.Text,C_Password.Text).PlayerStudio;
+            var lc =new LoginController(C_PlayerNumber.Text, C_Password.Text);
+            PageBase.PagePlayer = lc.PlayerTarget;
+            if (lc.IsCorrespond) Session["PlayerNumber"] = lc.PlayerTarget.PlayerNumber;
             Debug.WriteLine(PageBase.PagePlayer.PlayerStudio.StudioName);
-            Response.Redirect("GameDevelopment.aspx");
+            Server.Transfer("GameDevelopment.aspx");
         }
     }
 }

@@ -147,9 +147,20 @@ namespace GameStdioManager.Models
 
             foreach (var element in (xd.Element("CheckpointList")?.Elements("Checkpoint") ??
                                      throw new InvalidOperationException())
-                                    .Select(xe => xe))
-                AddCheckpoint(Checkpoint.Checkpoint.ReadCheckpointXml(element));
+               .Select(xe => xe))
+            {
+                var tempCp = Checkpoint.Checkpoint.ReadCheckpointXml(element);
+                if (!CheckpointListContains(tempCp)) AddCheckpoint(tempCp);
+            }
         }
+
+        /// <summary>
+        /// 查看时间表中是否已经有了Checkpoint
+        /// </summary>
+        /// <param name="cp"></param>
+        /// <returns></returns>
+        private static bool CheckpointListContains(Checkpoint.Checkpoint cp)=> _timeTable.Any(checkpoint => checkpoint == cp);
+
 
         #endregion XML操作
 

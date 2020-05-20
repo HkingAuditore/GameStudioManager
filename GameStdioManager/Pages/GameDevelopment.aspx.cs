@@ -13,12 +13,28 @@ namespace GameStdioManager.Pages
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            SimulatorTimer.ReadCheckpointListXml();
-            // Game newGame = new Game("10", "Test");
-            // newGame.StartDevelop(2, 8);
-
-            // SimulatorTimer.SaveCheckpointListXml();
         }
+
+        protected void AddGame_OnClick(object sender, ImageClickEventArgs e)
+        {
+            AddButtonPanel.Visible = false;
+            AddGamePanel.Visible = true;
+        }
+
+        protected void CancelDevelop_OnClick(object sender, ImageClickEventArgs e)
+        {
+            AddButtonPanel.Visible = true;
+            AddGamePanel.Visible = false;
+        }
+
+        protected void ConfirmDevelop_OnClick(object sender, ImageClickEventArgs e)
+        {
+            Models.Game.Game newGame = new Models.Game.Game(T_GameNumber.Text, T_GameName.Text, PageBase.PagePlayer.PlayerNumber);
+            newGame.StartDevelop(int.Parse(T_GameDDL.Text), 0);
+            AddButtonPanel.Visible = true;
+            AddGamePanel.Visible = false;
+        }
+
 
     }
 }

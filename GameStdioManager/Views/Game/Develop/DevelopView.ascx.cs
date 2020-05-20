@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Web.UI;
 using GameStdioManager.Models;
 using GameStdioManager.Models.Checkpoint;
+using GameStdioManager.Pages;
 using WebGrease.Css.Extensions;
 
 namespace GameStdioManager.Views.Game.Develop
@@ -48,5 +50,6 @@ namespace GameStdioManager.Views.Game.Develop
                                                 GamesView.Controls.Add(dl);
                                             });
         }
+
     }
 }

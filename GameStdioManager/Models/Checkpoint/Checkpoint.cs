@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using WebGrease.Css.Extensions;
 
@@ -221,5 +222,38 @@ namespace GameStdioManager.Models.Checkpoint
         public void UpdateCheckpoint() => CheckUpdateProcess?.Invoke(CheckpointTransferObject, CheckpointTransferArgs);
 
         #endregion 事件处理
+
+        public static bool operator == (Checkpoint cp0, Checkpoint cp1) =>
+            (cp0.CheckpointNumber == cp1.CheckpointNumber)                             &&
+            (cp0.CheckpointTime   == cp1.CheckpointTime)                               &&
+            (IsIndicatorsEquals(cp0.CheckpointProcessIndicators,cp1.CheckpointProcessIndicators))  &&
+            (IsIndicatorsEquals(cp0.CheckpointUpdateIndicators,cp1.CheckpointUpdateIndicators))    &&
+             (cp0.CheckpointCheckMethodIndicator == cp1.CheckpointCheckMethodIndicator) &&
+             (cp0.CheckpointTypeIndicator        == cp1.CheckpointTypeIndicator);
+
+        public static bool operator !=(Checkpoint cp0, Checkpoint cp1) => !(cp0 == cp1);
+
+        /// <summary>
+        /// 判断两个Indicators是否完全一致
+        /// </summary>
+        /// <param name="str0"></param>
+        /// <param name="str1"></param>
+        /// <returns></returns>
+        private static bool IsIndicatorsEquals(string[] str0, string[] str1)
+        {
+            if (str1.Length != str0.Length) return false;
+            foreach (var s in str1)
+            {
+                bool isMatch = str0.Any(str =>
+                                        {
+                                            Debug.WriteLine("compare: " + str + " and " + s);
+                                            return str == s;
+                                        });
+
+                if (!isMatch) return false;
+            }
+
+            return true;
+        }
     }
 }

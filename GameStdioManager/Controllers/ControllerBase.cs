@@ -1,4 +1,5 @@
-﻿using GameStdioManager.Models;
+﻿using System;
+using GameStdioManager.Models;
 using GameStdioManager.Models.Game;
 using GameStdioManager.Models.Staff;
 using System.Configuration;
@@ -43,12 +44,22 @@ namespace GameStdioManager.Controllers
                     if (property.PropertyType.Name == "String")
                         commandStringBuilderSecondPart
                            .Append(ConvertStringToSql((string)simulatorObject.GetPropertyValue(property.Name)));
+
                     else if (property.PropertyType.Name == "Temperament")
                         commandStringBuilderSecondPart.Append((int)(Temperament)
                                                               simulatorObject.GetPropertyValue(property.Name));
+
+                    else if (property.PropertyType.Name == "DateTime")
+                        commandStringBuilderSecondPart.Append(ConvertStringToSql(simulatorObject.GetPropertyValue(property.Name).ToString()));
+
+                    else if (property.PropertyType.Name == "Boolean")
+                        commandStringBuilderSecondPart.Append(Convert.ToInt32((bool)
+                                                              simulatorObject.GetPropertyValue(property.Name)));
+
                     else if (property.PropertyType.Name == "Genres")
                         commandStringBuilderSecondPart.Append((int)(Genres)
                                                               simulatorObject.GetPropertyValue(property.Name));
+
                     else
                         commandStringBuilderSecondPart.Append((int)simulatorObject.GetPropertyValue(property.Name));
                     if (cur++ < properties.Length)

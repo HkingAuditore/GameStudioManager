@@ -1,18 +1,1 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<CheckpointList>
-  <Checkpoint CheckpointNumber="0" CheckpointTime="2020-05-20T10:16:00" CheckpointCheckMethodIndicator="CheckTimeAndProcess" CheckpointTypeIndicator="Game" CheckpointTransferObject="0">
-    <CheckpointProcessIndicators>
-      <CheckpointProcessIndicator target="EndDevelop" />
-    </CheckpointProcessIndicators>
-    <CheckpointUpdateIndicators>
-      <CheckpointUpdateIndicator target="UpdateDevelop" />
-    </CheckpointUpdateIndicators>
-    <CheckpointTransferArgs>
-      <CheckpointArgs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-        <CheckParm>2</CheckParm>
-        <UpdateParm>0</UpdateParm>
-        <UpdateSpeed>8</UpdateSpeed>
-      </CheckpointArgs>
-    </CheckpointTransferArgs>
-  </Checkpoint>
-</CheckpointList>
+﻿

@@ -43,10 +43,11 @@
         <div class="col-lg-1">
             <asp:Button ID="L_Studio" runat="server" Text="工作室" CssClass="title-link"/>
         </div>
-        <div class="col-lg-offset-5 col-lg-1">
+        <div class="col-lg-offset-5 col-lg-2">
+            <asp:Button ID="B_SaveGame" runat="server" Text="Button" CssClass="btn btn-default" OnClick="B_SaveGame_OnClick"/>
             <asp:Label ID="La_StudioName" runat="server" Text="工作室名称"></asp:Label>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-1">
             <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
             <div>
                 <asp:UpdatePanel ID="UpdatePanel" runat="server">
@@ -57,6 +58,9 @@
                 </asp:UpdatePanel>
             </div>
         </div>
+        
+        </div>
+    <div class="row">
         <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
 
         </asp:ContentPlaceHolder>

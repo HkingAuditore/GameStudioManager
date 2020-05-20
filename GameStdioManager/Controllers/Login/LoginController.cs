@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using GameStdioManager.Controllers.Player;
 using GameStdioManager.Controllers.Studio;
 using GameStdioManager.Models.Game;
 using GameStdioManager.Models.Player;
@@ -13,7 +14,7 @@ namespace GameStdioManager.Controllers.Login
         private string _playerNumber;
         private string _password;
 
-        public Player PlayerStudio;
+        public Models.Player.Player PlayerTarget;
         public bool IsCorrespond;
         public LoginController(string playerNumber,string password)
         {
@@ -22,7 +23,7 @@ namespace GameStdioManager.Controllers.Login
             GetPlayer();
         }
 
-        private Player GetPlayer()
+        private Models.Player.Player GetPlayer()
         {
             using (var sqlConnection = new SqlConnection(ConString))
             {
@@ -42,16 +43,15 @@ namespace GameStdioManager.Controllers.Login
                     if (result["PlayerPassword"].ToString() == _password)
                     {
                         IsCorrespond = true;
-                        PlayerStudio = new Player(StudioSQLController.ReadStudioInfoSql(result["PlayerStudioNumber"].ToString()));
-                        PlayerStudio.PlayerStartTime = DateTime.Parse(result["PlayerStartTime"].ToString());
-                        PlayerStudio.PlayerNowTime = DateTime.Parse(result["PlayerNowTime"].ToString());
+
+                        PlayerTarget = PlayerSqlController.ReadPlayerInfoSql(_playerNumber);
                     }
                 }
 
                 result.Close();
             }
 
-            return PlayerStudio;
+            return PlayerTarget;
 
         }
     }

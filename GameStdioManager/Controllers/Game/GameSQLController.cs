@@ -123,6 +123,10 @@ namespace GameStdioManager.Controllers.Game
                 else if (targetProperty.PropertyType.Name == "Boolean")
                     commandStringBuilder.Append(targetProperty.Name + " = " +
                                                Convert.ToInt32((bool)target.GetPropertyValue(targetProperty.Name)));
+
+                else if (targetProperty.PropertyType.Name == "DateTime")
+                    commandStringBuilder.Append(targetProperty.Name + " = " +
+                                                ConvertStringToSql(target.GetPropertyValue(targetProperty.Name).ToString()));
                 else
                     commandStringBuilder.Append(targetProperty.Name + " = " +
                                                 (int)target.GetPropertyValue(targetProperty.Name));
