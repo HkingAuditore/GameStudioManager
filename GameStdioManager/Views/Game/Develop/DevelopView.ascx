@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DevelopView.ascx.cs" Inherits="GameStdioManager.Views.Game.Develop.DevelopView" %>
 <%@ Register Src="~/Views/Game/Develop/DevelopViewLine.ascx" TagPrefix="uc1" TagName="DevelopViewLine" %>
 
-<div class="container-fluid" style="border: lightslategray">
-    <div class="row">
+
+    <div class="row" style="padding-bottom: 1%; margin-bottom: 1%;border-bottom: 2px solid rgba(45, 45, 45, 0.64)">
         <div class="col-lg-1">
             编号
         </div>
@@ -24,39 +24,17 @@
         <div class="col-lg-1">
             音乐
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-4">
             开发人员
         </div>
-    </div>
 
-    <div runat="server" id="GamesView">
     </div>
+    <asp:UpdatePanel ID="UP_UpdatePanel" runat="server" UpdateMode="Always">
+        <ContentTemplate>
+            <div runat="server" id="GamesView">
+            </div>
+        </ContentTemplate>
+
+    </asp:UpdatePanel>
     
-    <%-- <div class="row" runat="server"> --%>
-    <%--     <div class="col-lg-1" runat="server" ID="AddButtonPanel" Visible="True"> --%>
-    <%--         <asp:ImageButton ID="AddGame" runat="server" OnClick="AddGame_OnClick" ImageUrl="~/Resource/UI/Game/Development/Add.png"/> --%>
-    <%--     </div> --%>
-    <%--     <div runat="server" ID="AddGamePanel" Visible="False"> --%>
-    <%--         <div class="col-lg-2"> --%>
-    <%--             编号<asp:TextBox ID="T_GameNumber" runat="server" CssClass="form-control"></asp:TextBox> --%>
-    <%--         </div> --%>
-    <%-- --%>
-    <%--         <div class="col-lg-2"> --%>
-    <%--             名称 <asp:TextBox ID="T_GameName" runat="server" CssClass="form-control"></asp:TextBox> --%>
-    <%--         </div> --%>
-    <%-- --%>
-    <%--         <div class="col-lg-2"> --%>
-    <%--             限期时间(小时)<asp:TextBox ID="T_GameDDL" runat="server" CssClass="form-control"></asp:TextBox> --%>
-    <%--         </div> --%>
-    <%-- --%>
-    <%--         <div class="col-lg-2"> --%>
-    <%--             <asp:ImageButton ID="ConfirmDevelop"  ImageUrl="~/Resource/UI/Game/Development/Add.png" runat="server" OnClick="ConfirmDevelop_OnClick"/> --%>
-    <%--         </div> --%>
-    <%-- --%>
-    <%--         <div class="col-lg-2"> --%>
-    <%--             <asp:ImageButton ID="CancelDevelop"  ImageUrl="~/Resource/UI/Game/Development/Close.png" runat="server" OnClick="CancelDevelop_OnClick"/> --%>
-    <%--         </div> --%>
-    <%-- --%>
-    <%--     </div> --%>
-    <%-- </div> --%>
-</div>
+

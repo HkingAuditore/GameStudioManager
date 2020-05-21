@@ -13,6 +13,15 @@ namespace GameStdioManager.Views.Game.Develop {
     public partial class DevelopView {
         
         /// <summary>
+        /// UP_UpdatePanel 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UP_UpdatePanel;
+        
+        /// <summary>
         /// GamesView 控件。
         /// </summary>
         /// <remarks>

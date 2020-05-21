@@ -44,7 +44,7 @@
             <asp:Button ID="L_Studio" runat="server" Text="工作室" CssClass="title-link"/>
         </div>
         <div class="col-lg-offset-5 col-lg-2">
-            <asp:Button ID="B_SaveGame" runat="server" Text="Button" CssClass="btn btn-default" OnClick="B_SaveGame_OnClick"/>
+            <asp:Button ID="B_SaveGame" runat="server" Text="存档" CssClass="btn btn-default" OnClick="B_SaveGame_OnClick"/>
             <asp:Label ID="La_StudioName" runat="server" Text="工作室名称"></asp:Label>
         </div>
         <div class="col-lg-1">
@@ -52,7 +52,7 @@
             <div>
                 <asp:UpdatePanel ID="UpdatePanel" runat="server">
                     <ContentTemplate>
-                        <asp:Label ID="La_Timer" runat="server" Text="时间" ForeColor="#FF6666"/>
+                        <asp:Label ID="La_Timer" runat="server" Text="时间" ForeColor="#F6F6F6"/>
                         <asp:Timer ID="Timer" runat="server" Interval="1000"/>
                     </ContentTemplate>
                 </asp:UpdatePanel>

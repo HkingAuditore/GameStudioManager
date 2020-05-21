@@ -6,6 +6,7 @@ using System.Linq;
 using System.Timers;
 using System.Web;
 using System.Xml.Linq;
+using GameStdioManager.Controllers.Player;
 using GameStdioManager.Pages;
 using Microsoft.Ajax.Utilities;
 
@@ -13,6 +14,8 @@ namespace GameStdioManager.Models
 {
     public class SimulatorTimer
     {
+
+
         /// <summary>
         /// </summary>
         /// <param name="isReload">是否为重载游戏</param>
@@ -48,6 +51,11 @@ namespace GameStdioManager.Models
         ///     计时器
         /// </summary>
         private static Timer _gameTimer;
+
+        /// <summary>
+        /// 是否计时
+        /// </summary>
+        private static bool _isTick = true;
 
         /// <summary>
         ///     计时速度，标准速度1s=1min
@@ -98,6 +106,19 @@ namespace GameStdioManager.Models
             return temp.AddHours(n);
         }
 
+        public static void Pause()
+        {
+            _isTick = false;
+            _gameTimer.Stop();
+        }
+
+        public static void GoOn()
+        {
+            _isTick = true;
+            _gameTimer.Start();
+        }
+
+        public static bool IsTicking() => _isTick;
         #endregion 纯时间操作
 
         #region 时间步进详细行为
@@ -131,7 +152,8 @@ namespace GameStdioManager.Models
              select checkpoint).ForEach(cp => xd.Element("CheckpointList")?.Add(cp.ConvertCheckpointToXElement()));
             Debug.WriteLine(xd);
 
-            var path = HttpContext.Current.Server.MapPath("~/Data/CheckpointList/checkpoints.xml");
+            // var path = HttpContext.Current.Server.MapPath("~/Data/CheckpointList/checkpoints.xml");
+            var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data/CheckpointList/checkpoints.xml");
             xd.Save(path);
             if (File.Exists(path)) Debug.WriteLine("Saved!");
             Debug.WriteLine(path);
@@ -142,7 +164,8 @@ namespace GameStdioManager.Models
         /// </summary>
         public static void ReadCheckpointListXml()
         {
-            var path = HttpContext.Current.Server.MapPath("~/Data/CheckpointList/checkpoints.xml");
+            // var path = HttpContext.Current.Server.MapPath("~/Data/CheckpointList/checkpoints.xml");
+            var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data/CheckpointList/checkpoints.xml");
             var xd   = XDocument.Load(path);
 
             foreach (var element in (xd.Element("CheckpointList")?.Elements("Checkpoint") ??
@@ -177,6 +200,10 @@ namespace GameStdioManager.Models
                 {
                     _timeTable[i].InvokeCheckpointEvent();
                     RemoveCheckpoint(_timeTable[i]);
+                    SimulatorTimer.SaveCheckpointListXml();
+                    PlayerSqlController
+                       .UpdatePlayerInfoSql(PlayerSqlController.ReadPlayerInfoSql(PageBase.PagePlayer.PlayerNumber),
+                                            PageBase.PagePlayer);
                     continue;
                 }
 

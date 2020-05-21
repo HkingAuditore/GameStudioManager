@@ -9,9 +9,9 @@ namespace GameStdioManager.Models.Checkpoint
     {
         public int CheckParm = 0;
 
-        public int UpdateParm = 0;
+        public float UpdateParm = 0f;
 
-        public int UpdateSpeed = 0;
+        public float UpdateSpeed = 0f;
 
         public CheckpointArgs()
         {

@@ -13,15 +13,6 @@ namespace GameStdioManager.Pages {
     public partial class GameDevelopment {
         
         /// <summary>
-        /// UpdatePanel1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
-        /// <summary>
         /// DevelopView 控件。
         /// </summary>
         /// <remarks>
@@ -83,6 +74,24 @@ namespace GameStdioManager.Pages {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox T_GameDDL;
+        
+        /// <summary>
+        /// D_Producer 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList D_Producer;
+        
+        /// <summary>
+        /// GameStudioSimulator 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource GameStudioSimulator;
         
         /// <summary>
         /// ConfirmDevelop 控件。

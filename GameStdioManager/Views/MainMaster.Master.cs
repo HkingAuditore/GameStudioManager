@@ -17,7 +17,7 @@ namespace GameStdioManager.Views
         private void MasterGameInit()
         {
             PageBase.PageGame = new StudioBehavior(true);
-            // SimulatorTimer.ReadCheckpointListXml();
+            SimulatorTimer.ReadCheckpointListXml();
             PageBase.PageGame.Start();
             La_StudioName.Text = PageBase.PagePlayer.PlayerStudio.StudioName;
 
@@ -42,6 +42,7 @@ namespace GameStdioManager.Views
             PlayerSqlController
                     .UpdatePlayerInfoSql(PlayerSqlController.ReadPlayerInfoSql(PageBase.PagePlayer.PlayerNumber),
                                          PageBase.PagePlayer);
+            SimulatorTimer.SaveCheckpointListXml();
         }
 
     }

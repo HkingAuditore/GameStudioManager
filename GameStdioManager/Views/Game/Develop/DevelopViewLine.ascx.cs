@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using GameStdioManager.Controllers.Game;
 using GameStdioManager.Controllers.Staff;
+using GameStdioManager.Models;
+using GameStdioManager.Pages;
 
 namespace GameStdioManager.Views.Game.Develop
 {
@@ -29,7 +33,7 @@ namespace GameStdioManager.Views.Game.Develop
             C_GameNumber.Text = LineGame.GameNumber;
             C_GameName.Text = LineGame.GameName;
             C_GameStartDevelopTime.Text = LineGame.GameStartDevelopTime.ToString("yyyy-MM-dd");
-            C_GameFinishDevelopTime.Text = LineGame.GameFinishDevelopTime.ToString("yyyy-MM-dd");
+            C_GameProcess.Text = LineGame.GetGameDevelopProcess().ToString("F1") + "%";
             C_GameFun.Text = LineGame.GameFun.ToString();
             C_GameArt.Text = LineGame.GameArt.ToString();
             C_GameMusic.Text = LineGame.GameMusic.ToString();
@@ -38,27 +42,45 @@ namespace GameStdioManager.Views.Game.Develop
 
         private void ShowDevelopers()
         {
-            using (var sqlConnection = new SqlConnection(ConString))
+            foreach (var developer in LineGame.Developers)
             {
-                var sqlCommand = new SqlCommand("SELECT DeveloperStaffNumber From DeveloperRelation WHERE DeveloperGameNumber = '" + LineGame.GameNumber + "'", sqlConnection);
-                sqlConnection.Open();
-                var result = sqlCommand.ExecuteReader();
-
-                while (result.Read())
-                {
-                    Developer dv = (Developer)LoadControl("Developer.ascx");
-                    dv.ThisDeveloper = StaffSQLController.ReadStaffInfoSql(result["DeveloperStaffNumber"].ToString());
-                    C_Developers.Controls.Add(dv);
-                }
-
-                result.Close();
+                Developer dv = (Developer)LoadControl("Developer.ascx");
+                dv.ThisDeveloper = developer;
+                dv.ParentViewLine = this;
+                C_Developers.Controls.Add(dv);
             }
+
 
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            GameStudioSimulator.SelectParameters["ThisGame"].DefaultValue = LineGame.GameNumber;
             UpdateView();
+        }
+
+        protected void B_AddDeveloper_OnClick(object sender, ImageClickEventArgs e)
+        {
+            D_Deverloper.DataBind();
+            P_EditDeveloper.Visible = !P_EditDeveloper.Visible;
+            SimulatorTimer.Pause();
+
+        }
+
+        protected void B_ConfirmButton_OnClick(object sender, ImageClickEventArgs e)
+        {
+            LineGame.AddDeveloper(PageBase.PagePlayer.PlayerStudio.FindStaff(D_Deverloper.SelectedValue));
+            P_EditDeveloper.Visible = !P_EditDeveloper.Visible;
+            SimulatorTimer.GoOn();
+
+        }
+
+        protected string GetGameNumber() => LineGame.GameNumber;
+
+        protected void B_CancelButton_OnClick(object sender, ImageClickEventArgs e)
+        {
+            P_EditDeveloper.Visible = !P_EditDeveloper.Visible;
+            SimulatorTimer.GoOn();
         }
     }
 }

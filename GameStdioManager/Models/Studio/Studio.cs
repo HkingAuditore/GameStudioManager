@@ -1,4 +1,7 @@
-﻿namespace GameStdioManager.Models.Studio
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace GameStdioManager.Models.Studio
 {
     public class Studio : SimulatorBase
     {
@@ -30,6 +33,7 @@
         /// </summary>
         public int StudioReputation { get; set; }
 
+
         #region 类基本操作
 
         #region 接口实现
@@ -40,5 +44,27 @@
 
 
         #endregion 类基本操作
+
+        #region 员工操作
+
+        /// <summary>
+        /// 员工
+        /// </summary>
+        public List<Staff.Staff> StudioStaffs = new List<Staff.Staff>();
+
+        public void AddStaff(Staff.Staff staff) => StudioStaffs.Add(staff);
+
+        public void RemoveStaff(Staff.Staff staff) => StudioStaffs.Remove(staff);
+
+        /// <summary>
+        /// 查找员工
+        /// </summary>
+        /// <param name="staffNumber"></param>
+        /// <returns></returns>
+        public Staff.Staff FindStaff(string staffNumber) => (from s in StudioStaffs
+                                                             where s.StaffNumber == staffNumber
+                                                             select s).First();
+
+        #endregion
     }
 }

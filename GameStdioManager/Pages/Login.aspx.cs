@@ -20,7 +20,11 @@ namespace GameStdioManager.Pages
         {
             var lc =new LoginController(C_PlayerNumber.Text, C_Password.Text);
             PageBase.PagePlayer = lc.PlayerTarget;
-            if (lc.IsCorrespond) Session["PlayerNumber"] = lc.PlayerTarget.PlayerNumber;
+            if (lc.IsCorrespond)
+            {
+                Session["PlayerNumber"] = lc.PlayerTarget.PlayerNumber;
+                Session["PlayerStudioNumber"] = lc.PlayerTarget.PlayerStudio.StudioNumber;
+            }
             Debug.WriteLine(PageBase.PagePlayer.PlayerStudio.StudioName);
             Server.Transfer("GameDevelopment.aspx");
         }

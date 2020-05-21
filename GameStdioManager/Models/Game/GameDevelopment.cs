@@ -20,6 +20,8 @@ namespace GameStdioManager.Models.Game
         /// </summary>
         public List<Staff.Staff> Developers = new List<Staff.Staff>();
 
+        private float _developmentProcess = 0f;
+
         /// <summary>
         /// 默认开发时间
         /// </summary>
@@ -30,12 +32,12 @@ namespace GameStdioManager.Models.Game
         /// </summary>
         /// <param name="hours">开发时长</param>
         /// <param name="staff">开发人员</param>
-        public void StartDevelop(int hours, int speed)
+        public void StartDevelop(int hours)
         {
             var arg = new CheckpointArgs();
             arg.CheckParm = hours;
-            arg.UpdateParm = 0;
-            arg.UpdateSpeed = speed;
+            arg.UpdateParm = 0f;
+            arg.UpdateSpeed = 100f/(hours*3);
             ControllerBase.InsertInfoSql(this);
 
             var cp = new Checkpoint.Checkpoint(0,
@@ -60,7 +62,7 @@ namespace GameStdioManager.Models.Game
         public static void UpdateDevelop(SimulatorBase sender, CheckpointArgs args)
         {
             var game = (Game)sender;
-
+            game._developmentProcess = args.UpdateParm;
             Debug.WriteLine(game.GameName + " Processing:" + args.UpdateParm + "%. In " + SimulatorTimer.GameTimeNow);
             args.UpdateParm += args.UpdateSpeed;
             UpdateDevelopEvent?.Invoke(sender, args);
@@ -71,6 +73,7 @@ namespace GameStdioManager.Models.Game
         /// </summary>
         public static event CheckpointHandler UpdateDevelopEvent;
 
+        public float GetGameDevelopProcess() => _developmentProcess;
         #endregion
 
         #region 结束
@@ -105,15 +108,22 @@ namespace GameStdioManager.Models.Game
         /// 新增开发人员
         /// </summary>
         /// <param name="developer"></param>
-        public void AddDeveloper(Staff.Staff developer) => Developers.Add(developer);
+        public void AddDeveloper(Staff.Staff developer)
+        {
+            Developers.Add(developer);
+            GameDevelopmentRelationSqlController.InsertDeveloperRelation(this,developer);
+        }
 
         /// <summary>
         /// 移除开发人员
         /// </summary>
         /// <param name="developer"></param>
-        public void RemoveDeveloper(Staff.Staff developer) => Developers.Remove(developer);
+        public void RemoveDeveloper(Staff.Staff developer)
+        {
+            Developers.Remove(developer);
+            GameDevelopmentRelationSqlController.DeleteDeveloperRelation(this, developer);
 
-
+        }
 
         #endregion
 

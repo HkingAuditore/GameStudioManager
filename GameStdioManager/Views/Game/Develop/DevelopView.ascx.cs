@@ -18,12 +18,22 @@ namespace GameStdioManager.Views.Game.Develop
 
         private static List<Models.Game.Game> _developingGames = new List<Models.Game.Game>();
 
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 Models.Game.Game.UpdateDevelopEvent += UpdateGameDevelopment;
                 Models.Game.Game.EndDevelopEvent += EndGameDevelopment;
+            }
+            if (!SimulatorTimer.IsTicking())
+            {
+                UP_UpdatePanel.UpdateMode = UpdatePanelUpdateMode.Conditional;
+            }
+            else
+            {
+                UP_UpdatePanel.UpdateMode = UpdatePanelUpdateMode.Always;
             }
             UpdateLines();
         }

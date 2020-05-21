@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
+using GameStdioManager.Controllers.Staff;
 
 namespace GameStdioManager.Controllers.Studio
 {
@@ -38,6 +39,7 @@ namespace GameStdioManager.Controllers.Studio
                                                       int.Parse(result["StudioProperty"].ToString()),
                                                       int.Parse(result["StudioReputation"].ToString())
                                                      );
+                    FillStudioStaffSql(studio);
                 }
 
                 result.Close();
@@ -45,6 +47,35 @@ namespace GameStdioManager.Controllers.Studio
 
             return studio;
         }
+
+        /// <summary>
+        /// 向Studio中填充员工
+        /// </summary>
+        /// <param name="studio"></param>
+        public static void FillStudioStaffSql(Models.Studio.Studio studio)
+        {
+            using (var sqlConnection = new SqlConnection(ConString))
+            {
+                // 使用了Target占位符表示目标ID
+                var sqlCommand = new SqlCommand("SELECT StaffNumber FROM StaffInfo WHERE StaffStudio = @Target", sqlConnection);
+                // 构造Parameter对象
+                var targetSqlParameter = new SqlParameter("@Target", SqlDbType.VarChar, 255);
+                targetSqlParameter.Value = studio.StudioNumber;
+                sqlCommand.Parameters.Add(targetSqlParameter);
+
+                sqlConnection.Open();
+                var result = sqlCommand.ExecuteReader();
+
+                while (result.Read())
+                {
+                    studio.AddStaff(StaffSQLController.ReadStaffInfoSql(result["StaffNumber"].ToString()));
+                }
+
+                result.Close();
+            }
+
+        }
+
 
         /// <summary>
         ///     向数据库插入工作室数据
