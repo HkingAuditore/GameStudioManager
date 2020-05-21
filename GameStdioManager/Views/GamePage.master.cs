@@ -11,6 +11,22 @@ namespace GameStdioManager.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+        }
+
+        protected void L_GameDevelopment_OnClick(object sender, EventArgs e)
+        {
+            Server.Transfer("../Pages/GameDevelopment.aspx");
+
+        }
+
+        protected void L_GameSales_OnClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void L_GameInfo_OnClick(object sender, EventArgs e)
+        {
+            Server.Transfer("../Pages/GameDevelopedInfo.aspx");
 
         }
     }

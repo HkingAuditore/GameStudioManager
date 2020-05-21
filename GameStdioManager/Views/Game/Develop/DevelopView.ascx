@@ -13,7 +13,7 @@
             开发日期
         </div>
         <div class="col-lg-1">
-            截止日期
+            开发进度
         </div>
         <div class="col-lg-1">
             趣味性

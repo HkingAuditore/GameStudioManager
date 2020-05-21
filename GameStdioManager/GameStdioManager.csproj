@@ -149,6 +149,13 @@
     <Compile Include="Models\SimulatorTimer.cs" />
     <Compile Include="Models\Player\Player.cs" />
     <Compile Include="Models\Studio\Studio.cs" />
+    <Compile Include="Pages\GameDevelopedInfo.aspx.cs">
+      <DependentUpon>GameDevelopedInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\GameDevelopedInfo.aspx.designer.cs">
+      <DependentUpon>GameDevelopedInfo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\GameDevelopment.aspx.cs">
       <DependentUpon>GameDevelopment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -210,6 +217,27 @@
     <Compile Include="Views\GamePage.master.designer.cs">
       <DependentUpon>GamePage.master</DependentUpon>
     </Compile>
+    <Compile Include="Views\Game\DevelopedInfo\DevelopedView.ascx.cs">
+      <DependentUpon>DevelopedView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Game\DevelopedInfo\DevelopedView.ascx.designer.cs">
+      <DependentUpon>DevelopedView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Game\DevelopedInfo\DevelopedViewLine.ascx.cs">
+      <DependentUpon>DevelopedViewLine.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Game\DevelopedInfo\DevelopedViewLine.ascx.designer.cs">
+      <DependentUpon>DevelopedViewLine.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Game\DevelopedInfo\Developer.ascx.cs">
+      <DependentUpon>Developer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Game\DevelopedInfo\Developer.ascx.designer.cs">
+      <DependentUpon>Developer.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Game\Develop\Developer.ascx.cs">
       <DependentUpon>Developer.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -257,6 +285,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Index.aspx" />
+    <Content Include="Pages\GameDevelopedInfo.aspx" />
     <Content Include="Pages\GameDevelopment.aspx" />
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\WebForm1.aspx" />
@@ -287,6 +316,9 @@
     <Content Include="Views\Editors\GameEditor.ascx" />
     <Content Include="Views\Editors\StaffEditor.ascx" />
     <Content Include="Views\Editors\StudioEditor.ascx" />
+    <Content Include="Views\Game\DevelopedInfo\DevelopedView.ascx" />
+    <Content Include="Views\Game\DevelopedInfo\DevelopedViewLine.ascx" />
+    <Content Include="Views\Game\DevelopedInfo\Developer.ascx" />
     <Content Include="Views\Game\Develop\Developer.ascx" />
     <Content Include="Views\Game\Develop\DevelopView.ascx" />
     <Content Include="Views\Game\Develop\DevelopViewLine.ascx" />

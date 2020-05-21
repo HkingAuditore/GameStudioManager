@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
+using GameStdioManager.Controllers.Staff;
 
 namespace GameStdioManager.Controllers.Game
 {
@@ -47,6 +48,7 @@ namespace GameStdioManager.Controllers.Game
                                                );
                     game.GameStartDevelopTime =  DateTime.Parse(result["GameStartDevelopTime"].ToString());
                     game.GameFinishDevelopTime =  DateTime.Parse(result["GameFinishDevelopTime"].ToString());
+                    game.Developers = StaffSQLController.GetDevelopersList(game.GameNumber);
                 }
 
                 result.Close();
@@ -154,6 +156,38 @@ namespace GameStdioManager.Controllers.Game
             {
                 
             }
+        }
+
+        public static List<Models.Game.Game> GetGameList(string studioNumber, bool IsDeveloping)
+        {
+            List<Models.Game.Game> gameList = new List<Models.Game.Game>();
+            using (var sqlConnection = new SqlConnection(ConString))
+            {
+                // 使用了Target占位符表示目标ID
+                var sqlCommand = new SqlCommand("SELECT GameNumber FROM GameInfo WHERE ((GameStudio = @Target) AND (GameIsDeveloping = @IsDeveloping))", sqlConnection);
+                // 构造Parameter对象
+                var targetSqlParameter = new SqlParameter("@Target", SqlDbType.VarChar, 255);
+                var isDevelopingSqlParameter = new SqlParameter("@IsDeveloping", SqlDbType.Int, 255);
+                targetSqlParameter.Value = studioNumber;
+                isDevelopingSqlParameter.Value = Convert.ToInt32(IsDeveloping);
+                sqlCommand.Parameters.Add(targetSqlParameter);
+                sqlCommand.Parameters.Add(isDevelopingSqlParameter);
+
+                sqlConnection.Open();
+                var result = sqlCommand.ExecuteReader();
+
+                if (result.HasRows)
+                {
+                    while (result.Read())
+                    {
+                        gameList.Add(ReadGameInfoSql(result["GameNumber"].ToString()));
+                    }
+                }
+
+                result.Close();
+            }
+
+            return gameList;
         }
     }
 }
