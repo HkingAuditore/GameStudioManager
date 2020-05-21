@@ -206,5 +206,35 @@ namespace GameStdioManager.Controllers.Staff
             return developerList;
 
         }
+
+        public static List<Models.Staff.Staff> GetDevelopersListFromStudioSql(string gameNumber,Models.Studio.Studio studio)
+        {
+            List<Models.Staff.Staff> developerList = new List<Models.Staff.Staff>();
+            using (var sqlConnection = new SqlConnection(ConString))
+            {
+                // 使用了Target占位符表示目标ID
+                var sqlCommand = new SqlCommand("SELECT DeveloperStaffNumber FROM DeveloperRelation WHERE ((DeveloperGameNumber = @Target))", sqlConnection);
+                // 构造Parameter对象
+                var targetSqlParameter = new SqlParameter("@Target", SqlDbType.VarChar, 255);
+                targetSqlParameter.Value = gameNumber;
+                sqlCommand.Parameters.Add(targetSqlParameter);
+
+                sqlConnection.Open();
+                var result = sqlCommand.ExecuteReader();
+
+                if (result.HasRows)
+                {
+                    while (result.Read())
+                    {
+                        developerList.Add(studio.FindStaff(result["DeveloperStaffNumber"].ToString()));
+                    }
+                }
+
+                result.Close();
+            }
+
+            return developerList;
+
+        }
     }
 }

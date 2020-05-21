@@ -163,6 +163,13 @@
     <Compile Include="Pages\GameDevelopment.aspx.designer.cs">
       <DependentUpon>GameDevelopment.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\GameSales.aspx.cs">
+      <DependentUpon>GameSales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\GameSales.aspx.designer.cs">
+      <DependentUpon>GameSales.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -172,13 +179,6 @@
     </Compile>
     <Compile Include="Pages\PageBase.cs">
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -259,6 +259,27 @@
     <Compile Include="Views\Game\Develop\DevelopViewLine.ascx.designer.cs">
       <DependentUpon>DevelopViewLine.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Game\GameSales\Developer.ascx.cs">
+      <DependentUpon>Developer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Game\GameSales\Developer.ascx.designer.cs">
+      <DependentUpon>Developer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Game\GameSales\SalesView.ascx.cs">
+      <DependentUpon>SalesView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Game\GameSales\SalesView.ascx.designer.cs">
+      <DependentUpon>SalesView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Game\GameSales\SalesViewLine.ascx.cs">
+      <DependentUpon>SalesViewLine.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Game\GameSales\SalesViewLine.ascx.designer.cs">
+      <DependentUpon>SalesViewLine.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainMaster.Master.cs">
       <DependentUpon>MainMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -287,8 +308,8 @@
     <Content Include="Index.aspx" />
     <Content Include="Pages\GameDevelopedInfo.aspx" />
     <Content Include="Pages\GameDevelopment.aspx" />
+    <Content Include="Pages\GameSales.aspx" />
     <Content Include="Pages\Login.aspx" />
-    <Content Include="Pages\WebForm1.aspx" />
     <Content Include="Resource\UI\bg.png" />
     <Content Include="Resource\UI\Gamedev.gif" />
     <Content Include="Resource\UI\Game\Development\Add.png" />
@@ -322,6 +343,9 @@
     <Content Include="Views\Game\Develop\Developer.ascx" />
     <Content Include="Views\Game\Develop\DevelopView.ascx" />
     <Content Include="Views\Game\Develop\DevelopViewLine.ascx" />
+    <Content Include="Views\Game\GameSales\Developer.ascx" />
+    <Content Include="Views\Game\GameSales\SalesView.ascx" />
+    <Content Include="Views\Game\GameSales\SalesViewLine.ascx" />
     <Content Include="Views\WebForm1.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

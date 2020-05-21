@@ -189,5 +189,55 @@ namespace GameStdioManager.Controllers.Game
 
             return gameList;
         }
+
+
+
+        /// <summary>
+        ///     从数据库中读取游戏数据并生成实例，员工信息从工作室中抓取
+        /// </summary>
+        /// <param name="gameNumber"></param>
+        /// <returns></returns>
+        public static Models.Game.Game ReadGameInfoFromStudioSql(string gameNumber,Models.Studio.Studio studio)
+        {
+            Models.Game.Game game = null;
+
+            using (var sqlConnection = new SqlConnection(ConString))
+            {
+                // 使用了Target占位符表示目标ID
+                var sqlCommand = new SqlCommand("SELECT * FROM GameInfo WHERE GameNumber = @Target", sqlConnection);
+                // 构造Parameter对象
+                var targetSqlParameter = new SqlParameter("@Target", SqlDbType.VarChar, 255);
+                targetSqlParameter.Value = gameNumber;
+                sqlCommand.Parameters.Add(targetSqlParameter);
+
+                sqlConnection.Open();
+                var result = sqlCommand.ExecuteReader();
+
+                if (result.HasRows)
+                {
+                    result.Read();
+                    game = new Models.Game.Game(result["GameNumber"].ToString(),
+                                                result["GameName"].ToString(),
+                                                int.Parse(result["GamePrice"].ToString()),
+                                                int.Parse(result["GameFun"].ToString()),
+                                                int.Parse(result["GameArt"].ToString()),
+                                                int.Parse(result["GameMusic"].ToString()),
+                                                int.Parse(result["GameSales"].ToString()),
+                                                result["GameStudio"].ToString(),
+                                                (Genres)int.Parse(result["GameGenres"].ToString()),
+                                                Convert.ToBoolean(int.Parse(result["GameIsDeveloping"].ToString()))
+                                               );
+                    game.GameStartDevelopTime = DateTime.Parse(result["GameStartDevelopTime"].ToString());
+                    game.GameFinishDevelopTime = DateTime.Parse(result["GameFinishDevelopTime"].ToString());
+                    game.Developers = StaffSQLController.GetDevelopersListFromStudioSql(game.GameNumber,studio);
+                    game.GameStudioObject = studio;
+                }
+
+                result.Close();
+            }
+
+            return game;
+        }
+
     }
 }

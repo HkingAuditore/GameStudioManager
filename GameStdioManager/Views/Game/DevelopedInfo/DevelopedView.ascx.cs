@@ -18,17 +18,17 @@ namespace GameStdioManager.Views.Game.DevelopedInfo
     {
         public static readonly string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
 
-        private static List<Models.Game.Game> _developedGames;
+        private static List<Models.Game.Game> _developedGames = PageBase.PagePlayer.PlayerStudio.StudioDevelopedGames;
 
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                Models.Game.Game.EndDevelopEvent += EndGameDevelopment;
-                _developedGames = GameSQLController.GetGameList(PageBase.PagePlayer.PlayerStudio.StudioNumber, false);
-            }
+            // if (!IsPostBack)
+            // {
+            //      Models.Game.Game.EndDevelopEvent += EndGameDevelopment;
+            //      _developedGames = PageBase.PagePlayer.PlayerStudio.StudioDevelopedGames;
+            // }
             if (!SimulatorTimer.IsTicking())
             {
                 UP_UpdatePanel.UpdateMode = UpdatePanelUpdateMode.Conditional;
@@ -42,11 +42,11 @@ namespace GameStdioManager.Views.Game.DevelopedInfo
 
 
 
-        public void EndGameDevelopment(SimulatorBase sender, CheckpointArgs args)
-        {
-            Models.Game.Game temp = (Models.Game.Game)sender;
-            if (!_developedGames.Contains(temp)) _developedGames.Add(temp);
-        }
+        // public void EndGameDevelopment(SimulatorBase sender, CheckpointArgs args)
+        // {
+        //     Models.Game.Game temp = (Models.Game.Game)sender;
+        //     if (!_developedGames.Contains(temp)) _developedGames.Add(temp);
+        // }
 
         private void UpdateLines()
         {

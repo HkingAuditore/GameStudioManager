@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GameStdioManager.Pages
+namespace GameStdioManager.Views.Game.GameSales
 {
 
 
-    public partial class WebForm1
+    public partial class SalesViewLine
     {
     }
 }

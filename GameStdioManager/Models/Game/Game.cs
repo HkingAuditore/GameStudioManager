@@ -106,6 +106,8 @@ namespace GameStdioManager.Models.Game
         /// </summary>
         public DateTime GameStartDevelopTime { get; set; }
 
+        public Studio.Studio GameStudioObject;
+
         #endregion 基本属性
 
         #region 构造函数

@@ -17,7 +17,7 @@ namespace GameStdioManager.Views
         private void MasterGameInit()
         {
             PageBase.PageGame = new StudioBehavior(true);
-            SimulatorTimer.ReadCheckpointListXml();
+            SimulatorTimer.ReadCheckpointListXml(PageBase.PagePlayer);
             PageBase.PageGame.Start();
             La_StudioName.Text = PageBase.PagePlayer.PlayerStudio.StudioName;
 

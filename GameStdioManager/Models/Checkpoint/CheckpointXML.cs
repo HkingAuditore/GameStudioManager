@@ -88,11 +88,12 @@ namespace GameStdioManager.Models.Checkpoint
         }
 
         /// <summary>
-        ///     从XElement中读取Checkpoint
+        /// 从XElement中读取Checkpoint
         /// </summary>
         /// <param name="xe"></param>
+        /// <param name="player"></param>
         /// <returns></returns>
-        public static Checkpoint ReadCheckpointXml(XElement xe)
+        public static Checkpoint ReadCheckpointXml(XElement xe,Player.Player player)
         {
             var checkpointProcessIndicators =
                 (from element in xe.Element("CheckpointProcessIndicators")
@@ -127,17 +128,16 @@ namespace GameStdioManager.Models.Checkpoint
             {
                 case "Game":
                     obj =
-                        GameSQLController
-                           .ReadGameInfoSql(xe.Attribute("CheckpointTransferObject")?.Value);
+                        player.PlayerStudio.FindGame(xe.Attribute("CheckpointTransferObject")?.Value);
                     break;
 
                 case "Staff":
                     obj =
-                        StaffSQLController
-                           .ReadStaffInfoSql(xe.Attribute("CheckpointTransferObject")?.Value);
+                        player.PlayerStudio.FindStaff(xe.Attribute("CheckpointTransferObject")?.Value);
                     break;
 
                 case "Studio":
+                    // TODO 这里的Studio读取方式不行，要优化
                     obj =
                         StudioSQLController
                            .ReadStudioInfoSql(xe.Attribute("CheckpointTransferObject")?.Value);

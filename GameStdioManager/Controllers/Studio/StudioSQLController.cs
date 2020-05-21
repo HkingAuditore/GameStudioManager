@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
+using GameStdioManager.Controllers.Game;
 using GameStdioManager.Controllers.Staff;
 
 namespace GameStdioManager.Controllers.Studio
@@ -40,6 +41,8 @@ namespace GameStdioManager.Controllers.Studio
                                                       int.Parse(result["StudioReputation"].ToString())
                                                      );
                     FillStudioStaffSql(studio);
+                    FillStudioGameSql(studio);
+
                 }
 
                 result.Close();
@@ -69,6 +72,43 @@ namespace GameStdioManager.Controllers.Studio
                 while (result.Read())
                 {
                     studio.AddStaff(StaffSQLController.ReadStaffInfoSql(result["StaffNumber"].ToString()));
+                }
+
+                result.Close();
+            }
+
+        }
+
+        /// <summary>
+        /// 向Studio中填充游戏
+        /// </summary>
+        /// <param name="studio"></param>
+        public static void FillStudioGameSql(Models.Studio.Studio studio)
+        {
+            using (var sqlConnection = new SqlConnection(ConString))
+            {
+                // 使用了Target占位符表示目标ID
+                var sqlCommand = new SqlCommand("SELECT GameNumber FROM GameInfo WHERE GameStudio = @Target", sqlConnection);
+                // 构造Parameter对象
+                var targetSqlParameter = new SqlParameter("@Target", SqlDbType.VarChar, 255);
+                targetSqlParameter.Value = studio.StudioNumber;
+                sqlCommand.Parameters.Add(targetSqlParameter);
+
+                sqlConnection.Open();
+                var result = sqlCommand.ExecuteReader();
+
+                while (result.Read())
+                {
+                    Models.Game.Game game = GameSQLController.ReadGameInfoFromStudioSql(result["GameNumber"].ToString(),studio);
+
+                    if (game.GameIsDeveloping)
+                    {
+                        studio.AddDevelopingGame(game);
+                    }
+                    else
+                    {
+                        studio.AddDevelopedGame(game);
+                    }
                 }
 
                 result.Close();

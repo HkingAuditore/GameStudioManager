@@ -31,7 +31,7 @@ namespace GameStdioManager.Models.Game
         ///     开始开发
         /// </summary>
         /// <param name="hours">开发时长</param>
-        /// <param name="staff">开发人员</param>
+        /// <param name="studio">开发工作室</param>
         public void StartDevelop(int hours)
         {
             var arg = new CheckpointArgs();
@@ -39,6 +39,7 @@ namespace GameStdioManager.Models.Game
             arg.UpdateParm = 0f;
             arg.UpdateSpeed = 100f/(hours*3);
             ControllerBase.InsertInfoSql(this);
+            this.GameStudioObject.AddDevelopingGame(this);
 
             var cp = new Checkpoint.Checkpoint(0,
                                                SimulatorTimer.GetTimeAfterHours(hours),
@@ -86,8 +87,12 @@ namespace GameStdioManager.Models.Game
         public static void EndDevelop(SimulatorBase sender, CheckpointArgs args)
         {
             var game = (Game)sender;
+
             game.GameIsDeveloping = false;
+            game.GameStudioObject.AddDevelopedGame(game);
+            game.GameStudioObject.RemoveDevelopingGame(game);
             game.GameFinishDevelopTime = SimulatorTimer.GameTimeNow;
+
 
             GameSQLController.UpdateGameInfoSql(GameSQLController.ReadGameInfoSql(game.GameNumber), game);
             Debug.WriteLine(game.GameName + " Game FINISHED!");

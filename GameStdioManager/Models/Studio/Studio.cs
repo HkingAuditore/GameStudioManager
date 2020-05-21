@@ -33,6 +33,15 @@ namespace GameStdioManager.Models.Studio
         /// </summary>
         public int StudioReputation { get; set; }
 
+        /// <summary>
+        /// 工作室开发中的游戏
+        /// </summary>
+        public List<Game.Game> StudioDevelopingGames = new List<Game.Game>();
+
+        /// <summary>
+        /// 工作室开发完的游戏
+        /// </summary>
+        public List<Game.Game> StudioDevelopedGames = new List<Game.Game>();
 
         #region 类基本操作
 
@@ -66,5 +75,57 @@ namespace GameStdioManager.Models.Studio
                                                              select s).First();
 
         #endregion
+
+        #region 游戏表操作
+
+        /// <summary>
+        /// 添加一个开发中游戏
+        /// </summary>
+        /// <param name="game"></param>
+        public void AddDevelopingGame(Game.Game game)
+        {
+            if(!StudioDevelopingGames.Contains(game))StudioDevelopingGames.Add(game);
+        }
+
+        /// <summary>
+        /// 移除一个开发中游戏
+        /// </summary>
+        /// <param name="game"></param>
+        public void RemoveDevelopingGame(Game.Game game)
+        {
+            if(StudioDevelopingGames.Contains(game))StudioDevelopingGames.Remove(game);
+        }
+
+        /// <summary>
+        /// 添加一个开发完毕游戏
+        /// </summary>
+        /// <param name="game"></param>
+        public void AddDevelopedGame(Game.Game game)
+        {
+            if (!StudioDevelopedGames.Contains(game)) StudioDevelopedGames.Add(game);
+        }
+
+        /// <summary>
+        /// 移除一个开发完毕游戏
+        /// </summary>
+        /// <param name="game"></param>
+        public void RemoveDevelopedGame(Game.Game game)
+        {
+            if (StudioDevelopedGames.Contains(game)) StudioDevelopedGames.Remove(game);
+        }
+
+
+
+        #endregion
+
+        /// <summary>
+        /// 查找目标游戏
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public Game.Game FindGame(string value) =>
+            (from g in StudioDevelopingGames.Union(StudioDevelopedGames)
+             where g.GameNumber == value
+             select g).First();
     }
 }

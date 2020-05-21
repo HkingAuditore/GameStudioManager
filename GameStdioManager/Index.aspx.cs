@@ -3,10 +3,11 @@ using GameStdioManager.Models;
 using System;
 using System.Web.UI;
 using GameStdioManager.Models.Game;
+using GameStdioManager.Pages;
 
 namespace GameStdioManager
 {
-    public partial class Index : Page
+    public partial class Index : PageBase
     {
         private static StudioBehavior game;
 
@@ -17,7 +18,7 @@ namespace GameStdioManager
                 game = new StudioBehavior(true);
                 game.Start();
                 
-                SimulatorTimer.ReadCheckpointListXml();
+                SimulatorTimer.ReadCheckpointListXml(PageBase.PagePlayer);
 
                 // Game newGame = new Game("10", "Test");
                 // newGame.StartDevelop(2, 8);

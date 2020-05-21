@@ -16,17 +16,17 @@ namespace GameStdioManager.Views.Game.Develop
     {
         public static readonly string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
 
-        private static List<Models.Game.Game> _developingGames = new List<Models.Game.Game>();
+        private static List<Models.Game.Game> _developingGames = PageBase.PagePlayer.PlayerStudio.StudioDevelopingGames;
 
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                Models.Game.Game.UpdateDevelopEvent += UpdateGameDevelopment;
-                Models.Game.Game.EndDevelopEvent += EndGameDevelopment;
-            }
+            // if (!IsPostBack)
+            // {
+            //     Models.Game.Game.UpdateDevelopEvent += UpdateGameDevelopment;
+            //     Models.Game.Game.EndDevelopEvent += EndGameDevelopment;
+            // }
             if (!SimulatorTimer.IsTicking())
             {
                 UP_UpdatePanel.UpdateMode = UpdatePanelUpdateMode.Conditional;
@@ -38,17 +38,17 @@ namespace GameStdioManager.Views.Game.Develop
             UpdateLines();
         }
 
-        public void UpdateGameDevelopment(SimulatorBase sender, CheckpointArgs args)
-        {
-            Models.Game.Game temp = (Models.Game.Game) sender;
-            if (!_developingGames.Contains(temp)) _developingGames.Add(temp);
-        }
-
-        public void EndGameDevelopment(SimulatorBase sender, CheckpointArgs args)
-        {
-            Models.Game.Game temp = (Models.Game.Game)sender;
-            if (_developingGames.Contains(temp)) _developingGames.Remove(temp);
-        }
+        // public void UpdateGameDevelopment(SimulatorBase sender, CheckpointArgs args)
+        // {
+        //     Models.Game.Game temp = (Models.Game.Game) sender;
+        //     if (!_developingGames.Contains(temp)) _developingGames.Add(temp);
+        // }
+        //
+        // public void EndGameDevelopment(SimulatorBase sender, CheckpointArgs args)
+        // {
+        //     Models.Game.Game temp = (Models.Game.Game)sender;
+        //     if (_developingGames.Contains(temp)) _developingGames.Remove(temp);
+        // }
 
         private void UpdateLines()
         {

@@ -30,6 +30,7 @@ namespace GameStdioManager.Pages
         protected void ConfirmDevelop_OnClick(object sender, ImageClickEventArgs e)
         {
             Models.Game.Game newGame = new Models.Game.Game(T_GameNumber.Text, T_GameName.Text, PageBase.PagePlayer.PlayerNumber);
+            newGame.GameStudioObject = PageBase.PagePlayer.PlayerStudio;
             newGame.AddDeveloper(PageBase.PagePlayer.PlayerStudio.FindStaff(D_Producer.SelectedValue));
             newGame.StartDevelop(int.Parse(T_GameDDL.Text));
             AddButtonPanel.Visible = true;

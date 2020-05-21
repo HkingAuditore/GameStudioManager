@@ -162,7 +162,7 @@ namespace GameStdioManager.Models
         /// <summary>
         ///     从XML中读取CheckpointList
         /// </summary>
-        public static void ReadCheckpointListXml()
+        public static void ReadCheckpointListXml(Player.Player player)
         {
             // var path = HttpContext.Current.Server.MapPath("~/Data/CheckpointList/checkpoints.xml");
             var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data/CheckpointList/checkpoints.xml");
@@ -172,7 +172,7 @@ namespace GameStdioManager.Models
                                      throw new InvalidOperationException())
                .Select(xe => xe))
             {
-                var tempCp = Checkpoint.Checkpoint.ReadCheckpointXml(element);
+                var tempCp = Checkpoint.Checkpoint.ReadCheckpointXml(element, player);
                 if (!CheckpointListContains(tempCp)) AddCheckpoint(tempCp);
             }
         }
