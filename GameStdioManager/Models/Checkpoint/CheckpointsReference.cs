@@ -13,6 +13,12 @@ namespace GameStdioManager.Models.Checkpoint
 
         public float UpdateSpeed = 0f;
 
+        public int ArtParm = 0;
+
+        public int FunParm = 0;
+
+        public int MusicParm = 0;
+
         public CheckpointArgs()
         {
         }

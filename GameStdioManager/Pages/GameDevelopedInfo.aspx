@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/GamePage.master" AutoEventWireup="true" CodeBehind="GameDevelopedInfo.aspx.cs" Inherits="GameStdioManager.Pages.GameDevelopedInfo" %>
-<%@ Register TagPrefix="uc1" TagName="DevelopView" Src="~/Views/Game/Develop/DevelopView.ascx" %>
+
+
 <%@ Register TagPrefix="uc1" Namespace="GameStdioManager.Views.Game.DevelopedInfo" Assembly="GameStdioManager" %>
 <%@ Register Src="~/Views/Game/DevelopedInfo/DevelopedView.ascx" TagPrefix="uc1" TagName="DevelopedView" %>
-
 
 <asp:Content ID="GameContent" ContentPlaceHolderID="GameContentPlaceHolder" runat="server">
 
@@ -10,8 +10,9 @@
         <div class="row">
             <div class="col-lg-12">
 
-                <uc1:DevelopedView runat="server" ID="DevelopedView"/>
-
+                <div class="row">
+                    <uc1:DevelopedView runat="server" ID="DevelopedView" />
+                </div>
             </div>
         </div>
     </div>

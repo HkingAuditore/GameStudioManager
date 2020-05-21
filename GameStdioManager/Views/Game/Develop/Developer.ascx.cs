@@ -10,7 +10,7 @@ namespace GameStdioManager.Views.Game.Develop
 {
     public partial class Developer : System.Web.UI.UserControl
     {
-        public Staff ThisDeveloper;
+        public Models.Staff.Staff ThisDeveloper;
         public DevelopViewLine ParentViewLine;
 
         protected void Page_Load(object sender, EventArgs e)

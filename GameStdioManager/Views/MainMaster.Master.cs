@@ -37,13 +37,17 @@ namespace GameStdioManager.Views
 
         protected void B_SaveGame_OnClick(object sender, EventArgs e)
         {
-            Debug.WriteLine(PageBase.PagePlayer.PlayerNumber);
-            PageBase.PagePlayer.PlayerNowTime = SimulatorTimer.GameTimeNow;
-            PlayerSqlController
-                    .UpdatePlayerInfoSql(PlayerSqlController.ReadPlayerInfoSql(PageBase.PagePlayer.PlayerNumber),
-                                         PageBase.PagePlayer);
-            SimulatorTimer.SaveCheckpointListXml();
+            PageBase.SaveGame();
         }
 
+        protected void L_Game_OnClick(object sender, EventArgs e)
+        {
+            Server.Transfer("../Pages/GameDevelopment.aspx");
+        }
+
+        protected void L_Staff_OnClick(object sender, EventArgs e)
+        {
+            Server.Transfer("../Pages/StaffEmploy.aspx");
+        }
     }
 }

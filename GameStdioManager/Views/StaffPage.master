@@ -1,0 +1,20 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Views/MainMaster.Master" AutoEventWireup="true" CodeBehind="StaffPage.master.cs" Inherits="GameStdioManager.Views.StaffPage" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContentPlaceHolder" runat="server">
+    <div class="row" runat="server" style="background: rgb(106, 148, 164);">
+        <div class="col-lg-1">
+            <asp:Button ID="L_StaffEmploy" runat="server" Text="雇佣" CssClass="title-link" OnClick="L_StaffEmploy_OnClick"/>
+        </div>
+        <div class="col-lg-1">
+            <asp:Button ID="L_StaffEdit" runat="server" Text="调整" CssClass="title-link" OnClick="L_StaffEdit_OnClick"/>
+        </div>
+    </div>
+    <div class="row" runat="server">
+        <div class="col-lg-12">
+            <asp:ContentPlaceHolder ID="StaffContentPlaceHolder" runat="server">
+
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+</asp:Content>

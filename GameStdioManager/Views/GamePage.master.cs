@@ -21,7 +21,7 @@ namespace GameStdioManager.Views
 
         protected void L_GameSales_OnClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Server.Transfer("../Pages/GameSales.aspx");
         }
 
         protected void L_GameInfo_OnClick(object sender, EventArgs e)

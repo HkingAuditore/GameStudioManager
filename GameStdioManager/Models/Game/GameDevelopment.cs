@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using GameStdioManager.Controllers;
 using GameStdioManager.Controllers.Game;
 using GameStdioManager.Models.Checkpoint;
+using GameStdioManager.Models.Staff;
 
 namespace GameStdioManager.Models.Game
 {
@@ -64,7 +67,47 @@ namespace GameStdioManager.Models.Game
         {
             var game = (Game)sender;
             game._developmentProcess = args.UpdateParm;
+
+            float artCapability = (from developer in game.Developers
+                                 where developer.StaffOccupation == Occupation.Artist
+                                 select developer.StaffIntelligence).Aggregate(0, (current, s)
+                                                                                     => current + s)/100f;
+
+            float musicCapability = (from developer in game.Developers
+                                     where developer.StaffOccupation == Occupation.Musician
+                                     select developer.StaffIntelligence).Aggregate(0, (current, s)
+                                                                                          => current + s)/100f;
+
+            float funCapability = (from developer in game.Developers
+                                   where (developer.StaffOccupation == Occupation.Designer)
+                                   select developer.StaffIntelligence).Aggregate(0, (current, s)
+                                                                                        => current + s)/100f;
+
+            float programCapability = (from developer in game.Developers
+                                       where (developer.StaffOccupation == Occupation.Programmer)
+                                       select developer.StaffIntelligence).Aggregate(0, (current, s)
+                                                                                            => current + s)/100f;
+
+            float controlCapability = (from developer in game.Developers
+                                       where (developer.StaffOccupation == Occupation.Producer)
+                                       select developer.StaffIntelligence).Aggregate(0, (current, s)
+                                                                                            => current + s)/100f;
+
+
+            game.GameArt = (int)(((float) game.GameArt) + artCapability * (1+controlCapability) * (0.5f + programCapability));
+            game.GameMusic = (int)(((float) game.GameMusic) + musicCapability * (1+controlCapability) * (0.5f + programCapability));
+            game.GameFun = (int)(((float)game.GameFun) + funCapability * (1+controlCapability) * (0.5f + programCapability));
+
+            args.ArtParm = game.GameArt;
+            args.MusicParm = game.GameMusic;
+            args.FunParm = game.GameFun;
+
+
             Debug.WriteLine(game.GameName + " Processing:" + args.UpdateParm + "%. In " + SimulatorTimer.GameTimeNow);
+            Debug.WriteLine(game.GameName + " ArtParm:" + args.ArtParm + ". In " + SimulatorTimer.GameTimeNow);
+            Debug.WriteLine(game.GameName + " GameArt:" + game.GameArt + ". In " + SimulatorTimer.GameTimeNow);
+            Debug.WriteLine(game.GameName + " GameArt Temp:" + (int)(((float)game.GameFun + funCapability) * (1 + controlCapability) * (0.5f + programCapability)) + ". In " + SimulatorTimer.GameTimeNow);
+            Debug.WriteLine(game.GameName + " GameArt Capability:" + artCapability + ". In " + SimulatorTimer.GameTimeNow);
             args.UpdateParm += args.UpdateSpeed;
             UpdateDevelopEvent?.Invoke(sender, args);
         }

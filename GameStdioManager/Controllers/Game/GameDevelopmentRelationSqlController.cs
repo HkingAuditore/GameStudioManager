@@ -38,7 +38,7 @@ namespace GameStdioManager.Controllers.Game
             using (var sqlConnection = new SqlConnection(ConString))
             {
                 var sqlCommand = new SqlCommand("DELETE FROM DeveloperRelation WHERE ( DeveloperStaffNumber = "
-                                              + ConvertStringToSql(developer.StaffNumber) + "AND DveloperGameNumber = "
+                                              + ConvertStringToSql(developer.StaffNumber) + "AND DeveloperGameNumber = "
                                               + ConvertStringToSql(game.GameNumber)
                                               + ")", sqlConnection);
 

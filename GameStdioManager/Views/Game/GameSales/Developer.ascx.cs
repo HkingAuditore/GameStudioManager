@@ -10,7 +10,7 @@ namespace GameStdioManager.Views.Game.GameSales
 {
     public partial class Developer : System.Web.UI.UserControl
     {
-        public Staff ThisDeveloper;
+        public Models.Staff.Staff ThisDeveloper;
         public SalesViewLine ParentViewLine;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -21,7 +21,7 @@ namespace GameStdioManager.Views.Game.GameSales
 
         protected void B_RemoveDeveloper_OnClick(object sender, ImageClickEventArgs e)
         {
-            // ParentViewLine.LineGame.RemoveDeveloper(ThisDeveloper);
+            ParentViewLine.LineGame.RemoveDeveloper(ThisDeveloper);
         }
     }
 }

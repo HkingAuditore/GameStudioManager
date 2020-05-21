@@ -71,6 +71,7 @@ namespace GameStdioManager.Views.Game.Develop
         {
             LineGame.AddDeveloper(PageBase.PagePlayer.PlayerStudio.FindStaff(D_Deverloper.SelectedValue));
             P_EditDeveloper.Visible = !P_EditDeveloper.Visible;
+            PageBase.SaveGame();
             SimulatorTimer.GoOn();
 
         }
@@ -80,6 +81,7 @@ namespace GameStdioManager.Views.Game.Develop
         protected void B_CancelButton_OnClick(object sender, ImageClickEventArgs e)
         {
             P_EditDeveloper.Visible = !P_EditDeveloper.Visible;
+
             SimulatorTimer.GoOn();
         }
     }

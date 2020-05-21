@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using GameStdioManager.Controllers.Staff;
 
 namespace GameStdioManager.Models.Staff
 {
@@ -51,7 +52,7 @@ namespace GameStdioManager.Models.Staff
         Programmer,
 
         /// 音乐
-        Musicians
+        Musician
     }
 
     [Flags]
@@ -219,5 +220,11 @@ namespace GameStdioManager.Models.Staff
         public string StaffStudio { get; set; }
 
         #endregion 员工属性
+
+
+        public void UpdateSql()
+        {
+            StaffSQLController.UpdateStaffInfoSql(StaffSQLController.ReadStaffInfoSql(this.StaffNumber),this);
+        }
     }
 }

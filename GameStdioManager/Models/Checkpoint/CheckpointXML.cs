@@ -129,6 +129,9 @@ namespace GameStdioManager.Models.Checkpoint
                 case "Game":
                     obj =
                         player.PlayerStudio.FindGame(xe.Attribute("CheckpointTransferObject")?.Value);
+                    ((Game.Game) obj).GameArt = args.ArtParm;
+                    ((Game.Game) obj).GameMusic = args.MusicParm;
+                    ((Game.Game)obj).GameFun = args.FunParm;
                     break;
 
                 case "Staff":

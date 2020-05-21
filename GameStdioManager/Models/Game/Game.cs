@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using GameStdioManager.Controllers.Game;
 using GameStdioManager.Models.Checkpoint;
 
 namespace GameStdioManager.Models.Game
@@ -145,6 +146,11 @@ namespace GameStdioManager.Models.Game
 
         #region 逻辑
 
+        /// <summary>
+        /// 向SQL更新实例
+        /// </summary>
+        public void UpdateSql() =>
+            GameSQLController.UpdateGameInfoSql(GameSQLController.ReadGameInfoSql(this.GameNumber),this);
 
         #endregion 逻辑
     }

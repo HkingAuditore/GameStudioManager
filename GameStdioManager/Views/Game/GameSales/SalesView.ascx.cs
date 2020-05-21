@@ -18,17 +18,16 @@ namespace GameStdioManager.Views.Game.GameSales
     {
         public static readonly string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
 
-        private static List<Models.Game.Game> _developedGames;
+        private static List<Models.Game.Game> _developedGames = PageBase.PagePlayer.PlayerStudio.StudioDevelopedGames;
 
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                Models.Game.Game.EndDevelopEvent += EndGameDevelopment;
-                _developedGames = GameSQLController.GetGameList(PageBase.PagePlayer.PlayerStudio.StudioNumber, false);
-            }
+            // if (!IsPostBack)
+            // {
+            //     _developedGames = GameSQLController.GetGameList(PageBase.PagePlayer.PlayerStudio.StudioNumber, false);
+            // }
             if (!SimulatorTimer.IsTicking())
             {
                 UP_UpdatePanel.UpdateMode = UpdatePanelUpdateMode.Conditional;
@@ -41,22 +40,15 @@ namespace GameStdioManager.Views.Game.GameSales
         }
 
 
-
-        public void EndGameDevelopment(SimulatorBase sender, CheckpointArgs args)
-        {
-            Models.Game.Game temp = (Models.Game.Game)sender;
-            if (!_developedGames.Contains(temp)) _developedGames.Add(temp);
-        }
-
         private void UpdateLines()
         {
-            // (from developedGame in _developedGames
-            //  select developedGame).ForEach(developedGame =>
-            //                                {
-            //                                    SalesViewLine dl = (SalesViewLine)LoadControl("SalesViewLine.ascx");
-            //                                    dl.LineGame = developedGame;
-            //                                    GamesView.Controls.Add(dl);
-            //                                });
+            (from developedGame in _developedGames
+             select developedGame).ForEach(developedGame =>
+                                           {
+                                               SalesViewLine dl = (SalesViewLine)LoadControl("SalesViewLine.ascx");
+                                               dl.LineGame = developedGame;
+                                               GamesView.Controls.Add(dl);
+                                           });
         }
     }
 }

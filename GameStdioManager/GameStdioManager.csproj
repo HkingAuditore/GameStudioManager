@@ -180,6 +180,20 @@
     <Compile Include="Pages\PageBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Pages\StaffEdit.aspx.cs">
+      <DependentUpon>StaffEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\StaffEdit.aspx.designer.cs">
+      <DependentUpon>StaffEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StaffEmploy.aspx.cs">
+      <DependentUpon>StaffEmploy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\StaffEmploy.aspx.designer.cs">
+      <DependentUpon>StaffEmploy.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -287,6 +301,27 @@
     <Compile Include="Views\MainMaster.Master.designer.cs">
       <DependentUpon>MainMaster.Master</DependentUpon>
     </Compile>
+    <Compile Include="Views\StaffPage.master.cs">
+      <DependentUpon>StaffPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\StaffPage.master.designer.cs">
+      <DependentUpon>StaffPage.master</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Staff\StaffView.ascx.cs">
+      <DependentUpon>StaffView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Staff\StaffView.ascx.designer.cs">
+      <DependentUpon>StaffView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Staff\StaffViewLine.ascx.cs">
+      <DependentUpon>StaffViewLine.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Staff\StaffViewLine.ascx.designer.cs">
+      <DependentUpon>StaffViewLine.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -296,33 +331,49 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Data\CheckpointList\checkpoints.xml" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Index.aspx" />
     <Content Include="Pages\GameDevelopedInfo.aspx" />
     <Content Include="Pages\GameDevelopment.aspx" />
     <Content Include="Pages\GameSales.aspx" />
     <Content Include="Pages\Login.aspx" />
+    <Content Include="Pages\StaffEdit.aspx" />
+    <Content Include="Pages\StaffEmploy.aspx" />
     <Content Include="Resource\UI\bg.png" />
     <Content Include="Resource\UI\Gamedev.gif" />
     <Content Include="Resource\UI\Game\Development\Add.png" />
     <Content Include="Resource\UI\Game\Development\Close.png" />
     <Content Include="Resource\UI\Game\Development\Confirm.png" />
     <Content Include="Resource\UI\Game\Development\Delete.png" />
+    <Content Include="Resource\UI\Game\Sales\Setting.png" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Compile Include="Models\Checkpoint\CheckpointsReference.cs" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -346,6 +397,8 @@
     <Content Include="Views\Game\GameSales\Developer.ascx" />
     <Content Include="Views\Game\GameSales\SalesView.ascx" />
     <Content Include="Views\Game\GameSales\SalesViewLine.ascx" />
+    <Content Include="Views\Staff\StaffView.ascx" />
+    <Content Include="Views\Staff\StaffViewLine.ascx" />
     <Content Include="Views\WebForm1.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -364,6 +417,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\MainMaster.Master" />
     <Content Include="Views\GamePage.master" />
+    <Content Include="Views\StaffPage.master" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -375,10 +429,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />

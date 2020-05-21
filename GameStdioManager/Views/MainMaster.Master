@@ -35,10 +35,10 @@
 <div class="container-fluid" runat="server">
     <div class="row" style="background: rgb(122, 185, 209);">
         <div class="col-lg-1">
-            <asp:Button ID="L_Game" runat="server" Text="游戏" CssClass="title-link"/>
+            <asp:Button ID="L_Game" runat="server" Text="游戏" CssClass="title-link" OnClick="L_Game_OnClick"/>
         </div>
         <div class="col-lg-1">
-            <asp:Button ID="L_Staff" runat="server" Text="职员" CssClass="title-link"/>
+            <asp:Button ID="L_Staff" runat="server" Text="职员" CssClass="title-link" OnClick="L_Staff_OnClick"/>
         </div>
         <div class="col-lg-1">
             <asp:Button ID="L_Studio" runat="server" Text="工作室" CssClass="title-link"/>

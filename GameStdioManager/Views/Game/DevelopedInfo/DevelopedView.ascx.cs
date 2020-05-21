@@ -51,12 +51,13 @@ namespace GameStdioManager.Views.Game.DevelopedInfo
         private void UpdateLines()
         {
             (from developedGame in _developedGames
+             orderby developedGame.GameFinishDevelopTime descending
              select developedGame).ForEach(developedGame =>
-                                            {
-                                                DevelopedViewLine dl = (DevelopedViewLine)LoadControl("DevelopedViewLine.ascx");
-                                                dl.LineGame = developedGame;
-                                                GamesView.Controls.Add(dl);
-                                            });
+                                                            {
+                                                                DevelopedViewLine dl = (DevelopedViewLine)LoadControl("DevelopedViewLine.ascx");
+                                                                dl.LineGame = developedGame;
+                                                                GamesView.Controls.Add(dl);
+                                                            });
         }
     }
 }
