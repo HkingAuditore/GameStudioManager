@@ -63,6 +63,7 @@ namespace GameStdioManager.Views.Game.Develop
         {
             D_Deverloper.DataBind();
             P_EditDeveloper.Visible = !P_EditDeveloper.Visible;
+            B_AddDeveloper.Visible = false;
             SimulatorTimer.Pause();
 
         }
@@ -71,6 +72,8 @@ namespace GameStdioManager.Views.Game.Develop
         {
             LineGame.AddDeveloper(PageBase.PagePlayer.PlayerStudio.FindStaff(D_Deverloper.SelectedValue));
             P_EditDeveloper.Visible = !P_EditDeveloper.Visible;
+            B_AddDeveloper.Visible =true;
+
             PageBase.SaveGame();
             SimulatorTimer.GoOn();
 
@@ -81,6 +84,7 @@ namespace GameStdioManager.Views.Game.Develop
         protected void B_CancelButton_OnClick(object sender, ImageClickEventArgs e)
         {
             P_EditDeveloper.Visible = !P_EditDeveloper.Visible;
+            B_AddDeveloper.Visible = true;
 
             SimulatorTimer.GoOn();
         }

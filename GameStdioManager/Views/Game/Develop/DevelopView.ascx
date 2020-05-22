@@ -29,6 +29,8 @@
         </div>
 
     </div>
+<div class="row">
+<div class="col-lg-12">
     <asp:UpdatePanel ID="UP_UpdatePanel" runat="server" UpdateMode="Always">
         <ContentTemplate>
             <div runat="server" id="GamesView">
@@ -36,5 +38,7 @@
         </ContentTemplate>
 
     </asp:UpdatePanel>
+    </div>
+</div>
     
 

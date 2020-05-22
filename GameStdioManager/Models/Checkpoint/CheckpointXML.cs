@@ -59,17 +59,6 @@ namespace GameStdioManager.Models.Checkpoint
                                        ?.Add(new XElement("CheckpointUpdateIndicator",
                                                           new XAttribute("target", str))));
 
-            // root.Element("CheckpointTransferArgs")?.Add(new XElement("CheckParm",
-            //                                                          new XAttribute("Parm",
-            //                                                                         CheckpointTransferArgs.CheckParm)),
-            //                                             new XElement("UpdateParm",
-            //                                                          new XAttribute("Parm",
-            //                                                                         CheckpointTransferArgs.UpdateParm)),
-            //                                             new XElement("UpdateSpeed",
-            //                                                          new XAttribute("Parm",
-            //                                                                         CheckpointTransferArgs.UpdateSpeed))
-            //                                            );
-
             using (StringWriter sw = new StringWriter())
             {
                 XmlSerializer serializer = new XmlSerializer(this.CheckpointTransferArgs.GetType());

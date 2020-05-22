@@ -45,7 +45,7 @@ namespace GameStdioManager.Controllers.Player
         }
 
         /// <summary>
-        ///     更新数据库的Studio数据
+        ///     更新数据库的Player数据
         /// </summary>
         /// <param name="origin">旧实例</param>
         /// <param name="target">新实例</param>

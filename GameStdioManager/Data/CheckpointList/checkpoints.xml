@@ -1,2 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<CheckpointList />
+<CheckpointList>
+  <Checkpoint CheckpointNumber="0" CheckpointTime="2020-07-02T19:00:00" CheckpointCheckMethodIndicator="CheckTimeAndProcess" CheckpointTypeIndicator="Game" CheckpointTransferObject="12">
+    <CheckpointProcessIndicators>
+      <CheckpointProcessIndicator target="EndDevelop" />
+    </CheckpointProcessIndicators>
+    <CheckpointUpdateIndicators>
+      <CheckpointUpdateIndicator target="UpdateDevelop" />
+    </CheckpointUpdateIndicators>
+    <CheckpointTransferArgs>
+      <CheckpointArgs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <CheckParm>500</CheckParm>
+        <UpdateParm>7.46666241</UpdateParm>
+        <UpdateSpeed>0.06666667</UpdateSpeed>
+        <ArtParm>201</ArtParm>
+        <FunParm>206</FunParm>
+        <MusicParm>215</MusicParm>
+      </CheckpointArgs>
+    </CheckpointTransferArgs>
+  </Checkpoint>
+  <Checkpoint CheckpointNumber="0" CheckpointTime="2020-07-24T03:20:00" CheckpointCheckMethodIndicator="CheckTimeAndProcess" CheckpointTypeIndicator="Game" CheckpointTransferObject="13">
+    <CheckpointProcessIndicators>
+      <CheckpointProcessIndicator target="EndDevelop" />
+    </CheckpointProcessIndicators>
+    <CheckpointUpdateIndicators>
+      <CheckpointUpdateIndicator target="UpdateDevelop" />
+    </CheckpointUpdateIndicators>
+    <CheckpointTransferArgs>
+      <CheckpointArgs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <CheckParm>1000</CheckParm>
+        <UpdateParm>2.499999</UpdateParm>
+        <UpdateSpeed>0.0333333351</UpdateSpeed>
+        <ArtParm>205</ArtParm>
+        <FunParm>198</FunParm>
+        <MusicParm>135</MusicParm>
+      </CheckpointArgs>
+    </CheckpointTransferArgs>
+  </Checkpoint>
+</CheckpointList>

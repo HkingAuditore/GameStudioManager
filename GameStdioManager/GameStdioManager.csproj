@@ -200,6 +200,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="tmp.aspx.cs">
+      <DependentUpon>tmp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tmp.aspx.designer.cs">
+      <DependentUpon>tmp.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Editors\CustomUserEditorControlBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -385,6 +392,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="tmp.aspx" />
     <Content Include="Views\Editors\GameEditor.ascx" />
     <Content Include="Views\Editors\StaffEditor.ascx" />
     <Content Include="Views\Editors\StudioEditor.ascx" />

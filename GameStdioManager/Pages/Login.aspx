@@ -62,13 +62,13 @@
             <div class="col-lg-4 col-md-5">
                 <img src="../Resource/UI/Gamedev.gif" style="margin-left: 9%; margin-top: 8%; width: 150%; z-index: -1" />
             </div>
-            <div class="col-lg-offset-3 col-lg-2 col-md-offset-3 col-md-1 col-sm-offset-2 col-sm-1" style="position: fixed">
+            <div class="offset-lg-3 col-lg-2 offset-md-3 col-md-1 offset-sm-2 col-sm-1" style="position: fixed">
                 <div class="triangle-front" style="position: absolute; padding: 200%; z-index: 3; margin-left: 280%">
                 </div>
                 <div class="triangle-behind" style="position: absolute; padding: 200%; z-index: 1; margin-left: 230%; margin-top: -50%;">
                 </div>
 
-                <div class="rg-panel" style="position: absolute; width: 140%; height: 28em; z-index: 4; margin-left: 230%; margin-top: 60%;">
+                <div class="rg-panel" style="position: absolute; width: 140%; height: 28em; z-index: 4; margin-left: 230%; margin-top: 40%;">
                     <form id="form1" runat="server">
                         <div class="container-fluid" style="margin-top: 12%; margin-left: 9%">
                             <div class="row">

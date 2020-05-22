@@ -32,6 +32,7 @@ namespace GameStdioManager.Views
                 GameInit?.Invoke(PageBase.PagePlayer,null);
             }
 
+            La_StudioName.Text = PageBase.PagePlayer.PlayerStudio.StudioName;
             La_Timer.Text = SimulatorTimer.GameTimeNow.ToString();
         }
 
