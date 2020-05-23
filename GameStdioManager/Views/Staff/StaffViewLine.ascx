@@ -7,6 +7,8 @@
 
     <div class="col-lg-1">
         <asp:Label ID="L_StaffName" runat="server" Text="名字"></asp:Label>
+        <asp:Label ID="LF_StaffCurfStrength" runat="server" Text="当前体力值" Visible="True"></asp:Label>
+
     </div>
 
     <div class="col-lg-1">
@@ -80,4 +82,5 @@
         <asp:ImageButton ID="B_WeekdaysLengthSetting" runat="server" Height="22px" ImageUrl="~/Resource/UI/Game/Sales/Setting.png" Width="22px" OnClick="Setting_OnClick" />
 
     </div>
+
 </div>

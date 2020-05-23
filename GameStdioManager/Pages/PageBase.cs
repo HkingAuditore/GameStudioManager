@@ -16,9 +16,10 @@ namespace GameStdioManager.Pages
             Debug.WriteLine(PageBase.PagePlayer.PlayerNumber);
             PageBase.PagePlayer.PlayerNowTime = SimulatorTimer.GameTimeNow;
             PlayerSqlController
-               .UpdatePlayerInfoSql(PlayerSqlController.ReadPlayerInfoSql(PageBase.PagePlayer.PlayerNumber),
+               .UpdatePlayerInfoSql(PlayerSqlController.ReadPlayerInfoSql(PageBase.PagePlayer.PlayerNumber,false),
                                     PageBase.PagePlayer);
-            SimulatorTimer.SaveCheckpointListXml();
+            SimulatorTimer.SaveCheckpointListXml(PageBase.PagePlayer);
+            PagePlayer.SaveStaffCurWorkDataListXml();
 
         }
     }

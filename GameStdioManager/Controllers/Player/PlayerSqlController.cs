@@ -10,7 +10,7 @@ namespace GameStdioManager.Controllers.Player
 {
     public class PlayerSqlController : ControllerBase
     {
-        public static Models.Player.Player ReadPlayerInfoSql(string playerNumber)
+        public static Models.Player.Player ReadPlayerInfoSql(string playerNumber,bool isNew)
         {
             Models.Player.Player player = null;
 
@@ -31,7 +31,7 @@ namespace GameStdioManager.Controllers.Player
                     result.Read();
                     player =
                         new Models.Player.Player(StudioSQLController.ReadStudioInfoSql(result["PlayerStudioNumber"]
-                                                                                          .ToString()));
+                                                                                          .ToString(), isNew));
                     player.PlayerStudioNumber = result["PlayerStudioNumber"].ToString();
                     player.PlayerNumber = result["PlayerNumber"].ToString();
                     player.PlayerStartTime    = DateTime.Parse(result["PlayerStartTime"].ToString());

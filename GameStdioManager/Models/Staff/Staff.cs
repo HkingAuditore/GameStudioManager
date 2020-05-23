@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
+using System.Xml.Linq;
 using GameStdioManager.Controllers.Staff;
+using GameStdioManager.Models.Checkpoint;
 
 namespace GameStdioManager.Models.Staff
 {
@@ -100,6 +103,8 @@ namespace GameStdioManager.Models.Staff
             TimeToQuit        = timeToQuit;
             WeekdaysLength    = weekdaysLength;
             StaffStudio       = staffStudio;
+            IsWorking         = false;
+            StaffCurStrength = staffStrength;
         }
 
         #region 基本类型操作
@@ -219,12 +224,215 @@ namespace GameStdioManager.Models.Staff
         /// </summary>
         public string StaffStudio { get; set; }
 
+        /// <summary>
+        ///     员工所在公司实例
+        /// </summary>
+        public Studio.Studio StaffStudioObject;
+
+        /// <summary>
+        /// 员工当前体力值
+        /// </summary>
+        public int StaffCurStrength;
+
+        /// <summary>
+        ///     正在工作
+        /// </summary>
+        public bool IsWorking;
+
         #endregion 员工属性
 
 
+        #region 逻辑
+
+        /// <summary>
+        ///     向数据库更新员工数据
+        /// </summary>
         public void UpdateSql()
         {
-            StaffSQLController.UpdateStaffInfoSql(StaffSQLController.ReadStaffInfoSql(this.StaffNumber),this);
+            StaffSQLController.UpdateStaffInfoSql(StaffSQLController.ReadStaffInfoSql(StaffNumber), this);
         }
+
+        #region 上下班控制
+
+        private Checkpoint.Checkpoint _staffStartWorkCheckpoint;
+
+        private Checkpoint.Checkpoint _staffQuitWorkCheckpoint;
+
+        /// <summary>
+        /// 生成员工的工作检查点
+        /// </summary>
+        public void GenerateWorkCheckpoints()
+        {
+            _staffStartWorkCheckpoint = GetStartWorkCheckpoint();
+            _staffQuitWorkCheckpoint  = GetQuitWorkCheckpoint();
+            SimulatorTimer.AddCheckpoint(_staffStartWorkCheckpoint);
+            SimulatorTimer.AddCheckpoint(_staffQuitWorkCheckpoint);
+        }
+
+        /// <summary>
+        /// 移除员工的工作检查点
+        /// </summary>
+        public void RemoveWorkCheckpoints()
+        {
+            SimulatorTimer.RemoveCheckpoint(_staffStartWorkCheckpoint);
+            SimulatorTimer.RemoveCheckpoint(_staffQuitWorkCheckpoint);
+        }
+
+        //
+        // public void ChangeWorkTime(int timeToWork)
+        // {
+        //     this.TimeToWork = timeToWork;
+        //     this._staffStartWorkCheckpoint.
+        // }
+        //
+        // public void ChangeQuitTime(int timeToQuit)
+        // {
+        //     this.TimeToQuit = timeToQuit;
+        //
+        // }
+
+        public bool IsInWorkTime() =>
+            IsWeekday() && SimulatorTimer.GameTimeNow.Hour >= TimeToWork &&
+            SimulatorTimer.GameTimeNow.Hour  < TimeToQuit;
+
+        #region 上班
+
+        private Checkpoint.Checkpoint GetStartWorkCheckpoint()
+        {
+            var dt = new DateTime(SimulatorTimer.GameTimeNow.Year,
+                                  SimulatorTimer.GameTimeNow.Month,
+                                  SimulatorTimer.GameTimeNow.Day,
+                                  TimeToWork,
+                                  0,
+                                  0
+                                 );
+            return new Checkpoint.Checkpoint(StaffNumber,
+                                             dt,
+                                             new[] {"StartWork"},
+                                             new []{"WorkUpdate"},
+                                             "CheckStartWork",
+                                             this,
+                                             null,
+                                             "Staff",
+                                             true);
+        }
+
+        /// <summary>
+        ///     上班
+        /// </summary>
+        public static void StartWork(SimulatorBase sender, CheckpointArgs args)
+        {
+            ((Staff) sender).IsWorking = true;
+            Debug.WriteLine(((Staff) sender).StaffName + "上班！");
+            SimulatorTimer.SpeedSetNormal();
+        }
+
+        public static void WorkUpdate(SimulatorBase sender, CheckpointArgs args)
+        {
+            var staff = (Staff)sender;
+            if (staff.IsWorking && staff.StaffCurStrength > 0) staff.StaffCurStrength -= 1 * SimulatorTimer.TimeSpeed;
+            if (staff.StaffCurStrength < 0) staff.StaffCurStrength = 0;
+        }
+
+        /// <summary>
+        ///     查看是否上班
+        /// </summary>
+        public static bool CheckStartWork(SimulatorBase sender, CheckpointArgs args)
+        {
+            var staff = (Staff)sender;
+            return !staff.IsWorking && staff.IsWeekday() && staff.StaffCurStrength > 10 &&
+                   SimulatorTimer.GameTimeNow.Hour == staff.TimeToWork;
+        }
+
+        private bool IsWeekday()
+        {
+            var curDay                 = Convert.ToInt16(SimulatorTimer.GameTimeNow.DayOfWeek);
+            if (curDay    == 0) curDay = 7;
+            return curDay <= WeekdaysLength;
+        }
+
+        #endregion
+
+
+        #region 下班
+
+        private Checkpoint.Checkpoint GetQuitWorkCheckpoint()
+        {
+            var dt = new DateTime(SimulatorTimer.GameTimeNow.Year,
+                                  SimulatorTimer.GameTimeNow.Month,
+                                  SimulatorTimer.GameTimeNow.Day,
+                                  TimeToQuit,
+                                  0,
+                                  0
+                                 );
+            return new Checkpoint.Checkpoint(StaffNumber,
+                                             dt,
+                                             new[] {"QuitWork"},
+                                             new []{ "QuitUpdate" },
+                                             "CheckQuitWork",
+                                             this,
+                                             null,
+                                             "Staff",
+                                             true);
+        }
+
+        /// <summary>
+        ///     下班
+        /// </summary>
+        public static void QuitWork(SimulatorBase sender, CheckpointArgs args)
+        {
+            var staff = (Staff) sender;
+            staff.IsWorking = false;
+            Debug.WriteLine(((Staff) sender).StaffName + "下班！");
+            if (staff.StaffStudioObject.FindWorkingStaffs().Count == 0) SimulatorTimer.SpeedSetQuick();
+        }
+
+        public static void QuitUpdate(SimulatorBase sender, CheckpointArgs args)
+        {
+            var staff = (Staff) sender;
+            if (!staff.IsWorking && staff.StaffCurStrength < staff.StaffStrength) staff.StaffCurStrength += 1 * SimulatorTimer.TimeSpeed;
+            if (staff.StaffCurStrength > staff.StaffStrength) staff.StaffCurStrength = staff.StaffStrength;
+
+        }
+
+
+        /// <summary>
+        ///     查看是否下班
+        /// </summary>
+        public static bool CheckQuitWork(SimulatorBase sender, CheckpointArgs args)
+        {
+            var staff = (Staff) sender;
+            return staff.IsWorking
+                 &&
+                   (
+                       staff.StaffCurStrength <= 0
+                     ||
+                       staff.IsWeekday() && SimulatorTimer.GameTimeNow.Hour == staff.TimeToQuit
+                   );
+        }
+
+        /// <summary>
+        /// 将员工当前上班数据存储为XML
+        /// </summary>
+        /// <returns></returns>
+        public XElement ConvertStaffCurWorkDataToXElement()
+        {
+            var root = new XElement("Staff",
+                                    new XAttribute("StaffNumber", this.StaffNumber),
+                                    new XAttribute("StaffIsWorking", this.IsWorking),
+                                    new XElement("StaffCurStrength", this.StaffCurStrength)
+                                   );
+            return root;
+        }
+
+
+        #endregion
+
+        #endregion
+
+        #endregion
+
+
+
     }
 }

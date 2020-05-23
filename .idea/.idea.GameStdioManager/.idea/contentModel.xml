@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\17885\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\17885\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_GameStdioManager.1665972614.00" t="ExcludeRecursive" />
+    <e p="F:\MyCSharp\GameStdioManager\GameStudioManager" t="IncludeFlat">
+      <e p="GameStdioManager" t="IncludeRecursive">
+        <e p="App_Data" t="Include" />
+        <e p="App_Start" t="Include">
+          <e p="BundleConfig.cs" t="Include" />
+          <e p="FilterConfig.cs" t="Include" />
+          <e p="RouteConfig.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Content" t="Include">
+          <e p="bootstrap-grid.css" t="Include" />
+          <e p="bootstrap-grid.css.map" t="Include" />
+          <e p="bootstrap-grid.min.css" t="Include" />
+          <e p="bootstrap-grid.min.css.map" t="Include" />
+          <e p="bootstrap-reboot.css" t="Include" />
+          <e p="bootstrap-reboot.css.map" t="Include" />
+          <e p="bootstrap-reboot.min.css" t="Include" />
+          <e p="bootstrap-reboot.min.css.map" t="Include" />
+          <e p="bootstrap.css" t="Include" />
+          <e p="bootstrap.css.map" t="Include" />
+          <e p="bootstrap.min.css" t="Include" />
+          <e p="bootstrap.min.css.map" t="Include" />
+        </e>
+        <e p="Controllers" t="Include">
+          <e p="CheckPoint" t="Include" />
+          <e p="ControllerBase.cs" t="Include" />
+          <e p="Game" t="Include">
+            <e p="GameDevelopmentRelationSqlController.cs" t="Include" />
+            <e p="GameSQLController.cs" t="Include" />
+          </e>
+          <e p="HomeController.cs" t="Include" />
+          <e p="Login" t="Include">
+            <e p="LoginController.cs" t="Include" />
+          </e>
+          <e p="Player" t="Include">
+            <e p="PlayerSqlController.cs" t="Include" />
+          </e>
+          <e p="Staff" t="Include">
+            <e p="StaffSQLController.cs" t="Include" />
+          </e>
+          <e p="Studio" t="Include">
+            <e p="StudioSQLController.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Data" t="Include">
+          <e p="CheckpointList" t="Include">
+            <e p="checkpoints.xml" t="Include" />
+          </e>
+        </e>
+        <e p="favicon.ico" t="Include" />
+        <e p="fonts" t="Include">
+          <e p="glyphicons-halflings-regular.eot" t="Include" />
+          <e p="glyphicons-halflings-regular.svg" t="Include" />
+          <e p="glyphicons-halflings-regular.ttf" t="Include" />
+          <e p="glyphicons-halflings-regular.woff" t="Include" />
+          <e p="glyphicons-halflings-regular.woff2" t="Include" />
+        </e>
+        <e p="GameStdioManager.csproj" t="IncludeRecursive" />
+        <e p="Global.asax" t="Include" />
+        <e p="Global.asax.cs" t="Include" />
+        <e p="Index.aspx" t="Include" />
+        <e p="Index.aspx.cs" t="Include" />
+        <e p="Index.aspx.designer.cs" t="Include" />
+        <e p="Models" t="Include">
+          <e p="CheckPoint" t="Include">
+            <e p="Checkpoint.cs" t="Include" />
+            <e p="CheckpointsReference.cs" t="Include" />
+            <e p="CheckpointXML.cs" t="Include" />
+          </e>
+          <e p="Game" t="Include">
+            <e p="Game.cs" t="Include" />
+            <e p="GameDevelopment.cs" t="Include" />
+          </e>
+          <e p="Player" t="Include">
+            <e p="Player.cs" t="Include" />
+          </e>
+          <e p="SimulatorBase.cs" t="Include" />
+          <e p="SimulatorTimer.cs" t="Include" />
+          <e p="Staff" t="Include">
+            <e p="Staff.cs" t="Include" />
+          </e>
+          <e p="StaticBase.cs" t="Include" />
+          <e p="Studio" t="Include">
+            <e p="Studio.cs" t="Include" />
+          </e>
+          <e p="StudioBehavior.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Pages" t="Include">
+          <e p="GameDevelopedInfo.aspx" t="Include" />
+          <e p="GameDevelopedInfo.aspx.cs" t="Include" />
+          <e p="GameDevelopedInfo.aspx.designer.cs" t="Include" />
+          <e p="GameDevelopment.aspx" t="Include" />
+          <e p="GameDevelopment.aspx.cs" t="Include" />
+          <e p="GameDevelopment.aspx.designer.cs" t="Include" />
+          <e p="GameSales.aspx" t="Include" />
+          <e p="GameSales.aspx.cs" t="Include" />
+          <e p="GameSales.aspx.designer.cs" t="Include" />
+          <e p="Login.aspx" t="Include" />
+          <e p="Login.aspx.cs" t="Include" />
+          <e p="Login.aspx.designer.cs" t="Include" />
+          <e p="PageBase.cs" t="Include" />
+          <e p="StaffEdit.aspx" t="Include" />
+          <e p="StaffEdit.aspx.cs" t="Include" />
+          <e p="StaffEdit.aspx.designer.cs" t="Include" />
+          <e p="StaffEmploy.aspx" t="Include" />
+          <e p="StaffEmploy.aspx.cs" t="Include" />
+          <e p="StaffEmploy.aspx.designer.cs" t="Include" />
+        </e>
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="Settings.Designer.cs" t="Include" />
+          <e p="Settings.settings" t="Include" />
+        </e>
+        <e p="Resource" t="Include">
+          <e p="UI" t="Include">
+            <e p="bg.png" t="Include" />
+            <e p="Game" t="Include">
+              <e p="Development" t="Include">
+                <e p="Add.png" t="Include" />
+                <e p="Close.png" t="Include" />
+                <e p="Confirm.png" t="Include" />
+                <e p="Delete.png" t="Include" />
+              </e>
+              <e p="Sales" t="Include">
+                <e p="Setting.png" t="Include" />
+              </e>
+            </e>
+            <e p="Gamedev.gif" t="Include" />
+            <e p="Register" t="Include" />
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="bootstrap.bundle.js" t="Include" />
+          <e p="bootstrap.bundle.js.map" t="Include" />
+          <e p="bootstrap.bundle.min.js" t="Include" />
+          <e p="bootstrap.bundle.min.js.map" t="Include" />
+          <e p="bootstrap.js" t="Include" />
+          <e p="bootstrap.js.map" t="Include" />
+          <e p="bootstrap.min.js" t="Include" />
+          <e p="bootstrap.min.js.map" t="Include" />
+          <e p="jquery-3.3.1.intellisense.js" t="Include" />
+          <e p="jquery-3.3.1.js" t="Include" />
+          <e p="jquery-3.3.1.min.js" t="Include" />
+          <e p="jquery-3.3.1.min.map" t="Include" />
+          <e p="jquery-3.3.1.slim.js" t="Include" />
+          <e p="jquery-3.3.1.slim.min.js" t="Include" />
+          <e p="jquery-3.3.1.slim.min.map" t="Include" />
+          <e p="jquery.validate-vsdoc.js" t="Include" />
+          <e p="jquery.validate.js" t="Include" />
+          <e p="jquery.validate.min.js" t="Include" />
+          <e p="jquery.validate.unobtrusive.js" t="Include" />
+          <e p="jquery.validate.unobtrusive.min.js" t="Include" />
+          <e p="modernizr-2.8.3.js" t="Include" />
+        </e>
+        <e p="tmp.aspx" t="Include" />
+        <e p="tmp.aspx.cs" t="Include" />
+        <e p="tmp.aspx.designer.cs" t="Include" />
+        <e p="Views" t="Include">
+          <e p="Editors" t="Include">
+            <e p="CustomUserEditorControlBase.cs" t="Include" />
+            <e p="GameEditor.ascx" t="Include" />
+            <e p="GameEditor.ascx.cs" t="Include" />
+            <e p="GameEditor.ascx.designer.cs" t="Include" />
+            <e p="StaffEditor.ascx" t="Include" />
+            <e p="StaffEditor.ascx.cs" t="Include" />
+            <e p="StaffEditor.ascx.designer.cs" t="Include" />
+            <e p="StudioEditor.ascx" t="Include" />
+            <e p="StudioEditor.ascx.cs" t="Include" />
+            <e p="StudioEditor.ascx.designer.cs" t="Include" />
+          </e>
+          <e p="Game" t="Include">
+            <e p="Develop" t="Include">
+              <e p="Developer.ascx" t="Include" />
+              <e p="Developer.ascx.cs" t="Include" />
+              <e p="Developer.ascx.designer.cs" t="Include" />
+              <e p="DevelopView.ascx" t="Include" />
+              <e p="DevelopView.ascx.cs" t="Include" />
+              <e p="DevelopView.ascx.designer.cs" t="Include" />
+              <e p="DevelopViewLine.ascx" t="Include" />
+              <e p="DevelopViewLine.ascx.cs" t="Include" />
+              <e p="DevelopViewLine.ascx.designer.cs" t="Include" />
+            </e>
+            <e p="DevelopedInfo" t="Include">
+              <e p="DevelopedView.ascx" t="Include" />
+              <e p="DevelopedView.ascx.cs" t="Include" />
+              <e p="DevelopedView.ascx.designer.cs" t="Include" />
+              <e p="DevelopedViewLine.ascx" t="Include" />
+              <e p="DevelopedViewLine.ascx.cs" t="Include" />
+              <e p="DevelopedViewLine.ascx.designer.cs" t="Include" />
+              <e p="Developer.ascx" t="Include" />
+              <e p="Developer.ascx.cs" t="Include" />
+              <e p="Developer.ascx.designer.cs" t="Include" />
+            </e>
+            <e p="GameSales" t="Include">
+              <e p="Developer.ascx" t="Include" />
+              <e p="Developer.ascx.cs" t="Include" />
+              <e p="Developer.ascx.designer.cs" t="Include" />
+              <e p="SalesView.ascx" t="Include" />
+              <e p="SalesView.ascx.cs" t="Include" />
+              <e p="SalesView.ascx.designer.cs" t="Include" />
+              <e p="SalesViewLine.ascx" t="Include" />
+              <e p="SalesViewLine.ascx.cs" t="Include" />
+              <e p="SalesViewLine.ascx.designer.cs" t="Include" />
+            </e>
+          </e>
+          <e p="GamePage.master" t="Include" />
+          <e p="GamePage.master.cs" t="Include" />
+          <e p="GamePage.master.designer.cs" t="Include" />
+          <e p="Home" t="Include">
+            <e p="About.cshtml" t="Include" />
+            <e p="Contact.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="MainMaster.Master" t="Include" />
+          <e p="MainMaster.Master.cs" t="Include" />
+          <e p="MainMaster.Master.designer.cs" t="Include" />
+          <e p="Shared" t="Include">
+            <e p="_Layout.cshtml" t="Include" />
+            <e p="Error.cshtml" t="Include" />
+          </e>
+          <e p="Staff" t="Include">
+            <e p="StaffView.ascx" t="Include" />
+            <e p="StaffView.ascx.cs" t="Include" />
+            <e p="StaffView.ascx.designer.cs" t="Include" />
+            <e p="StaffViewLine.ascx" t="Include" />
+            <e p="StaffViewLine.ascx.cs" t="Include" />
+            <e p="StaffViewLine.ascx.designer.cs" t="Include" />
+          </e>
+          <e p="StaffPage.master" t="Include" />
+          <e p="StaffPage.master.cs" t="Include" />
+          <e p="StaffPage.master.designer.cs" t="Include" />
+          <e p="Web.config" t="Include" />
+          <e p="WebForm1.aspx" t="Include" />
+          <e p="WebForm1.aspx.cs" t="Include" />
+          <e p="WebForm1.aspx.designer.cs" t="Include" />
+        </e>
+        <e p="Web.config" t="Include" />
+        <e p="Web.Debug.config" t="Include" />
+        <e p="Web.Release.config" t="Include" />
+      </e>
+      <e p="GameStdioManager.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

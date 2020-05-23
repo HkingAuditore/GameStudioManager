@@ -57,11 +57,6 @@ namespace GameStdioManager.Models
         /// </summary>
         private static bool _isTick = true;
 
-        /// <summary>
-        ///     计时速度，标准速度1s=1min
-        /// </summary>
-        private static readonly int _timeSpeed = 20;
-
         #endregion 基本属性
 
         #region 纯时间操作
@@ -83,7 +78,7 @@ namespace GameStdioManager.Models
         {
             _gameTimer.AutoReset = true;
             // 每次时间步进的操作
-            _gameTimer.Elapsed += (s, ea) => { GameTimeNow = GameTimeNow.AddMinutes(_timeSpeed); };
+            _gameTimer.Elapsed += (s, ea) => { GameTimeNow = GameTimeNow.AddMinutes(TimeSpeed * 20); };
             _gameTimer.Elapsed += Update;
 
             _gameTimer.Enabled = true;
@@ -106,16 +101,43 @@ namespace GameStdioManager.Models
             return temp.AddHours(n);
         }
 
+        /// <summary>
+        /// 时间暂停
+        /// </summary>
         public static void Pause()
         {
             _isTick = false;
             _gameTimer.Stop();
         }
 
+        /// <summary>
+        /// 继续计时
+        /// </summary>
         public static void GoOn()
         {
             _isTick = true;
             _gameTimer.Start();
+        }
+
+        /// <summary>
+        ///     计时速度，标准速度1s=20min
+        /// </summary>
+        public static int TimeSpeed { get; private set; } = 1;
+
+        /// <summary>
+        /// 加速计时
+        /// </summary>
+        public static void SpeedSetQuick()
+        {
+            if (TimeSpeed != 6) TimeSpeed = 6;
+        }
+
+        /// <summary>
+        /// 正常速度
+        /// </summary>
+        public static void SpeedSetNormal()
+        {
+            if(TimeSpeed != 1)TimeSpeed = 1;
         }
 
         public static bool IsTicking() => _isTick;
@@ -145,15 +167,16 @@ namespace GameStdioManager.Models
         /// <summary>
         ///     将timetable写入xml
         /// </summary>
-        public static void SaveCheckpointListXml()
+        public static void SaveCheckpointListXml(Player.Player player)
         {
             var xd = new XDocument(new XElement("CheckpointList"));
             (from checkpoint in _timeTable
+             where checkpoint.CheckpointIsConstant == false
              select checkpoint).ForEach(cp => xd.Element("CheckpointList")?.Add(cp.ConvertCheckpointToXElement()));
             Debug.WriteLine(xd);
 
             // var path = HttpContext.Current.Server.MapPath("~/Data/CheckpointList/checkpoints.xml");
-            var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data/CheckpointList/checkpoints.xml");
+            var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data/" + player.PlayerNumber + "/checkpoints.xml");
             xd.Save(path);
             if (File.Exists(path)) Debug.WriteLine("Saved!");
             Debug.WriteLine(path);
@@ -165,7 +188,7 @@ namespace GameStdioManager.Models
         public static void ReadCheckpointListXml(Player.Player player)
         {
             // var path = HttpContext.Current.Server.MapPath("~/Data/CheckpointList/checkpoints.xml");
-            var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data/CheckpointList/checkpoints.xml");
+            var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data/"+player.PlayerNumber+"/checkpoints.xml");
             var xd   = XDocument.Load(path);
 
             foreach (var element in (xd.Element("CheckpointList")?.Elements("Checkpoint") ??
@@ -199,10 +222,12 @@ namespace GameStdioManager.Models
                 if (_timeTable[i].CheckFinish())
                 {
                     _timeTable[i].InvokeCheckpointEvent();
-                    RemoveCheckpoint(_timeTable[i]);
-                    SimulatorTimer.SaveCheckpointListXml();
+                    if (!_timeTable[i].CheckpointIsConstant)
+                        RemoveCheckpoint(_timeTable[i]);
+                    // SimulatorTimer.SaveCheckpointListXml(PageBase.PagePlayer);
+                    PageBase.SaveGame();
                     PlayerSqlController
-                       .UpdatePlayerInfoSql(PlayerSqlController.ReadPlayerInfoSql(PageBase.PagePlayer.PlayerNumber),
+                       .UpdatePlayerInfoSql(PlayerSqlController.ReadPlayerInfoSql(PageBase.PagePlayer.PlayerNumber,false),
                                             PageBase.PagePlayer);
                     continue;
                 }

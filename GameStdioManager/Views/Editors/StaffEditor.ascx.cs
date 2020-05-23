@@ -163,6 +163,8 @@ namespace GameStdioManager.Views.Editors
         {
             var staff = InsertStaff();
             PageBase.PagePlayer.PlayerStudio.AddStaff(staff);
+            staff.GenerateWorkCheckpoints();
+
         }
 
         #endregion 交互

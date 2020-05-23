@@ -16,7 +16,7 @@ namespace GameStdioManager.Controllers.Studio
         /// </summary>
         /// <param name="staffNumber">工作室编号</param>
         /// <returns></returns>
-        public static Models.Studio.Studio ReadStudioInfoSql(string studioNumber)
+        public static Models.Studio.Studio ReadStudioInfoSql(string studioNumber,bool isNew)
         {
             Models.Studio.Studio studio = null;
 
@@ -41,6 +41,15 @@ namespace GameStdioManager.Controllers.Studio
                                                       int.Parse(result["StudioReputation"].ToString())
                                                      );
                     FillStudioStaffSql(studio);
+                    if (isNew)
+                    {
+                        foreach (var staff in studio.StudioStaffs)
+                        {
+                            staff.GenerateWorkCheckpoints();
+                        }
+
+                    }
+
                     FillStudioGameSql(studio);
 
                 }

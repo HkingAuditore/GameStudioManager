@@ -41,10 +41,11 @@ namespace GameStdioManager.Models.Game
             arg.CheckParm = hours;
             arg.UpdateParm = 0f;
             arg.UpdateSpeed = 100f/(hours*3);
+            arg.CheckTime = SimulatorTimer.GetTimeAfterHours(hours);
             ControllerBase.InsertInfoSql(this);
             this.GameStudioObject.AddDevelopingGame(this);
 
-            var cp = new Checkpoint.Checkpoint(0,
+            var cp = new Checkpoint.Checkpoint(this.GameNumber,
                                                SimulatorTimer.GetTimeAfterHours(hours),
                                                new[] { "EndDevelop" },
                                                new[] { "UpdateDevelop" },
@@ -55,6 +56,16 @@ namespace GameStdioManager.Models.Game
                                               );
             SimulatorTimer.AddCheckpoint(cp);
         }
+
+
+        #region 判定
+
+        public static bool CheckTimeAndProcess(object sender, CheckpointArgs args) =>
+            args.UpdateParm >= 100 || SimulatorTimer.GameTimeNow >= args.CheckTime;
+
+
+        #endregion
+
 
         #region 更新
 
@@ -69,34 +80,34 @@ namespace GameStdioManager.Models.Game
             game._developmentProcess = args.UpdateParm;
 
             float artCapability = (from developer in game.Developers
-                                 where developer.StaffOccupation == Occupation.Artist
+                                 where developer.IsWorking && developer.StaffOccupation == Occupation.Artist
                                  select developer.StaffIntelligence).Aggregate(0, (current, s)
                                                                                      => current + s)/100f;
 
             float musicCapability = (from developer in game.Developers
-                                     where developer.StaffOccupation == Occupation.Musician
+                                     where developer.IsWorking && developer.StaffOccupation == Occupation.Musician
                                      select developer.StaffIntelligence).Aggregate(0, (current, s)
                                                                                           => current + s)/100f;
 
             float funCapability = (from developer in game.Developers
-                                   where (developer.StaffOccupation == Occupation.Designer)
+                                   where developer.IsWorking && developer.StaffOccupation == Occupation.Designer
                                    select developer.StaffIntelligence).Aggregate(0, (current, s)
                                                                                         => current + s)/100f;
 
             float programCapability = (from developer in game.Developers
-                                       where (developer.StaffOccupation == Occupation.Programmer)
+                                       where developer.IsWorking && developer.StaffOccupation == Occupation.Programmer
                                        select developer.StaffIntelligence).Aggregate(0, (current, s)
                                                                                             => current + s)/100f;
 
             float controlCapability = (from developer in game.Developers
-                                       where (developer.StaffOccupation == Occupation.Producer)
+                                       where developer.IsWorking && developer.StaffOccupation == Occupation.Producer
                                        select developer.StaffIntelligence).Aggregate(0, (current, s)
                                                                                             => current + s)/100f;
 
 
-            game.GameArt = (int)(((float) game.GameArt) + artCapability * (1+controlCapability) * (0.5f + programCapability));
-            game.GameMusic = (int)(((float) game.GameMusic) + musicCapability * (1+controlCapability) * (0.5f + programCapability));
-            game.GameFun = (int)(((float)game.GameFun) + funCapability * (1+controlCapability) * (0.5f + programCapability));
+            game.GameArt = (int)(((float) game.GameArt) + artCapability * (1+controlCapability) * (1 + programCapability * 0.7));
+            game.GameMusic = (int)(((float) game.GameMusic) + musicCapability * (1+controlCapability) * (1 + programCapability * 0.7));
+            game.GameFun = (int)(((float)game.GameFun) + funCapability * (1+controlCapability) * (1 + programCapability * 0.7));
 
             args.ArtParm = game.GameArt;
             args.MusicParm = game.GameMusic;
@@ -119,6 +130,8 @@ namespace GameStdioManager.Models.Game
 
         public float GetGameDevelopProcess() => _developmentProcess;
         #endregion
+
+
 
         #region 结束
         

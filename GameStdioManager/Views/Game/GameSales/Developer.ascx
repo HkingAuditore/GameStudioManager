@@ -8,7 +8,7 @@
                     <div runat="server" Visible="True" ID="DefaultLabel">
                         <div class="row">
                             <div class="col-lg-10">
-                                <asp:Label ID="DeveloperName" runat="server" Text="DeveloperName" Font-Size="Larger"></asp:Label>
+                                <asp:Label ID="DeveloperName"  runat="server" Text="DeveloperName" Font-Size="Larger"></asp:Label>
 
                                 <asp:Label ID="DeveloperOccupation" runat="server" Text="DeveloperOccupation" Font-Size="Small"></asp:Label>
                             </div>

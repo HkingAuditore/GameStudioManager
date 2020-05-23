@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Staffs>
+  <Staff StaffNumber="0" StaffIsWorking="false">
+    <StaffCurStrength>6</StaffCurStrength>
+  </Staff>
+  <Staff StaffNumber="1" StaffIsWorking="false">
+    <StaffCurStrength>6</StaffCurStrength>
+  </Staff>
+  <Staff StaffNumber="10" StaffIsWorking="false">
+    <StaffCurStrength>8</StaffCurStrength>
+  </Staff>
+  <Staff StaffNumber="2" StaffIsWorking="false">
+    <StaffCurStrength>6</StaffCurStrength>
+  </Staff>
+  <Staff StaffNumber="3" StaffIsWorking="false">
+    <StaffCurStrength>0</StaffCurStrength>
+  </Staff>
+  <Staff StaffNumber="4" StaffIsWorking="false">
+    <StaffCurStrength>0</StaffCurStrength>
+  </Staff>
+  <Staff StaffNumber="5" StaffIsWorking="false">
+    <StaffCurStrength>0</StaffCurStrength>
+  </Staff>
+  <Staff StaffNumber="6" StaffIsWorking="false">
+    <StaffCurStrength>5</StaffCurStrength>
+  </Staff>
+  <Staff StaffNumber="7" StaffIsWorking="false">
+    <StaffCurStrength>5</StaffCurStrength>
+  </Staff>
+  <Staff StaffNumber="8" StaffIsWorking="false">
+    <StaffCurStrength>5</StaffCurStrength>
+  </Staff>
+  <Staff StaffNumber="9" StaffIsWorking="false">
+    <StaffCurStrength>5</StaffCurStrength>
+  </Staff>
+</Staffs>

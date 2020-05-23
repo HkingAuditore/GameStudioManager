@@ -40,6 +40,7 @@ namespace GameStdioManager.Models.Checkpoint
             var root = new XElement("Checkpoint",
                                     new XAttribute("CheckpointNumber",               CheckpointNumber),
                                     new XAttribute("CheckpointTime",                 CheckpointTime),
+                                    new XAttribute("CheckpointConstancy", CheckpointIsConstant),
                                     new XAttribute("CheckpointCheckMethodIndicator", CheckpointCheckMethodIndicator),
                                     new XAttribute("CheckpointTypeIndicator",        CheckpointTypeIndicator),
                                     new XAttribute("CheckpointTransferObject",       objectNumber),
@@ -132,19 +133,20 @@ namespace GameStdioManager.Models.Checkpoint
                     // TODO 这里的Studio读取方式不行，要优化
                     obj =
                         StudioSQLController
-                           .ReadStudioInfoSql(xe.Attribute("CheckpointTransferObject")?.Value);
+                           .ReadStudioInfoSql(xe.Attribute("CheckpointTransferObject")?.Value,false);
                     break;
             }
 
             return new
-                Checkpoint(int.Parse(xe.Attribute("CheckpointNumber")?.Value ?? throw new InvalidOperationException()),
+                Checkpoint(xe.Attribute("CheckpointNumber")?.Value ?? throw new InvalidOperationException(),
                            DateTime.Parse(xe.Attribute("CheckpointTime")?.Value),
                            checkpointProcessIndicators,
                            checkpointUpdateIndicators,
                            xe.Attribute("CheckpointCheckMethodIndicator")?.Value,
                            obj,
                            args,
-                           xe.Attribute("CheckpointTypeIndicator")?.Value
+                           xe.Attribute("CheckpointTypeIndicator")?.Value,
+                           bool.Parse(xe.Attribute("CheckpointConstancy")?.Value ?? throw new InvalidOperationException())
                           );
         }
 

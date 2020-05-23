@@ -1,6 +1,6 @@
-Date : 2020-05-22 01:22:29
+Date : 2020-05-22 18:12:42
 Directory : f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager
-Total : 136 files,  50265 codes, 10219 comments, 8378 blanks, all 68862 lines
+Total : 139 files,  50511 codes, 10364 comments, 8439 blanks, all 69314 lines
 
 Languages
 +-----------------+------------+------------+------------+------------+------------+
@@ -8,9 +8,9 @@ Languages
 +-----------------+------------+------------+------------+------------+------------+
 | JavaScript      |         17 |     25,149 |      8,005 |      5,828 |     38,982 |
 | CSS             |         11 |     20,355 |         70 |      1,484 |     21,909 |
-| C#              |         78 |      3,014 |      2,138 |        948 |      6,100 |
-| XML             |         17 |      1,370 |          6 |         63 |      1,439 |
-| HTML            |          8 |        263 |          0 |         49 |        312 |
+| C#              |         80 |      3,096 |      2,283 |        979 |      6,358 |
+| XML             |         17 |      1,457 |          6 |         80 |      1,543 |
+| HTML            |          9 |        340 |          0 |         62 |        402 |
 | aspnetcorerazor |          5 |        114 |          0 |          6 |        120 |
 +-----------------+------------+------------+------------+------------+------------+
 
@@ -18,7 +18,7 @@ Directories
 +-----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
 | path                                                                                                                        | files      | code       | comment    | blank      | total      |
 +-----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
-| .                                                                                                                           |        136 |     50,265 |     10,219 |      8,378 |     68,862 |
+| .                                                                                                                           |        139 |     50,511 |     10,364 |      8,439 |     69,314 |
 | App_Start                                                                                                                   |          3 |         49 |          3 |          8 |         60 |
 | Content                                                                                                                     |         11 |     20,355 |         70 |      1,484 |     21,909 |
 | Content\tmp                                                                                                                 |          5 |      7,341 |         29 |         10 |      7,380 |
@@ -28,24 +28,24 @@ Directories
 | Controllers\Player                                                                                                          |          1 |         74 |         10 |         15 |         99 |
 | Controllers\Staff                                                                                                           |          1 |        180 |         29 |         31 |        240 |
 | Controllers\Studio                                                                                                          |          1 |        140 |         32 |         30 |        202 |
-| Data                                                                                                                        |          1 |          2 |          0 |          0 |          2 |
-| Data\CheckpointList                                                                                                         |          1 |          2 |          0 |          0 |          2 |
-| Models                                                                                                                      |         12 |        813 |        400 |        295 |      1,508 |
-| Models\Checkpoint                                                                                                           |          3 |        274 |        119 |         86 |        479 |
+| Data                                                                                                                        |          1 |         39 |          0 |          0 |         39 |
+| Data\CheckpointList                                                                                                         |          1 |         39 |          0 |          0 |         39 |
+| Models                                                                                                                      |         12 |        813 |        390 |        294 |      1,497 |
+| Models\Checkpoint                                                                                                           |          3 |        274 |        109 |         85 |        468 |
 | Models\Game                                                                                                                 |          2 |        175 |         92 |         74 |        341 |
 | Models\Player                                                                                                               |          1 |         13 |          0 |          6 |         19 |
 | Models\Staff                                                                                                                |          1 |        116 |         65 |         49 |        230 |
 | Models\Studio                                                                                                               |          1 |         56 |         47 |         28 |        131 |
-| Pages                                                                                                                       |         19 |        386 |        188 |        107 |        681 |
+| Pages                                                                                                                       |         19 |        402 |        188 |        117 |        707 |
 | Properties                                                                                                                  |          2 |         26 |         25 |         10 |         61 |
 | Scripts                                                                                                                     |         17 |     25,149 |      8,005 |      5,828 |     38,982 |
 | Scripts\tmp                                                                                                                 |          2 |      1,599 |        203 |        524 |      2,326 |
-| Views                                                                                                                       |         57 |      1,876 |      1,344 |        477 |      3,697 |
+| Views                                                                                                                       |         57 |      1,922 |      1,344 |        495 |      3,761 |
 | Views\Editors                                                                                                               |         10 |        523 |        441 |        118 |      1,082 |
-| Views\Game                                                                                                                  |         27 |        826 |        546 |        218 |      1,590 |
-| Views\Game\Develop                                                                                                          |          9 |        293 |        209 |         79 |        581 |
+| Views\Game                                                                                                                  |         27 |        871 |        546 |        236 |      1,653 |
+| Views\Game\Develop                                                                                                          |          9 |        319 |        209 |         92 |        620 |
 | Views\Game\DevelopedInfo                                                                                                    |          9 |        215 |        126 |         58 |        399 |
-| Views\Game\GameSales                                                                                                        |          9 |        318 |        211 |         81 |        610 |
+| Views\Game\GameSales                                                                                                        |          9 |        337 |        211 |         86 |        634 |
 | Views\Home                                                                                                                  |          3 |         58 |          0 |          5 |         63 |
 | Views\Shared                                                                                                                |          2 |         56 |          0 |          1 |         57 |
 | Views\Staff                                                                                                                 |          6 |        266 |        199 |         80 |        545 |
@@ -78,14 +78,14 @@ Files
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Controllers\Player\PlayerSqlController.cs                   | C#              |         74 |         10 |         15 |         99 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Controllers\Staff\StaffSQLController.cs                     | C#              |        180 |         29 |         31 |        240 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Controllers\Studio\StudioSQLController.cs                   | C#              |        140 |         32 |         30 |        202 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Data\CheckpointList\checkpoints.xml                         | XML             |          2 |          0 |          0 |          2 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\GameStdioManager.csproj                                     | XML             |        470 |          6 |          0 |        476 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Data\CheckpointList\checkpoints.xml                         | XML             |         39 |          0 |          0 |         39 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\GameStdioManager.csproj                                     | XML             |        478 |          6 |          0 |        484 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Global.asax.cs                                              | C#              |         16 |          0 |          1 |         17 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Index.aspx                                                  | HTML            |         66 |          0 |          6 |         72 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Index.aspx.cs                                               | C#              |         28 |          4 |          7 |         39 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Index.aspx.designer.cs                                      | C#              |         10 |         50 |         10 |         70 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\Checkpoint\Checkpoint.cs                             | C#              |        136 |         72 |         51 |        259 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\Checkpoint\CheckpointXML.cs                          | C#              |        114 |         44 |         25 |        183 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\Checkpoint\CheckpointXML.cs                          | C#              |        114 |         34 |         24 |        172 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\Checkpoint\CheckpointsReference.cs                   | C#              |         24 |          3 |         10 |         37 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\Game\Game.cs                                         | C#              |         70 |         53 |         34 |        157 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\Game\GameDevelopment.cs                              | C#              |        105 |         39 |         40 |        184 |
@@ -96,23 +96,23 @@ Files
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\StaticBase.cs                                        | C#              |          6 |          0 |          0 |          6 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\StudioBehavior.cs                                    | C#              |         29 |         16 |         10 |         55 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Models\Studio\Studio.cs                                     | C#              |         56 |         47 |         28 |        131 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\GameDevelopedInfo.aspx                                | HTML            |         14 |          0 |          5 |         19 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\GameDevelopedInfo.aspx                                | HTML            |         18 |          0 |          7 |         25 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\GameDevelopedInfo.aspx.cs                             | C#              |         15 |          0 |          2 |         17 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\GameDevelopedInfo.aspx.designer.cs                    | C#              |          5 |         15 |          5 |         25 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\GameDevelopment.aspx                                  | HTML            |         42 |          0 |         13 |         55 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\GameDevelopment.aspx                                  | HTML            |         48 |          0 |         18 |         66 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\GameDevelopment.aspx.cs                               | C#              |         35 |          0 |          7 |         42 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\GameDevelopment.aspx.designer.cs                      | C#              |         15 |         85 |         15 |        115 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\GameSales.aspx                                        | HTML            |         11 |          0 |          4 |         15 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\GameSales.aspx                                        | HTML            |         13 |          0 |          5 |         18 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\GameSales.aspx.cs                                     | C#              |         15 |          0 |          2 |         17 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\GameSales.aspx.designer.cs                            | C#              |          5 |         15 |          5 |         25 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\Login.aspx                                            | HTML            |        107 |          0 |          9 |        116 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\Login.aspx.cs                                         | C#              |         29 |          0 |          3 |         32 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\Login.aspx.designer.cs                                | C#              |          9 |         43 |          9 |         61 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\PageBase.cs                                           | C#              |         22 |          0 |          3 |         25 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\StaffEdit.aspx                                        | HTML            |         11 |          0 |          7 |         18 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\StaffEdit.aspx                                        | HTML            |         13 |          0 |          8 |         21 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\StaffEdit.aspx.cs                                     | C#              |         15 |          0 |          2 |         17 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\StaffEdit.aspx.designer.cs                            | C#              |          5 |         15 |          5 |         25 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\StaffEmploy.aspx                                      | HTML            |         11 |          0 |          4 |         15 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\StaffEmploy.aspx                                      | HTML            |         13 |          0 |          5 |         18 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\StaffEmploy.aspx.cs                                   | C#              |         15 |          0 |          2 |         17 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Pages\StaffEmploy.aspx.designer.cs                          | C#              |          5 |         15 |          5 |         25 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Properties\AssemblyInfo.cs                                  | C#              |         14 |         16 |          4 |         34 |
@@ -146,13 +146,13 @@ Files
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Editors\StudioEditor.ascx.designer.cs                 | C#              |         12 |         64 |         12 |         88 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\GamePage.master.cs                                    | C#              |         27 |          0 |          6 |         33 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\GamePage.master.designer.cs                           | C#              |          8 |         36 |          8 |         52 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\Develop\DevelopView.ascx                         | XML             |         34 |          0 |          7 |         41 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\Develop\DevelopView.ascx                         | XML             |         38 |          0 |          7 |         45 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\Develop\DevelopView.ascx.cs                      | C#              |         41 |         16 |          9 |         66 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\Develop\DevelopView.ascx.designer.cs             | C#              |          6 |         22 |          6 |         34 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\Develop\DevelopViewLine.ascx                     | XML             |         74 |          0 |          6 |         80 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\Develop\DevelopViewLine.ascx.cs                  | C#              |         70 |          1 |         17 |         88 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\Develop\DevelopViewLine.ascx                     | XML             |         77 |          0 |         13 |         90 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\Develop\DevelopViewLine.ascx.cs                  | C#              |         73 |          1 |         18 |         92 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\Develop\DevelopViewLine.ascx.designer.cs         | C#              |         19 |        113 |         19 |        151 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\Develop\Developer.ascx                           | XML             |         14 |          0 |          1 |         15 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\Develop\Developer.ascx                           | XML             |         30 |          0 |          6 |         36 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\Develop\Developer.ascx.cs                        | C#              |         24 |          0 |          3 |         27 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\Develop\Developer.ascx.designer.cs               | C#              |         11 |         57 |         11 |         79 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\DevelopedInfo\DevelopedView.ascx                 | XML             |         35 |          0 |          5 |         40 |
@@ -164,19 +164,19 @@ Files
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\DevelopedInfo\Developer.ascx                     | XML             |          9 |          0 |          0 |          9 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\DevelopedInfo\Developer.ascx.cs                  | C#              |         20 |          0 |          4 |         24 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\DevelopedInfo\Developer.ascx.designer.cs         | C#              |          7 |         29 |          7 |         43 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\GameSales\Developer.ascx                         | XML             |         14 |          0 |          1 |         15 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\GameSales\Developer.ascx                         | XML             |         30 |          0 |          4 |         34 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\GameSales\Developer.ascx.cs                      | C#              |         24 |          0 |          3 |         27 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\GameSales\Developer.ascx.designer.cs             | C#              |         11 |         57 |         11 |         79 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\GameSales\SalesView.ascx                         | XML             |         34 |          0 |          4 |         38 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\GameSales\SalesView.ascx.cs                      | C#              |         43 |          4 |          7 |         54 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\GameSales\SalesView.ascx.designer.cs             | C#              |          6 |         22 |          6 |         34 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\GameSales\SalesViewLine.ascx                     | XML             |         76 |          0 |          8 |         84 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\GameSales\SalesViewLine.ascx                     | XML             |         79 |          0 |         10 |         89 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\GameSales\SalesViewLine.ascx.cs                  | C#              |         89 |          1 |         20 |        110 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Game\GameSales\SalesViewLine.ascx.designer.cs         | C#              |         21 |        127 |         21 |        169 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Home\About.cshtml                                     | aspnetcorerazor |          6 |          0 |          1 |          7 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Home\Contact.cshtml                                   | aspnetcorerazor |         15 |          0 |          2 |         17 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Home\Index.cshtml                                     | aspnetcorerazor |         37 |          0 |          2 |         39 |
-| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\MainMaster.Master.cs                                  | C#              |         45 |          0 |          8 |         53 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\MainMaster.Master.cs                                  | C#              |         46 |          0 |          8 |         54 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\MainMaster.Master.designer.cs                         | C#              |         15 |         85 |         15 |        115 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Shared\Error.cshtml                                   | aspnetcorerazor |         14 |          0 |          0 |         14 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\Shared\_Layout.cshtml                                 | aspnetcorerazor |         42 |          0 |          1 |         43 |
@@ -192,5 +192,8 @@ Files
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\WebForm1.aspx.cs                                      | C#              |         15 |          0 |          2 |         17 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\Views\WebForm1.aspx.designer.cs                             | C#              |          6 |          8 |          4 |         18 |
 | f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\fonts\glyphicons-halflings-regular.svg                      | XML             |        288 |          0 |          0 |        288 |
-| Total                                                                                                                       |                 |     50,265 |     10,219 |      8,378 |     68,862 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\tmp.aspx                                                    | HTML            |         61 |          0 |          3 |         64 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\tmp.aspx.cs                                                 | C#              |         53 |          0 |          6 |         59 |
+| f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager\tmp.aspx.designer.cs                                        | C#              |         25 |        155 |         25 |        205 |
+| Total                                                                                                                       |                 |     50,511 |     10,364 |      8,439 |     69,314 |
 +-----------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+

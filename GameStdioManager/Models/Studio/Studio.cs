@@ -61,9 +61,23 @@ namespace GameStdioManager.Models.Studio
         /// </summary>
         public List<Staff.Staff> StudioStaffs = new List<Staff.Staff>();
 
-        public void AddStaff(Staff.Staff staff) => StudioStaffs.Add(staff);
+        public void AddStaff(Staff.Staff staff)
+        {
+            StudioStaffs.Add(staff);
+            staff.StaffStudioObject = this;
 
-        public void RemoveStaff(Staff.Staff staff) => StudioStaffs.Remove(staff);
+        }
+
+        public void RemoveStaff(Staff.Staff staff)
+        {
+            StudioStaffs.Remove(staff);
+            staff.StaffStudioObject = null;
+
+
+        }
+
+
+
 
         /// <summary>
         /// 查找员工
@@ -73,6 +87,11 @@ namespace GameStdioManager.Models.Studio
         public Staff.Staff FindStaff(string staffNumber) => (from s in StudioStaffs
                                                              where s.StaffNumber == staffNumber
                                                              select s).First();
+
+        public List<Staff.Staff> FindWorkingStaffs() =>
+           (from staff in StudioStaffs
+                                 where staff.IsWorking
+                                 select staff).ToList();
 
         #endregion
 

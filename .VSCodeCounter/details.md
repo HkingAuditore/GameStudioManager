@@ -1,10 +1,10 @@
 # Details
 
-Date : 2020-05-22 01:22:29
+Date : 2020-05-22 18:12:43
 
 Directory f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager
 
-Total : 136 files,  50265 codes, 10219 comments, 8378 blanks, all 68862 lines
+Total : 139 files,  50511 codes, 10364 comments, 8439 blanks, all 69314 lines
 
 [summary](results.md)
 
@@ -33,14 +33,14 @@ Total : 136 files,  50265 codes, 10219 comments, 8378 blanks, all 68862 lines
 | [GameStdioManager/Controllers/Player/PlayerSqlController.cs](/GameStdioManager/Controllers/Player/PlayerSqlController.cs) | C# | 74 | 10 | 15 | 99 |
 | [GameStdioManager/Controllers/Staff/StaffSQLController.cs](/GameStdioManager/Controllers/Staff/StaffSQLController.cs) | C# | 180 | 29 | 31 | 240 |
 | [GameStdioManager/Controllers/Studio/StudioSQLController.cs](/GameStdioManager/Controllers/Studio/StudioSQLController.cs) | C# | 140 | 32 | 30 | 202 |
-| [GameStdioManager/Data/CheckpointList/checkpoints.xml](/GameStdioManager/Data/CheckpointList/checkpoints.xml) | XML | 2 | 0 | 0 | 2 |
-| [GameStdioManager/GameStdioManager.csproj](/GameStdioManager/GameStdioManager.csproj) | XML | 470 | 6 | 0 | 476 |
+| [GameStdioManager/Data/CheckpointList/checkpoints.xml](/GameStdioManager/Data/CheckpointList/checkpoints.xml) | XML | 39 | 0 | 0 | 39 |
+| [GameStdioManager/GameStdioManager.csproj](/GameStdioManager/GameStdioManager.csproj) | XML | 478 | 6 | 0 | 484 |
 | [GameStdioManager/Global.asax.cs](/GameStdioManager/Global.asax.cs) | C# | 16 | 0 | 1 | 17 |
 | [GameStdioManager/Index.aspx](/GameStdioManager/Index.aspx) | HTML | 66 | 0 | 6 | 72 |
 | [GameStdioManager/Index.aspx.cs](/GameStdioManager/Index.aspx.cs) | C# | 28 | 4 | 7 | 39 |
 | [GameStdioManager/Index.aspx.designer.cs](/GameStdioManager/Index.aspx.designer.cs) | C# | 10 | 50 | 10 | 70 |
 | [GameStdioManager/Models/Checkpoint/Checkpoint.cs](/GameStdioManager/Models/Checkpoint/Checkpoint.cs) | C# | 136 | 72 | 51 | 259 |
-| [GameStdioManager/Models/Checkpoint/CheckpointXML.cs](/GameStdioManager/Models/Checkpoint/CheckpointXML.cs) | C# | 114 | 44 | 25 | 183 |
+| [GameStdioManager/Models/Checkpoint/CheckpointXML.cs](/GameStdioManager/Models/Checkpoint/CheckpointXML.cs) | C# | 114 | 34 | 24 | 172 |
 | [GameStdioManager/Models/Checkpoint/CheckpointsReference.cs](/GameStdioManager/Models/Checkpoint/CheckpointsReference.cs) | C# | 24 | 3 | 10 | 37 |
 | [GameStdioManager/Models/Game/Game.cs](/GameStdioManager/Models/Game/Game.cs) | C# | 70 | 53 | 34 | 157 |
 | [GameStdioManager/Models/Game/GameDevelopment.cs](/GameStdioManager/Models/Game/GameDevelopment.cs) | C# | 105 | 39 | 40 | 184 |
@@ -51,23 +51,23 @@ Total : 136 files,  50265 codes, 10219 comments, 8378 blanks, all 68862 lines
 | [GameStdioManager/Models/StaticBase.cs](/GameStdioManager/Models/StaticBase.cs) | C# | 6 | 0 | 0 | 6 |
 | [GameStdioManager/Models/StudioBehavior.cs](/GameStdioManager/Models/StudioBehavior.cs) | C# | 29 | 16 | 10 | 55 |
 | [GameStdioManager/Models/Studio/Studio.cs](/GameStdioManager/Models/Studio/Studio.cs) | C# | 56 | 47 | 28 | 131 |
-| [GameStdioManager/Pages/GameDevelopedInfo.aspx](/GameStdioManager/Pages/GameDevelopedInfo.aspx) | HTML | 14 | 0 | 5 | 19 |
+| [GameStdioManager/Pages/GameDevelopedInfo.aspx](/GameStdioManager/Pages/GameDevelopedInfo.aspx) | HTML | 18 | 0 | 7 | 25 |
 | [GameStdioManager/Pages/GameDevelopedInfo.aspx.cs](/GameStdioManager/Pages/GameDevelopedInfo.aspx.cs) | C# | 15 | 0 | 2 | 17 |
 | [GameStdioManager/Pages/GameDevelopedInfo.aspx.designer.cs](/GameStdioManager/Pages/GameDevelopedInfo.aspx.designer.cs) | C# | 5 | 15 | 5 | 25 |
-| [GameStdioManager/Pages/GameDevelopment.aspx](/GameStdioManager/Pages/GameDevelopment.aspx) | HTML | 42 | 0 | 13 | 55 |
+| [GameStdioManager/Pages/GameDevelopment.aspx](/GameStdioManager/Pages/GameDevelopment.aspx) | HTML | 48 | 0 | 18 | 66 |
 | [GameStdioManager/Pages/GameDevelopment.aspx.cs](/GameStdioManager/Pages/GameDevelopment.aspx.cs) | C# | 35 | 0 | 7 | 42 |
 | [GameStdioManager/Pages/GameDevelopment.aspx.designer.cs](/GameStdioManager/Pages/GameDevelopment.aspx.designer.cs) | C# | 15 | 85 | 15 | 115 |
-| [GameStdioManager/Pages/GameSales.aspx](/GameStdioManager/Pages/GameSales.aspx) | HTML | 11 | 0 | 4 | 15 |
+| [GameStdioManager/Pages/GameSales.aspx](/GameStdioManager/Pages/GameSales.aspx) | HTML | 13 | 0 | 5 | 18 |
 | [GameStdioManager/Pages/GameSales.aspx.cs](/GameStdioManager/Pages/GameSales.aspx.cs) | C# | 15 | 0 | 2 | 17 |
 | [GameStdioManager/Pages/GameSales.aspx.designer.cs](/GameStdioManager/Pages/GameSales.aspx.designer.cs) | C# | 5 | 15 | 5 | 25 |
 | [GameStdioManager/Pages/Login.aspx](/GameStdioManager/Pages/Login.aspx) | HTML | 107 | 0 | 9 | 116 |
 | [GameStdioManager/Pages/Login.aspx.cs](/GameStdioManager/Pages/Login.aspx.cs) | C# | 29 | 0 | 3 | 32 |
 | [GameStdioManager/Pages/Login.aspx.designer.cs](/GameStdioManager/Pages/Login.aspx.designer.cs) | C# | 9 | 43 | 9 | 61 |
 | [GameStdioManager/Pages/PageBase.cs](/GameStdioManager/Pages/PageBase.cs) | C# | 22 | 0 | 3 | 25 |
-| [GameStdioManager/Pages/StaffEdit.aspx](/GameStdioManager/Pages/StaffEdit.aspx) | HTML | 11 | 0 | 7 | 18 |
+| [GameStdioManager/Pages/StaffEdit.aspx](/GameStdioManager/Pages/StaffEdit.aspx) | HTML | 13 | 0 | 8 | 21 |
 | [GameStdioManager/Pages/StaffEdit.aspx.cs](/GameStdioManager/Pages/StaffEdit.aspx.cs) | C# | 15 | 0 | 2 | 17 |
 | [GameStdioManager/Pages/StaffEdit.aspx.designer.cs](/GameStdioManager/Pages/StaffEdit.aspx.designer.cs) | C# | 5 | 15 | 5 | 25 |
-| [GameStdioManager/Pages/StaffEmploy.aspx](/GameStdioManager/Pages/StaffEmploy.aspx) | HTML | 11 | 0 | 4 | 15 |
+| [GameStdioManager/Pages/StaffEmploy.aspx](/GameStdioManager/Pages/StaffEmploy.aspx) | HTML | 13 | 0 | 5 | 18 |
 | [GameStdioManager/Pages/StaffEmploy.aspx.cs](/GameStdioManager/Pages/StaffEmploy.aspx.cs) | C# | 15 | 0 | 2 | 17 |
 | [GameStdioManager/Pages/StaffEmploy.aspx.designer.cs](/GameStdioManager/Pages/StaffEmploy.aspx.designer.cs) | C# | 5 | 15 | 5 | 25 |
 | [GameStdioManager/Properties/AssemblyInfo.cs](/GameStdioManager/Properties/AssemblyInfo.cs) | C# | 14 | 16 | 4 | 34 |
@@ -101,13 +101,13 @@ Total : 136 files,  50265 codes, 10219 comments, 8378 blanks, all 68862 lines
 | [GameStdioManager/Views/Editors/StudioEditor.ascx.designer.cs](/GameStdioManager/Views/Editors/StudioEditor.ascx.designer.cs) | C# | 12 | 64 | 12 | 88 |
 | [GameStdioManager/Views/GamePage.master.cs](/GameStdioManager/Views/GamePage.master.cs) | C# | 27 | 0 | 6 | 33 |
 | [GameStdioManager/Views/GamePage.master.designer.cs](/GameStdioManager/Views/GamePage.master.designer.cs) | C# | 8 | 36 | 8 | 52 |
-| [GameStdioManager/Views/Game/Develop/DevelopView.ascx](/GameStdioManager/Views/Game/Develop/DevelopView.ascx) | XML | 34 | 0 | 7 | 41 |
+| [GameStdioManager/Views/Game/Develop/DevelopView.ascx](/GameStdioManager/Views/Game/Develop/DevelopView.ascx) | XML | 38 | 0 | 7 | 45 |
 | [GameStdioManager/Views/Game/Develop/DevelopView.ascx.cs](/GameStdioManager/Views/Game/Develop/DevelopView.ascx.cs) | C# | 41 | 16 | 9 | 66 |
 | [GameStdioManager/Views/Game/Develop/DevelopView.ascx.designer.cs](/GameStdioManager/Views/Game/Develop/DevelopView.ascx.designer.cs) | C# | 6 | 22 | 6 | 34 |
-| [GameStdioManager/Views/Game/Develop/DevelopViewLine.ascx](/GameStdioManager/Views/Game/Develop/DevelopViewLine.ascx) | XML | 74 | 0 | 6 | 80 |
-| [GameStdioManager/Views/Game/Develop/DevelopViewLine.ascx.cs](/GameStdioManager/Views/Game/Develop/DevelopViewLine.ascx.cs) | C# | 70 | 1 | 17 | 88 |
+| [GameStdioManager/Views/Game/Develop/DevelopViewLine.ascx](/GameStdioManager/Views/Game/Develop/DevelopViewLine.ascx) | XML | 77 | 0 | 13 | 90 |
+| [GameStdioManager/Views/Game/Develop/DevelopViewLine.ascx.cs](/GameStdioManager/Views/Game/Develop/DevelopViewLine.ascx.cs) | C# | 73 | 1 | 18 | 92 |
 | [GameStdioManager/Views/Game/Develop/DevelopViewLine.ascx.designer.cs](/GameStdioManager/Views/Game/Develop/DevelopViewLine.ascx.designer.cs) | C# | 19 | 113 | 19 | 151 |
-| [GameStdioManager/Views/Game/Develop/Developer.ascx](/GameStdioManager/Views/Game/Develop/Developer.ascx) | XML | 14 | 0 | 1 | 15 |
+| [GameStdioManager/Views/Game/Develop/Developer.ascx](/GameStdioManager/Views/Game/Develop/Developer.ascx) | XML | 30 | 0 | 6 | 36 |
 | [GameStdioManager/Views/Game/Develop/Developer.ascx.cs](/GameStdioManager/Views/Game/Develop/Developer.ascx.cs) | C# | 24 | 0 | 3 | 27 |
 | [GameStdioManager/Views/Game/Develop/Developer.ascx.designer.cs](/GameStdioManager/Views/Game/Develop/Developer.ascx.designer.cs) | C# | 11 | 57 | 11 | 79 |
 | [GameStdioManager/Views/Game/DevelopedInfo/DevelopedView.ascx](/GameStdioManager/Views/Game/DevelopedInfo/DevelopedView.ascx) | XML | 35 | 0 | 5 | 40 |
@@ -119,19 +119,19 @@ Total : 136 files,  50265 codes, 10219 comments, 8378 blanks, all 68862 lines
 | [GameStdioManager/Views/Game/DevelopedInfo/Developer.ascx](/GameStdioManager/Views/Game/DevelopedInfo/Developer.ascx) | XML | 9 | 0 | 0 | 9 |
 | [GameStdioManager/Views/Game/DevelopedInfo/Developer.ascx.cs](/GameStdioManager/Views/Game/DevelopedInfo/Developer.ascx.cs) | C# | 20 | 0 | 4 | 24 |
 | [GameStdioManager/Views/Game/DevelopedInfo/Developer.ascx.designer.cs](/GameStdioManager/Views/Game/DevelopedInfo/Developer.ascx.designer.cs) | C# | 7 | 29 | 7 | 43 |
-| [GameStdioManager/Views/Game/GameSales/Developer.ascx](/GameStdioManager/Views/Game/GameSales/Developer.ascx) | XML | 14 | 0 | 1 | 15 |
+| [GameStdioManager/Views/Game/GameSales/Developer.ascx](/GameStdioManager/Views/Game/GameSales/Developer.ascx) | XML | 30 | 0 | 4 | 34 |
 | [GameStdioManager/Views/Game/GameSales/Developer.ascx.cs](/GameStdioManager/Views/Game/GameSales/Developer.ascx.cs) | C# | 24 | 0 | 3 | 27 |
 | [GameStdioManager/Views/Game/GameSales/Developer.ascx.designer.cs](/GameStdioManager/Views/Game/GameSales/Developer.ascx.designer.cs) | C# | 11 | 57 | 11 | 79 |
 | [GameStdioManager/Views/Game/GameSales/SalesView.ascx](/GameStdioManager/Views/Game/GameSales/SalesView.ascx) | XML | 34 | 0 | 4 | 38 |
 | [GameStdioManager/Views/Game/GameSales/SalesView.ascx.cs](/GameStdioManager/Views/Game/GameSales/SalesView.ascx.cs) | C# | 43 | 4 | 7 | 54 |
 | [GameStdioManager/Views/Game/GameSales/SalesView.ascx.designer.cs](/GameStdioManager/Views/Game/GameSales/SalesView.ascx.designer.cs) | C# | 6 | 22 | 6 | 34 |
-| [GameStdioManager/Views/Game/GameSales/SalesViewLine.ascx](/GameStdioManager/Views/Game/GameSales/SalesViewLine.ascx) | XML | 76 | 0 | 8 | 84 |
+| [GameStdioManager/Views/Game/GameSales/SalesViewLine.ascx](/GameStdioManager/Views/Game/GameSales/SalesViewLine.ascx) | XML | 79 | 0 | 10 | 89 |
 | [GameStdioManager/Views/Game/GameSales/SalesViewLine.ascx.cs](/GameStdioManager/Views/Game/GameSales/SalesViewLine.ascx.cs) | C# | 89 | 1 | 20 | 110 |
 | [GameStdioManager/Views/Game/GameSales/SalesViewLine.ascx.designer.cs](/GameStdioManager/Views/Game/GameSales/SalesViewLine.ascx.designer.cs) | C# | 21 | 127 | 21 | 169 |
 | [GameStdioManager/Views/Home/About.cshtml](/GameStdioManager/Views/Home/About.cshtml) | aspnetcorerazor | 6 | 0 | 1 | 7 |
 | [GameStdioManager/Views/Home/Contact.cshtml](/GameStdioManager/Views/Home/Contact.cshtml) | aspnetcorerazor | 15 | 0 | 2 | 17 |
 | [GameStdioManager/Views/Home/Index.cshtml](/GameStdioManager/Views/Home/Index.cshtml) | aspnetcorerazor | 37 | 0 | 2 | 39 |
-| [GameStdioManager/Views/MainMaster.Master.cs](/GameStdioManager/Views/MainMaster.Master.cs) | C# | 45 | 0 | 8 | 53 |
+| [GameStdioManager/Views/MainMaster.Master.cs](/GameStdioManager/Views/MainMaster.Master.cs) | C# | 46 | 0 | 8 | 54 |
 | [GameStdioManager/Views/MainMaster.Master.designer.cs](/GameStdioManager/Views/MainMaster.Master.designer.cs) | C# | 15 | 85 | 15 | 115 |
 | [GameStdioManager/Views/Shared/Error.cshtml](/GameStdioManager/Views/Shared/Error.cshtml) | aspnetcorerazor | 14 | 0 | 0 | 14 |
 | [GameStdioManager/Views/Shared/_Layout.cshtml](/GameStdioManager/Views/Shared/_Layout.cshtml) | aspnetcorerazor | 42 | 0 | 1 | 43 |
@@ -147,5 +147,8 @@ Total : 136 files,  50265 codes, 10219 comments, 8378 blanks, all 68862 lines
 | [GameStdioManager/Views/WebForm1.aspx.cs](/GameStdioManager/Views/WebForm1.aspx.cs) | C# | 15 | 0 | 2 | 17 |
 | [GameStdioManager/Views/WebForm1.aspx.designer.cs](/GameStdioManager/Views/WebForm1.aspx.designer.cs) | C# | 6 | 8 | 4 | 18 |
 | [GameStdioManager/fonts/glyphicons-halflings-regular.svg](/GameStdioManager/fonts/glyphicons-halflings-regular.svg) | XML | 288 | 0 | 0 | 288 |
+| [GameStdioManager/tmp.aspx](/GameStdioManager/tmp.aspx) | HTML | 61 | 0 | 3 | 64 |
+| [GameStdioManager/tmp.aspx.cs](/GameStdioManager/tmp.aspx.cs) | C# | 53 | 0 | 6 | 59 |
+| [GameStdioManager/tmp.aspx.designer.cs](/GameStdioManager/tmp.aspx.designer.cs) | C# | 25 | 155 | 25 | 205 |
 
 [summary](results.md)

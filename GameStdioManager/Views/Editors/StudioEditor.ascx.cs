@@ -24,13 +24,13 @@ namespace GameStdioManager.Views.Editors
 
         protected void ReadFromSQL_OnClick(object sender, EventArgs e)
         {
-            ShowStudioInfo(StudioSQLController.ReadStudioInfoSql(StudioNumber.Text.Trim()));
+            ShowStudioInfo(StudioSQLController.ReadStudioInfoSql(StudioNumber.Text.Trim(),false));
             StudioNumber.ReadOnly = true;
         }
 
         protected void Update_OnClick(object sender, EventArgs e)
         {
-            StudioSQLController.UpdateStudioInfoSql(StudioSQLController.ReadStudioInfoSql(StudioNumber.Text.Trim()),
+            StudioSQLController.UpdateStudioInfoSql(StudioSQLController.ReadStudioInfoSql(StudioNumber.Text.Trim(),false),
                                                     GenerateStudioThisPanel());
         }
 

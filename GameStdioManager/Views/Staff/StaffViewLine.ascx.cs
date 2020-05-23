@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -15,12 +16,15 @@ namespace GameStdioManager.Views.Staff
         protected void Page_Load(object sender, EventArgs e)
         {
             ShowStaffInfo();
+
+            L_StaffName.ForeColor = LineStaff.IsWorking ? Color.FromArgb(51, 204, 255) : Color.FromArgb(28, 28, 28);
+            LF_StaffCurfStrength.Text = "("+LineStaff.StaffCurStrength.ToString()+")";
         }
 
         private void ShowStaffInfo()
         {
             Controls.Cast<Control>()
-                    .Where(ct => ct.GetType().ToString().Equals("System.Web.UI.WebControls.Label"))
+                    .Where(ct => ct.GetType().ToString().Equals("System.Web.UI.WebControls.Label") && ct.ID != "LF_StaffCurStrength")
                     .Select(ct => (Label) ct)
                     .ForEach(label =>
                              {

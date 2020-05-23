@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -18,7 +19,10 @@ namespace GameStdioManager.Views.Game.DevelopedInfo
         {
             DeveloperName.Text = ThisDeveloper.StaffName;
             DeveloperOccupation.Text = ThisDeveloper.StaffOccupation.ToString();
+
+            DeveloperName.ForeColor = ThisDeveloper.IsWorking ? Color.FromArgb(51, 204, 255) : Color.FromArgb(28, 28, 28);
+
         }
-        
+
     }
 }

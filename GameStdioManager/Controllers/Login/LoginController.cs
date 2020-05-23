@@ -44,7 +44,7 @@ namespace GameStdioManager.Controllers.Login
                     {
                         IsCorrespond = true;
 
-                        PlayerTarget = PlayerSqlController.ReadPlayerInfoSql(_playerNumber);
+                        PlayerTarget = PlayerSqlController.ReadPlayerInfoSql(_playerNumber,true);
                     }
                 }
 

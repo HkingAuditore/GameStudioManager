@@ -7,6 +7,8 @@ namespace GameStdioManager.Models.Checkpoint
     /// </summary>
     public class CheckpointArgs : EventArgs
     {
+        public DateTime CheckTime;
+
         public int CheckParm = 0;
 
         public float UpdateParm = 0f;

@@ -12,12 +12,6 @@ namespace GameStdioManager.Models.Checkpoint
     /// <param name="args"></param>
     public partial class Checkpoint : SimulatorBase
     {
-        #region 判定方法
-
-        public bool CheckTimeAndProcess(object sender, CheckpointArgs args) =>
-            args.UpdateParm >= 100 || SimulatorTimer.GameTimeNow >= CheckpointTime;
-
-        #endregion 判定方法
 
         #region 解析逻辑
 
@@ -45,29 +39,31 @@ namespace GameStdioManager.Models.Checkpoint
             if (_soureceType != null)
             {
                 // 抓取process方法并订阅Process事件
-                (from st in CheckpointProcessIndicators
-                 select _soureceType.GetMethod(st)
-                 into pc
-                 where pc != null
-                 select pc).ForEach(process => CheckpointProcess +=
-                                                   (CheckpointHandler)
-                                                   Delegate.CreateDelegate(typeof(CheckpointHandler),
-                                                                           process));
+                if (CheckpointProcessIndicators != null)
+                    (from st in CheckpointProcessIndicators
+                     where st != null
+                     select _soureceType.GetMethod(st)
+                     into pc
+                     where pc != null
+                     select pc).ForEach(process => CheckpointProcess +=
+                                                       (CheckpointHandler)
+                                                       Delegate.CreateDelegate(typeof(CheckpointHandler),
+                                                                               process));
                 // 抓取update方法并订阅Update事件
-                (from st in CheckpointUpdateIndicators
-                 select _soureceType.GetMethod(st)
-                 into pc
-                 where pc != null
-                 select pc).ForEach(process => CheckUpdateProcess +=
-                                                   (CheckpointHandler)
-                                                   Delegate.CreateDelegate(typeof(CheckpointHandler),
-                                                                           process));
+                if (CheckpointUpdateIndicators != null)
+                    (from st in CheckpointUpdateIndicators
+                     where st != null
+                     select _soureceType.GetMethod(st)
+                     into pc
+                     where pc != null
+                     select pc).ForEach(process => CheckUpdateProcess +=
+                                                       (CheckpointHandler)
+                                                       Delegate.CreateDelegate(typeof(CheckpointHandler),
+                                                                               process));
             }
 
-            _checkFinishMethod = (CheckpointChecker) Delegate.CreateDelegate(typeof(CheckpointChecker), this,
-                                                                             GetType()
-                                                                                .GetMethod(CheckpointCheckMethodIndicator) ??
-                                                                             throw new InvalidOperationException());
+            _checkFinishMethod = (CheckpointChecker) Delegate.CreateDelegate(typeof(CheckpointChecker), _soureceType?.GetMethod(CheckpointCheckMethodIndicator) ??
+                                                                                                        throw new InvalidOperationException());
         }
 
         #endregion 解析逻辑
@@ -79,7 +75,7 @@ namespace GameStdioManager.Models.Checkpoint
         /// <summary>
         ///     检查点序号
         /// </summary>
-        public int CheckpointNumber { get; }
+        public string CheckpointNumber { get; }
 
         /// <summary>
         ///     检查点时间
@@ -116,6 +112,11 @@ namespace GameStdioManager.Models.Checkpoint
         /// </summary>
         public string CheckpointTypeIndicator;
 
+        /// <summary>
+        /// 检查点的持续性
+        /// </summary>
+        public bool CheckpointIsConstant = false;
+
         #endregion 公共属性
 
         #region 私有字段
@@ -143,7 +144,7 @@ namespace GameStdioManager.Models.Checkpoint
 
         #region 构造函数
 
-        public Checkpoint(int      checkpointNumber, DateTime checkpointTime,
+        public Checkpoint(string      checkpointNumber, DateTime checkpointTime,
                           string[] checkpointProcessIndicator,
                           string[] checkpointUpdateIndicator, string checkpointCheckMethodIndicator,
                           string   checkpointTypeIndicator)
@@ -160,7 +161,7 @@ namespace GameStdioManager.Models.Checkpoint
             GenerateCheckpoint();
         }
 
-        public Checkpoint(int           checkpointNumber, DateTime checkpointTime,
+        public Checkpoint(string checkpointNumber, DateTime checkpointTime,
                           string[]      checkpointProcessIndicator,
                           string[]      checkpointUpdateIndicator, string         checkpointCheckMethodIndicator,
                           SimulatorBase checkpointTransferObject,  CheckpointArgs checkpointTransferArgs,
@@ -179,6 +180,32 @@ namespace GameStdioManager.Models.Checkpoint
             CheckpointTypeIndicator = checkpointTypeIndicator;
 
             _checkFinishMethod = (sender, args) => false;
+            GenerateCheckpoint();
+        }
+
+        public Checkpoint(string checkpointNumber, DateTime checkpointTime,
+                          string[] checkpointProcessIndicator,
+                          string[] checkpointUpdateIndicator, string checkpointCheckMethodIndicator,
+                          SimulatorBase checkpointTransferObject, CheckpointArgs checkpointTransferArgs,
+                          string checkpointTypeIndicator,bool checkpointConstancy)
+        {
+            CheckpointNumber = checkpointNumber;
+            CheckpointTime = checkpointTime;
+
+            CheckpointProcessIndicators = checkpointProcessIndicator;
+
+            CheckpointUpdateIndicators = checkpointUpdateIndicator;
+            CheckpointCheckMethodIndicator = checkpointCheckMethodIndicator;
+            CheckpointTransferObject = checkpointTransferObject;
+
+            CheckpointTransferArgs = checkpointTransferArgs;
+            CheckpointTypeIndicator = checkpointTypeIndicator;
+
+            CheckpointIsConstant = checkpointConstancy;
+
+            _checkFinishMethod = (sender, args) => false;
+
+            
             GenerateCheckpoint();
         }
 
@@ -229,6 +256,7 @@ namespace GameStdioManager.Models.Checkpoint
             (IsIndicatorsEquals(cp0.CheckpointProcessIndicators,cp1.CheckpointProcessIndicators))  &&
             (IsIndicatorsEquals(cp0.CheckpointUpdateIndicators,cp1.CheckpointUpdateIndicators))    &&
              (cp0.CheckpointCheckMethodIndicator == cp1.CheckpointCheckMethodIndicator) &&
+             (cp0.CheckpointIsConstant == cp1.CheckpointIsConstant) &&
              (cp0.CheckpointTypeIndicator        == cp1.CheckpointTypeIndicator);
 
         public static bool operator !=(Checkpoint cp0, Checkpoint cp1) => !(cp0 == cp1);
@@ -255,5 +283,14 @@ namespace GameStdioManager.Models.Checkpoint
 
             return true;
         }
+
+
+        #region 判定方法
+
+        public bool CheckTimeAndProcess(object sender, CheckpointArgs args) =>
+            args.UpdateParm >= 100 || SimulatorTimer.GameTimeNow >= CheckpointTime;
+
+        #endregion 判定方法
+
     }
 }

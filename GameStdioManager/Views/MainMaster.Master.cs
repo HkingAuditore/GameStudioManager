@@ -17,8 +17,12 @@ namespace GameStdioManager.Views
         private void MasterGameInit()
         {
             PageBase.PageGame = new StudioBehavior(true);
-            SimulatorTimer.ReadCheckpointListXml(PageBase.PagePlayer);
+            if(PageBase.PagePlayer.PlayerStudio.FindWorkingStaffs().Count == 0)
+                SimulatorTimer.SpeedSetQuick();
             PageBase.PageGame.Start();
+            SimulatorTimer.ReadCheckpointListXml(PageBase.PagePlayer);
+            PageBase.PagePlayer.ReadStaffCurWorkDataListXml();
+
             La_StudioName.Text = PageBase.PagePlayer.PlayerStudio.StudioName;
 
             GameInitChecker = true;
@@ -33,7 +37,7 @@ namespace GameStdioManager.Views
             }
 
             La_StudioName.Text = PageBase.PagePlayer.PlayerStudio.StudioName;
-            La_Timer.Text = SimulatorTimer.GameTimeNow.ToString();
+            La_Timer.Text = SimulatorTimer.GameTimeNow.DayOfWeek.ToString() + SimulatorTimer.GameTimeNow.ToString();
         }
 
         protected void B_SaveGame_OnClick(object sender, EventArgs e)
