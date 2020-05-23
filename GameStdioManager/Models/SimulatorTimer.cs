@@ -171,7 +171,7 @@ namespace GameStdioManager.Models
         {
             var xd = new XDocument(new XElement("CheckpointList"));
             (from checkpoint in _timeTable
-             where checkpoint.CheckpointIsConstant == false
+             where checkpoint.CheckpointCanBeSaved == true
              select checkpoint).ForEach(cp => xd.Element("CheckpointList")?.Add(cp.ConvertCheckpointToXElement()));
             Debug.WriteLine(xd);
 

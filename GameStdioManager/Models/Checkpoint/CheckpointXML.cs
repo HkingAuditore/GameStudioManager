@@ -119,11 +119,13 @@ namespace GameStdioManager.Models.Checkpoint
                 case "Game":
                     obj =
                         player.PlayerStudio.FindGame(xe.Attribute("CheckpointTransferObject")?.Value);
-                    ((Game.Game) obj).GameArt = args.ArtParm;
-                    ((Game.Game) obj).GameMusic = args.MusicParm;
-                    ((Game.Game)obj).GameFun = args.FunParm;
+                    if (((Game.Game) obj).GameIsDeveloping)
+                    {
+                        ((Game.Game)obj).GameArt = args.ArtParm;
+                        ((Game.Game)obj).GameMusic = args.MusicParm;
+                        ((Game.Game)obj).GameFun = args.FunParm;
+                    }
                     break;
-
                 case "Staff":
                     obj =
                         player.PlayerStudio.FindStaff(xe.Attribute("CheckpointTransferObject")?.Value);
@@ -146,7 +148,8 @@ namespace GameStdioManager.Models.Checkpoint
                            obj,
                            args,
                            xe.Attribute("CheckpointTypeIndicator")?.Value,
-                           bool.Parse(xe.Attribute("CheckpointConstancy")?.Value ?? throw new InvalidOperationException())
+                           bool.Parse(xe.Attribute("CheckpointConstancy")?.Value ?? throw new InvalidOperationException()),
+                           true
                           );
         }
 

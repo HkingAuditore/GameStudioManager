@@ -148,9 +148,11 @@ namespace GameStdioManager.Models.Game
             game.GameStudioObject.AddDevelopedGame(game);
             game.GameStudioObject.RemoveDevelopingGame(game);
             game.GameFinishDevelopTime = SimulatorTimer.GameTimeNow;
+            game.UpdateSql();
 
+            game.StartSales();
 
-            GameSQLController.UpdateGameInfoSql(GameSQLController.ReadGameInfoSql(game.GameNumber), game);
+            // GameSQLController.UpdateGameInfoSql(GameSQLController.ReadGameInfoSql(game.GameNumber), game);
             Debug.WriteLine(game.GameName + " Game FINISHED!");
             EndDevelopEvent?.Invoke(sender, args);
         }
@@ -190,8 +192,5 @@ namespace GameStdioManager.Models.Game
 
 
         #endregion 开发
-
-
-
     }
 }

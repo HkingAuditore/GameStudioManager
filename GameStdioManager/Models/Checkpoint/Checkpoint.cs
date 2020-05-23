@@ -117,6 +117,11 @@ namespace GameStdioManager.Models.Checkpoint
         /// </summary>
         public bool CheckpointIsConstant = false;
 
+        /// <summary>
+        /// 检查点可以被XML保存
+        /// </summary>
+        public bool CheckpointCanBeSaved = true;
+
         #endregion 公共属性
 
         #region 私有字段
@@ -187,7 +192,7 @@ namespace GameStdioManager.Models.Checkpoint
                           string[] checkpointProcessIndicator,
                           string[] checkpointUpdateIndicator, string checkpointCheckMethodIndicator,
                           SimulatorBase checkpointTransferObject, CheckpointArgs checkpointTransferArgs,
-                          string checkpointTypeIndicator,bool checkpointConstancy)
+                          string checkpointTypeIndicator,bool checkpointConstancy,bool checkpointCanBeSaved)
         {
             CheckpointNumber = checkpointNumber;
             CheckpointTime = checkpointTime;
@@ -202,6 +207,7 @@ namespace GameStdioManager.Models.Checkpoint
             CheckpointTypeIndicator = checkpointTypeIndicator;
 
             CheckpointIsConstant = checkpointConstancy;
+            CheckpointCanBeSaved = checkpointCanBeSaved;
 
             _checkFinishMethod = (sender, args) => false;
 

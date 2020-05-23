@@ -18,8 +18,10 @@ namespace GameStdioManager.Pages
             PlayerSqlController
                .UpdatePlayerInfoSql(PlayerSqlController.ReadPlayerInfoSql(PageBase.PagePlayer.PlayerNumber,false),
                                     PageBase.PagePlayer);
+            PageBase.PagePlayer.PlayerStudio.SaveSalesGameData();
             SimulatorTimer.SaveCheckpointListXml(PageBase.PagePlayer);
             PagePlayer.SaveStaffCurWorkDataListXml();
+
 
         }
     }

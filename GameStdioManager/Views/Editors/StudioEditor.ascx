@@ -15,10 +15,10 @@
             声誉：<asp:TextBox ID="StudioReputation" runat="server"></asp:TextBox>
         </div>
         <div class="col-lg-12">
-            <asp:Button ID="Confirm" runat="server" Text="确认" OnClick="Confirm_OnClick"/>
-            <asp:Button ID="ReadFromSQL" runat="server" Text="读取" OnClick="ReadFromSQL_OnClick"/>
-            <asp:Button ID="Update" runat="server" Text="更新数据" OnClick="Update_OnClick"/>
-            <asp:Button ID="Reset" runat="server" Text="重置数据" OnClick="Reset_OnClick"/>
+            <asp:Button ID="Confirm" runat="server" Text="确认" OnClick="Confirm_OnClick" CssClass="btn btn-success"/>
+            <asp:Button ID="ReadFromSQL" runat="server" Text="读取" OnClick="ReadFromSQL_OnClick" CssClass="btn btn-primary"/>
+            <asp:Button ID="Update" runat="server" Text="更新数据" OnClick="Update_OnClick" CssClass="btn btn-primary"/>
+            <asp:Button ID="Reset" runat="server" Text="重置数据" OnClick="Reset_OnClick" CssClass="btn btn-warning"/>
         </div>
     </div>
 </div>

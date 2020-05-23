@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WebGrease.Css.Extensions;
 
 namespace GameStdioManager.Models.Studio
 {
@@ -146,5 +147,11 @@ namespace GameStdioManager.Models.Studio
             (from g in StudioDevelopingGames.Union(StudioDevelopedGames)
              where g.GameNumber == value
              select g).First();
+
+        public void SaveSalesGameData()
+        {
+            (from g in StudioDevelopedGames
+             select g).ForEach(game => game.UpdateSql());
+        }
     }
 }

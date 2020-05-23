@@ -43,6 +43,7 @@ namespace GameStdioManager.Views.Game.GameSales
         private void UpdateLines()
         {
             (from developedGame in _developedGames
+             orderby developedGame.GameFinishDevelopTime descending 
              select developedGame).ForEach(developedGame =>
                                            {
                                                SalesViewLine dl = (SalesViewLine)LoadControl("SalesViewLine.ascx");

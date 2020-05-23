@@ -18,7 +18,7 @@ namespace GameStdioManager.Views.Staff
             ShowStaffInfo();
 
             L_StaffName.ForeColor = LineStaff.IsWorking ? Color.FromArgb(51, 204, 255) : Color.FromArgb(28, 28, 28);
-            LF_StaffCurfStrength.Text = "("+LineStaff.StaffCurStrength.ToString()+")";
+            LF_StaffCurStrength.Text = "("+LineStaff.StaffCurStrength.ToString()+")";
         }
 
         private void ShowStaffInfo()
@@ -34,6 +34,7 @@ namespace GameStdioManager.Views.Staff
                                  }
                                  catch
                                  {
+                                     throw;
                                      // textBox.Text = ((int)staff.GetPropertyValue(textBox.ID.Split('_')[1])).ToString();
                                  }
                              });
@@ -73,7 +74,7 @@ namespace GameStdioManager.Views.Staff
                     catch (Exception exception)
                     {
                         LineStaff.GetType().GetProperty(propertyName)?.SetValue(LineStaff, int.Parse(((TextBox)ct).Text));
-
+                        throw;
                     }
                 }
                 else

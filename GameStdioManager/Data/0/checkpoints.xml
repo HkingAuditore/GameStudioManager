@@ -1,2 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<CheckpointList />
+<CheckpointList>
+  <Checkpoint CheckpointNumber="888" CheckpointTime="2020-07-29T22:20:00" CheckpointConstancy="true" CheckpointCheckMethodIndicator="CheckSalesEnd" CheckpointTypeIndicator="Game" CheckpointTransferObject="888">
+    <CheckpointProcessIndicators>
+      <CheckpointProcessIndicator target="EndSales" />
+    </CheckpointProcessIndicators>
+    <CheckpointUpdateIndicators>
+      <CheckpointUpdateIndicator target="UpdateSales" />
+    </CheckpointUpdateIndicators>
+    <CheckpointTransferArgs>
+      <CheckpointArgs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <CheckTime>2020-07-29T22:20:00</CheckTime>
+        <CheckParm>0</CheckParm>
+        <UpdateParm>0</UpdateParm>
+        <UpdateSpeed>0</UpdateSpeed>
+        <ArtParm>0</ArtParm>
+        <FunParm>0</FunParm>
+        <MusicParm>0</MusicParm>
+      </CheckpointArgs>
+    </CheckpointTransferArgs>
+  </Checkpoint>
+  <Checkpoint CheckpointNumber="1" CheckpointTime="2020-08-17T02:00:00" CheckpointConstancy="true" CheckpointCheckMethodIndicator="CheckSalesEnd" CheckpointTypeIndicator="Game" CheckpointTransferObject="1">
+    <CheckpointProcessIndicators>
+      <CheckpointProcessIndicator target="EndSales" />
+    </CheckpointProcessIndicators>
+    <CheckpointUpdateIndicators>
+      <CheckpointUpdateIndicator target="UpdateSales" />
+    </CheckpointUpdateIndicators>
+    <CheckpointTransferArgs>
+      <CheckpointArgs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <CheckTime>2020-08-17T02:00:00</CheckTime>
+        <CheckParm>0</CheckParm>
+        <UpdateParm>0</UpdateParm>
+        <UpdateSpeed>0</UpdateSpeed>
+        <ArtParm>0</ArtParm>
+        <FunParm>0</FunParm>
+        <MusicParm>0</MusicParm>
+      </CheckpointArgs>
+    </CheckpointTransferArgs>
+  </Checkpoint>
+  <Checkpoint CheckpointNumber="5" CheckpointTime="2020-08-18T19:00:00" CheckpointConstancy="true" CheckpointCheckMethodIndicator="CheckSalesEnd" CheckpointTypeIndicator="Game" CheckpointTransferObject="5">
+    <CheckpointProcessIndicators>
+      <CheckpointProcessIndicator target="EndSales" />
+    </CheckpointProcessIndicators>
+    <CheckpointUpdateIndicators>
+      <CheckpointUpdateIndicator target="UpdateSales" />
+    </CheckpointUpdateIndicators>
+    <CheckpointTransferArgs>
+      <CheckpointArgs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <CheckTime>2020-08-18T19:00:00</CheckTime>
+        <CheckParm>0</CheckParm>
+        <UpdateParm>0</UpdateParm>
+        <UpdateSpeed>0</UpdateSpeed>
+        <ArtParm>0</ArtParm>
+        <FunParm>0</FunParm>
+        <MusicParm>0</MusicParm>
+      </CheckpointArgs>
+    </CheckpointTransferArgs>
+  </Checkpoint>
+</CheckpointList>

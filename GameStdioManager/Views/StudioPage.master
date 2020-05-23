@@ -1,0 +1,20 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Views/MainMaster.Master" AutoEventWireup="true" CodeBehind="StudioPage.master.cs" Inherits="GameStdioManager.Views.Staff.StudioPage" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContentPlaceHolder" runat="server">
+    <div class="row" runat="server" style="background: rgb(106, 148, 164);padding: 0.5%; box-shadow: 3px 3px 3px rgba(38, 44, 57, 0.5);">
+        <div class="col-lg-1">
+            <asp:Button ID="L_StudioEdit" runat="server" Text="信息修改" CssClass="title-link" OnClick="L_StudioEdit_OnClick"/>
+        </div>
+        <div class="col-lg-1">
+            <asp:Button ID="L_StudioAdvertisement" runat="server" Text="营销" CssClass="title-link" OnClick="L_StudioAdvertisement_OnClick"/>
+        </div>
+    </div>
+    <div class="row" runat="server">
+        <div class="col-lg-12">
+            <asp:ContentPlaceHolder ID="StudioContentPlaceHolder" runat="server">
+
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+</asp:Content>

@@ -7,7 +7,7 @@
 
     <div class="col-lg-1">
         <asp:Label ID="L_StaffName" runat="server" Text="名字"></asp:Label>
-        <asp:Label ID="LF_StaffCurfStrength" runat="server" Text="当前体力值" Visible="True"></asp:Label>
+        <asp:Label ID="LF_StaffCurStrength" runat="server" Text="当前体力值" Visible="True"></asp:Label>
 
     </div>
 

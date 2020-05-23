@@ -54,5 +54,10 @@ namespace GameStdioManager.Views
         {
             Server.Transfer("../Pages/StaffEmploy.aspx");
         }
+
+        protected void L_Studio_OnClick(object sender, EventArgs e)
+        {
+            Server.Transfer("../Pages/StudioEdit.aspx");
+        }
     }
 }

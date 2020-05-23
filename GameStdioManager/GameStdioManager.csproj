@@ -142,8 +142,10 @@
     <Compile Include="Models\Checkpoint\CheckpointXML.cs" />
     <Compile Include="Models\Game\Game.cs" />
     <Compile Include="Models\Game\GameDevelopment.cs" />
+    <Compile Include="Models\Game\GameSales.cs" />
     <Compile Include="Models\SimulatorBase.cs" />
     <Compile Include="Models\Staff\Staff.cs" />
+    <Compile Include="Models\Staff\StaffWorkingSystem.cs" />
     <Compile Include="Models\StaticBase.cs" />
     <Compile Include="Models\StudioBehavior.cs" />
     <Compile Include="Models\SimulatorTimer.cs" />
@@ -193,6 +195,13 @@
     </Compile>
     <Compile Include="Pages\StaffEmploy.aspx.designer.cs">
       <DependentUpon>StaffEmploy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StudioEdit.aspx.cs">
+      <DependentUpon>StudioEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\StudioEdit.aspx.designer.cs">
+      <DependentUpon>StudioEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -329,6 +338,13 @@
     <Compile Include="Views\Staff\StaffViewLine.ascx.designer.cs">
       <DependentUpon>StaffViewLine.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\StudioPage.master.cs">
+      <DependentUpon>StudioPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\StudioPage.master.designer.cs">
+      <DependentUpon>StudioPage.master</DependentUpon>
+    </Compile>
     <Compile Include="Views\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -347,6 +363,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Data\0\checkpoints.xml" />
+    <Content Include="Data\0\StaffCurWorkData.xml" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -357,6 +374,7 @@
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\StaffEdit.aspx" />
     <Content Include="Pages\StaffEmploy.aspx" />
+    <Content Include="Pages\StudioEdit.aspx" />
     <Content Include="Resource\UI\bg.png" />
     <Content Include="Resource\UI\Gamedev.gif" />
     <Content Include="Resource\UI\Game\Development\Add.png" />
@@ -426,6 +444,7 @@
     <Content Include="Views\MainMaster.Master" />
     <Content Include="Views\GamePage.master" />
     <Content Include="Views\StaffPage.master" />
+    <Content Include="Views\StudioPage.master" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

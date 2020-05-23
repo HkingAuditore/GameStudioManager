@@ -31,13 +31,13 @@ namespace GameStdioManager.Views.Staff {
         protected global::System.Web.UI.WebControls.Label L_StaffName;
         
         /// <summary>
-        /// LF_StaffCurfStrength 控件。
+        /// LF_StaffCurStrength 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LF_StaffCurfStrength;
+        protected global::System.Web.UI.WebControls.Label LF_StaffCurStrength;
         
         /// <summary>
         /// L_StaffSalary 控件。
