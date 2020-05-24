@@ -1,36 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Staffs>
-  <Staff StaffNumber="0" StaffIsWorking="true">
-    <StaffCurStrength>22</StaffCurStrength>
+  <Staff StaffNumber="0" StaffIsWorking="false">
+    <StaffCurStrength>10</StaffCurStrength>
   </Staff>
-  <Staff StaffNumber="1" StaffIsWorking="true">
-    <StaffCurStrength>22</StaffCurStrength>
+  <Staff StaffNumber="1" StaffIsWorking="false">
+    <StaffCurStrength>16</StaffCurStrength>
   </Staff>
-  <Staff StaffNumber="10" StaffIsWorking="true">
-    <StaffCurStrength>20</StaffCurStrength>
+  <Staff StaffNumber="10" StaffIsWorking="false">
+    <StaffCurStrength>14</StaffCurStrength>
   </Staff>
-  <Staff StaffNumber="2" StaffIsWorking="true">
-    <StaffCurStrength>22</StaffCurStrength>
+  <Staff StaffNumber="2" StaffIsWorking="false">
+    <StaffCurStrength>16</StaffCurStrength>
   </Staff>
-  <Staff StaffNumber="3" StaffIsWorking="true">
-    <StaffCurStrength>28</StaffCurStrength>
+  <Staff StaffNumber="3" StaffIsWorking="false">
+    <StaffCurStrength>0</StaffCurStrength>
   </Staff>
-  <Staff StaffNumber="4" StaffIsWorking="true">
-    <StaffCurStrength>28</StaffCurStrength>
+  <Staff StaffNumber="4" StaffIsWorking="false">
+    <StaffCurStrength>0</StaffCurStrength>
   </Staff>
-  <Staff StaffNumber="5" StaffIsWorking="true">
-    <StaffCurStrength>28</StaffCurStrength>
+  <Staff StaffNumber="5" StaffIsWorking="false">
+    <StaffCurStrength>0</StaffCurStrength>
   </Staff>
-  <Staff StaffNumber="6" StaffIsWorking="true">
-    <StaffCurStrength>22</StaffCurStrength>
+  <Staff StaffNumber="6" StaffIsWorking="false">
+    <StaffCurStrength>15</StaffCurStrength>
   </Staff>
-  <Staff StaffNumber="7" StaffIsWorking="true">
-    <StaffCurStrength>22</StaffCurStrength>
+  <Staff StaffNumber="7" StaffIsWorking="false">
+    <StaffCurStrength>15</StaffCurStrength>
   </Staff>
-  <Staff StaffNumber="8" StaffIsWorking="true">
-    <StaffCurStrength>22</StaffCurStrength>
+  <Staff StaffNumber="8" StaffIsWorking="false">
+    <StaffCurStrength>15</StaffCurStrength>
   </Staff>
-  <Staff StaffNumber="9" StaffIsWorking="true">
-    <StaffCurStrength>22</StaffCurStrength>
+  <Staff StaffNumber="9" StaffIsWorking="false">
+    <StaffCurStrength>5</StaffCurStrength>
   </Staff>
 </Staffs>

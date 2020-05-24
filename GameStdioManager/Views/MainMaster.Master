@@ -46,9 +46,14 @@
         <div class="offset-lg-5 col-lg-2">
             <asp:Button ID="B_SaveGame" runat="server" Text="存档" CssClass="btn btn-primary" OnClick="B_SaveGame_OnClick"/>
             <asp:Label ID="La_StudioName" runat="server" Text="工作室名称"></asp:Label>
+            <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
+            <asp:UpdatePanel ID="UpDate_StudioProperty" runat="server">
+                <ContentTemplate>
+                    <asp:Label ID="La_StudioProperty" runat="server" Text="工作室财产"></asp:Label>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
         <div class="col-lg-2">
-            <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
             <div>
                 <asp:UpdatePanel ID="UpdatePanel" runat="server">
                     <ContentTemplate>

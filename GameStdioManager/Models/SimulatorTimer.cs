@@ -224,7 +224,7 @@ namespace GameStdioManager.Models
                     _timeTable[i].InvokeCheckpointEvent();
                     if (!_timeTable[i].CheckpointIsConstant)
                         RemoveCheckpoint(_timeTable[i]);
-                    // SimulatorTimer.SaveCheckpointListXml(PageBase.PagePlayer);
+                    // 完成检查点后自动存盘
                     PageBase.SaveGame();
                     PlayerSqlController
                        .UpdatePlayerInfoSql(PlayerSqlController.ReadPlayerInfoSql(PageBase.PagePlayer.PlayerNumber,false),

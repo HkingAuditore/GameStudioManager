@@ -22,9 +22,9 @@ namespace GameStdioManager.Controllers
         protected static string ConvertStringToSql(string target) => " '" + target + "' ";
 
         /// <summary>
-        ///     给入任意一个SimulatorBase派生的实例插入到数据库
+        ///     给入任意一个实现IPropertyGetter的实例插入到数据库
         /// </summary>
-        /// <typeparam name="T">SimulatorBase派生的类</typeparam>
+        /// <typeparam name="T">实现IPropertyGetter的类</typeparam>
         /// <param name="simulatorObject">目标实例</param>
         public static void InsertInfoSql<T>(T simulatorObject)
             where T : IPropertyGetter

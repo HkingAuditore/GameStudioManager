@@ -38,6 +38,7 @@ namespace GameStdioManager.Views
 
             La_StudioName.Text = PageBase.PagePlayer.PlayerStudio.StudioName;
             La_Timer.Text = SimulatorTimer.GameTimeNow.DayOfWeek.ToString() + SimulatorTimer.GameTimeNow.ToString();
+            La_StudioProperty.Text = PageBase.PagePlayer.PlayerStudio.StudioProperty.ToString();
         }
 
         protected void B_SaveGame_OnClick(object sender, EventArgs e)

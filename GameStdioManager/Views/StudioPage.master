@@ -7,7 +7,7 @@
             <asp:Button ID="L_StudioEdit" runat="server" Text="信息修改" CssClass="title-link" OnClick="L_StudioEdit_OnClick"/>
         </div>
         <div class="col-lg-1">
-            <asp:Button ID="L_StudioAdvertisement" runat="server" Text="营销" CssClass="title-link" OnClick="L_StudioAdvertisement_OnClick"/>
+            <asp:Button ID="L_StudioAdvertisement" runat="server" Text="购买" CssClass="title-link" OnClick="L_StudioAdvertisement_OnClick"/>
         </div>
     </div>
     <div class="row" runat="server">
