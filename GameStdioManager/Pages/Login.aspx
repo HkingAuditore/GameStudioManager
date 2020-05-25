@@ -85,11 +85,11 @@
                                 </div>
                             </div>
                             <div class="row" style="margin-top: 3%; margin-left: -13%;">
-                                <div class="col-lg-3" style="font-size: 1.5em; text-align: right">
+                                <div class="col-lg-3" style="font-size: 1.5em; text-align: right" >
                                     密码
                                 </div>
                                 <div class="col-lg-6" style="font-size: 1.5em;">
-                                    <asp:TextBox ID="C_Password" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="C_Password" runat="server" TextMode="Password"></asp:TextBox>
                                 </div>
                             </div>
 

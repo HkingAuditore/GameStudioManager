@@ -161,9 +161,17 @@ namespace GameStdioManager.Views.Editors
 
         protected void Confirm_OnClick(object sender, EventArgs e)
         {
-            var staff = InsertStaff();
-            PageBase.PagePlayer.PlayerStudio.AddStaff(staff);
-            staff.GenerateWorkCheckpoints();
+            try
+            {
+                var staff = InsertStaff();
+                PageBase.PagePlayer.PlayerStudio.AddStaff(staff);
+                staff.GenerateWorkCheckpoints();
+
+            }
+            catch(Exception ex)
+            {
+                Response.Write("<script>alert('输入有误，请检查输入‘）</script>");
+            }
 
         }
 

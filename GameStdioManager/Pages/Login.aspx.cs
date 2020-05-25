@@ -25,6 +25,10 @@ namespace GameStdioManager.Pages
                 Session["PlayerNumber"] = lc.PlayerTarget.PlayerNumber;
                 Session["PlayerStudioNumber"] = lc.PlayerTarget.PlayerStudio.StudioNumber;
             }
+            else
+            {
+                Response.Write("<script>alert('密码错误！')</script>");
+            }
             Debug.WriteLine(PageBase.PagePlayer.PlayerStudio.StudioName);
             Server.Transfer("GameDevelopment.aspx");
         }
