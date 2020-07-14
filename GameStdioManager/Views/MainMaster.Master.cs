@@ -5,6 +5,8 @@ using GameStdioManager.Controllers.Player;
 using GameStdioManager.Models;
 using GameStdioManager.Models.Checkpoint;
 using GameStdioManager.Pages;
+using System.Web.Script.Services;
+using System.Web.Services;
 
 namespace GameStdioManager.Views
 {
@@ -60,5 +62,8 @@ namespace GameStdioManager.Views
         {
             Server.Transfer("../Pages/StudioEdit.aspx");
         }
+
+
+
     }
 }

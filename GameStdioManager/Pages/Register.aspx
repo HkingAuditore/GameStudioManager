@@ -1,10 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="GameStdioManager.Pages.Login" %>
-<%@ Register TagPrefix="a" Namespace="System.Web.Optimization" Assembly="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="GameStdioManager.Pages.Register" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="../Content/bootstrap.css" rel="stylesheet" />
@@ -15,17 +13,6 @@
     <link href="../Content/bootstrap.css" rel="stylesheet" />
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
 
-    <%-- <script type="text/javascript" src="../Scripts/jquery-3.3.1.intellisense.js"></script> --%>
-    <%-- <script type="text/javascript" src="../Scripts/jquery-3.3.1.js"></script> --%>
-    <%-- <script type="text/javascript" src="../Scripts/jquery-3.3.1.min.js"></script> --%>
-    <%-- <script type="text/javascript" src="../Scripts/jquery-3.3.1.slim.js"></script> --%>
-    <%-- <script type="text/javascript" src="../Scripts/jquery-3.3.1.slim.min.js"></script> --%>
-    <%-- <script type="text/javascript" src="../Scripts/jquery.validate-vsdoc.js"></script> --%>
-    <%-- <script type="text/javascript" src="../Scripts/jquery.validate.js"></script> --%>
-    <%-- <script type="text/javascript" src="../Scripts/jquery.validate.min.js"></script> --%>
-    <%-- <script type="text/javascript" src="../Scripts/jquery.validate.unobtrusive.js"></script> --%>
-    <%-- <script type="text/javascript" src="../Scripts/jquery.validate.unobtrusive.min.js"></script> --%>
-
     <script type="text/javascript" src="../Scripts/JQuery.js"></script>
     <script type="text/javascript" src="../Scripts/modernizr-2.8.3.js"></script>
     <script type="text/javascript" src="../Scripts/bootstrap.js"></script>
@@ -33,7 +20,7 @@
     <script type="text/javascript" src="../Scripts/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="../Scripts/bootstrap.bundle.js"></script>
 
-    <title>登录</title>
+    <title>注册</title>
     <style type="text/css">
         .auto-style1 {
             width: 1920px;
@@ -75,7 +62,8 @@
 <%--                         $("#PropAlert").modal('show'); --%>
 <%--                     }, --%>
 <%--                     error: function() { --%>
-<%--                         alert('ERROR!'); --%>
+<%--                          --%>
+<%--                         'ERROR!'); --%>
 <%--                     } --%>
 <%--                 }); --%>
 <%-- --%>
@@ -105,13 +93,13 @@
                 <div class="triangle-behind" style="position: absolute; padding: 200%; z-index: 1; margin-left: 230%; margin-top: -50%;">
                 </div>
 
-                <div class="rg-panel" style="position: absolute; width: 140%; height: 28em; z-index: 4; margin-left: 230%; margin-top: 40%;">
+                <div class="rg-panel" style="position: absolute; width: 150%; height: 28em; z-index: 4; margin-left: 230%; margin-top: 40%;">
                     <form id="form1" runat="server">
 
                         <div class="container-fluid" style="margin-top: 12%; margin-left: 9%">
                             <div class="row">
                                 <div class="col-lg-4" style="font-size: 3em">
-                                    登录
+                                    注册
                                 </div>
                             </div>
                             <div class="row" style="margin-top: 6%; margin-left: -13%;">
@@ -120,6 +108,14 @@
                                 </div>
                                 <div class="col-lg-6" style="font-size: 1.5em;">
                                     <asp:TextBox ID="C_PlayerNumber" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 6%; margin-left: -13%;">
+                                <div class="col-lg-3" style="font-size: 1.5em; text-align: right">
+                                    公司名称
+                                </div>
+                                <div class="col-lg-6" style="font-size: 1.5em;">
+                                    <asp:TextBox ID="C_CompanyName" runat="server"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="row" style="margin-top: 3%; margin-left: -13%;">
@@ -136,7 +132,7 @@
                                     <asp:Button ID="Confirm" runat="server"  Text="确认" CssClass="btn btn-primary btn-lg" OnClick="Confirm_OnClick" />
                                 </div>
                                 <div class="col-lg-4" style="font-size: 1.8em;">
-                                    <asp:Button ID="Register" runat="server" Text="转到注册" CssClass="btn btn-success btn-lg" OnClick="Register_OnClick" />
+                                    <asp:Button ID="Login" runat="server" Text="转到登录" CssClass="btn btn-success btn-lg" OnClick="Login_OnClick"  />
                                 </div>
                             </div>
                         </div>
@@ -169,5 +165,4 @@
     </div>
 </div>
 </body>
-
 </html>

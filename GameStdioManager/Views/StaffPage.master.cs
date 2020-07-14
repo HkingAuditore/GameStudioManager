@@ -23,5 +23,10 @@ namespace GameStdioManager.Views
         {
             Server.Transfer("../Pages/StaffEdit.aspx");
         }
+
+        protected void L_StaffTalk_OnClick(object sender, EventArgs e)
+        {
+            Server.Transfer("../Pages/StaffTalk.aspx");
+        }
     }
 }

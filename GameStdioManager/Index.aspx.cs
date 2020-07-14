@@ -33,7 +33,7 @@ namespace GameStdioManager
         private void Show()
         {
             var staff = StaffSQLController.ReadStaffInfoSql("1");
-            Response.Write("<script>alert('" + staff.ToString() + "')</script>");
+            // Response.Write("<script>alert('" + staff.ToString() + "')</script>");
         }
     }
 }

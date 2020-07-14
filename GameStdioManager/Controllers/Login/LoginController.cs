@@ -54,5 +54,29 @@ namespace GameStdioManager.Controllers.Login
             return PlayerTarget;
 
         }
+
+        public static void RegisterPlayer(Models.Player.Player player,string password)
+        {
+            using (var sqlConnection = new SqlConnection(ConString))
+            {
+                sqlConnection.Open();
+                var sqlCommand = new SqlCommand("insert_player", sqlConnection)
+                                 {
+                                     CommandType = CommandType.StoredProcedure
+                                 };
+                sqlCommand.Parameters.Add(new SqlParameter("@studio", SqlDbType.NVarChar, 256));
+                sqlCommand.Parameters.Add(new SqlParameter("@password", SqlDbType.NVarChar, 256));
+                sqlCommand.Parameters.Add(new SqlParameter("@number", SqlDbType.NVarChar, 256));
+
+                sqlCommand.Parameters["@studio"].Value = player.PlayerStudio.StudioNumber;
+                sqlCommand.Parameters["@password"].Value = password;
+                sqlCommand.Parameters["@number"].Value = player.PlayerNumber;
+
+
+                sqlCommand.ExecuteNonQuery();
+
+            }
+
+        }
     }
 }

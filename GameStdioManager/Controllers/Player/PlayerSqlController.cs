@@ -31,7 +31,7 @@ namespace GameStdioManager.Controllers.Player
                     result.Read();
                     player =
                         new Models.Player.Player(StudioSQLController.ReadStudioInfoSql(result["PlayerStudioNumber"]
-                                                                                          .ToString(), isNew));
+                                                                                          .ToString(), isNew), playerNumber);
                     player.PlayerStudioNumber = result["PlayerStudioNumber"].ToString();
                     player.PlayerNumber = result["PlayerNumber"].ToString();
                     player.PlayerStartTime    = DateTime.Parse(result["PlayerStartTime"].ToString());

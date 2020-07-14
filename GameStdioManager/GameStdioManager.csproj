@@ -145,6 +145,7 @@
     <Compile Include="Models\Game\GameSales.cs" />
     <Compile Include="Models\SimulatorBase.cs" />
     <Compile Include="Models\Staff\Staff.cs" />
+    <Compile Include="Models\Staff\StaffTalk.cs" />
     <Compile Include="Models\Staff\StaffWorkingSystem.cs" />
     <Compile Include="Models\StaticBase.cs" />
     <Compile Include="Models\StudioBehavior.cs" />
@@ -182,6 +183,13 @@
     <Compile Include="Pages\PageBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Pages\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\StaffEdit.aspx.cs">
       <DependentUpon>StaffEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -195,6 +203,13 @@
     </Compile>
     <Compile Include="Pages\StaffEmploy.aspx.designer.cs">
       <DependentUpon>StaffEmploy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StaffTalk.aspx.cs">
+      <DependentUpon>StaffTalk.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\StaffTalk.aspx.designer.cs">
+      <DependentUpon>StaffTalk.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\StudioEdit.aspx.cs">
       <DependentUpon>StudioEdit.aspx</DependentUpon>
@@ -372,8 +387,10 @@
     <Content Include="Pages\GameDevelopment.aspx" />
     <Content Include="Pages\GameSales.aspx" />
     <Content Include="Pages\Login.aspx" />
+    <Content Include="Pages\Register.aspx" />
     <Content Include="Pages\StaffEdit.aspx" />
     <Content Include="Pages\StaffEmploy.aspx" />
+    <Content Include="Pages\StaffTalk.aspx" />
     <Content Include="Pages\StudioEdit.aspx" />
     <Content Include="Resource\UI\bg.png" />
     <Content Include="Resource\UI\Gamedev.gif" />
@@ -405,6 +422,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\JQuery.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

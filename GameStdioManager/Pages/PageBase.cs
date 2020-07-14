@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Web.UI;
 using GameStdioManager.Controllers.Player;
 using GameStdioManager.Models;
 using GameStdioManager.Models.Player;
@@ -24,5 +25,6 @@ namespace GameStdioManager.Pages
 
 
         }
+
     }
 }

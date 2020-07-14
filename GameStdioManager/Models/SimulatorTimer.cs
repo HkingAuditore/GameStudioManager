@@ -189,14 +189,18 @@ namespace GameStdioManager.Models
         {
             // var path = HttpContext.Current.Server.MapPath("~/Data/CheckpointList/checkpoints.xml");
             var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data/"+player.PlayerNumber+"/checkpoints.xml");
-            var xd   = XDocument.Load(path);
-
-            foreach (var element in (xd.Element("CheckpointList")?.Elements("Checkpoint") ??
-                                     throw new InvalidOperationException())
-               .Select(xe => xe))
+            if (Directory.Exists(path))
             {
-                var tempCp = Checkpoint.Checkpoint.ReadCheckpointXml(element, player);
-                if (!CheckpointListContains(tempCp)) AddCheckpoint(tempCp);
+                var xd = XDocument.Load(path);
+
+                foreach (var element in (xd.Element("CheckpointList")?.Elements("Checkpoint") ??
+                                         throw new InvalidOperationException())
+                   .Select(xe => xe))
+                {
+                    var tempCp = Checkpoint.Checkpoint.ReadCheckpointXml(element, player);
+                    if (!CheckpointListContains(tempCp)) AddCheckpoint(tempCp);
+                }
+
             }
         }
 

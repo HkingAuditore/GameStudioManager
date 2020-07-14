@@ -19,7 +19,11 @@ namespace GameStdioManager.Models.Player
 
         public DateTime PlayerNowTime { get; set; }
 
-        public Player(Studio.Studio studio) => PlayerStudio = studio;
+        public Player(Studio.Studio studio,string number)
+        {
+            PlayerStudio = studio;
+            PlayerNumber = number;
+        }
 
         /// <summary>
         /// 保存员工上班信息到XML
@@ -44,15 +48,19 @@ namespace GameStdioManager.Models.Player
         public void ReadStaffCurWorkDataListXml()
         {
             var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data/" + this.PlayerNumber + "/StaffCurWorkData.xml");
-            var xd = XDocument.Load(path);
-
-            foreach (var element in (xd.Element("Staffs")?.Elements("Staff") ??
-                                     throw new InvalidOperationException())
-               .Select(xe => xe))
+            if (Directory.Exists(path))
             {
-                var staff = this.PlayerStudio.FindStaff(element.Attribute("StaffNumber")?.Value);
-                staff.StaffCurStrength = int.Parse(element.Element("StaffCurStrength")?.Value ?? throw new InvalidOperationException());
-                staff.IsWorking = bool.Parse(element.Attribute("StaffIsWorking")?.Value ?? throw new InvalidOperationException());
+                var xd = XDocument.Load(path);
+
+                foreach (var element in (xd.Element("Staffs")?.Elements("Staff") ??
+                                         throw new InvalidOperationException())
+                   .Select(xe => xe))
+                {
+                    var staff = this.PlayerStudio.FindStaff(element.Attribute("StaffNumber")?.Value);
+                    staff.StaffCurStrength = int.Parse(element.Element("StaffCurStrength")?.Value ?? throw new InvalidOperationException());
+                    staff.IsWorking = bool.Parse(element.Attribute("StaffIsWorking")?.Value ?? throw new InvalidOperationException());
+                }
+
             }
 
         }

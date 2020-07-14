@@ -9,6 +9,9 @@
         <div class="col-lg-1">
             <asp:Button ID="L_StaffEdit" runat="server" Text="调整" CssClass="title-link" OnClick="L_StaffEdit_OnClick"/>
         </div>
+        <div class="col-lg-1">
+            <asp:Button ID="L_StaffTalk" runat="server" Text="谈话" CssClass="title-link" OnClick="L_StaffTalk_OnClick"/>
+        </div>
     </div>
     <div class="row" runat="server">
         <div class="col-lg-12">
