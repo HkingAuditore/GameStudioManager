@@ -9,6 +9,7 @@ using System.Xml.Serialization;
 using GameStdioManager.Controllers.Game;
 using GameStdioManager.Controllers.Staff;
 using GameStdioManager.Controllers.Studio;
+using GameStdioManager.Pages;
 using WebGrease.Css.Extensions;
 
 namespace GameStdioManager.Models.Checkpoint
@@ -128,7 +129,7 @@ namespace GameStdioManager.Models.Checkpoint
                     break;
                 case "Staff":
                     obj =
-                        player.PlayerStudio.FindStaff(xe.Attribute("CheckpointTransferObject")?.Value);
+                        PageBase.FindStaff(xe.Attribute("CheckpointTransferObject")?.Value);
                     break;
 
                 case "Studio":

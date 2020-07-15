@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using GameStdioManager.Controllers.Player;
+using GameStdioManager.Controllers.Staff;
 using GameStdioManager.Controllers.Studio;
 using GameStdioManager.Models.Game;
 using GameStdioManager.Models.Player;
 using GameStdioManager.Models.Studio;
+using GameStdioManager.Pages;
 
 namespace GameStdioManager.Controllers.Login
 {
@@ -15,7 +18,10 @@ namespace GameStdioManager.Controllers.Login
         private string _password;
 
         public Models.Player.Player PlayerTarget;
+        public List<Models.Staff.Staff> StaffList;
         public bool IsCorrespond;
+
+
         public LoginController(string playerNumber,string password)
         {
             _playerNumber = playerNumber;
@@ -43,6 +49,10 @@ namespace GameStdioManager.Controllers.Login
                     if (result["PlayerPassword"].ToString() == _password)
                     {
                         IsCorrespond = true;
+                        StaffList = StaffSQLController.GenerateStaffList();
+
+                        //TODO 这里要优化
+                        PageBase.StaffList = StaffList;
 
                         PlayerTarget = PlayerSqlController.ReadPlayerInfoSql(_playerNumber,true);
                     }

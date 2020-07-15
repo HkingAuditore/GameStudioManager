@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using WebGrease.Css.Extensions;
 
@@ -52,7 +53,6 @@ namespace GameStdioManager.Models.Studio
 
         #endregion 接口实现
 
-
         #endregion 类基本操作
 
         #region 员工操作
@@ -66,18 +66,13 @@ namespace GameStdioManager.Models.Studio
         {
             StudioStaffs.Add(staff);
             staff.StaffStudioObject = this;
-
         }
 
         public void RemoveStaff(Staff.Staff staff)
         {
             StudioStaffs.Remove(staff);
             staff.StaffStudioObject = null;
-
-
         }
-
-
 
 
         /// <summary>
@@ -85,14 +80,24 @@ namespace GameStdioManager.Models.Studio
         /// </summary>
         /// <param name="staffNumber"></param>
         /// <returns></returns>
-        public Staff.Staff FindStaff(string staffNumber) => (from s in StudioStaffs
-                                                             where s.StaffNumber == staffNumber
-                                                             select s).First();
+        public Staff.Staff FindStaff(string staffNumber)
+        {
+            try
+            {
+               return (from s in StudioStaffs
+                              where s.StaffNumber == staffNumber
+                              select s)?.First();
+            }
+            catch (System.InvalidOperationException e)
+            {
+                return null;
+            }
+        }
 
         public List<Staff.Staff> FindWorkingStaffs() =>
-           (from staff in StudioStaffs
-                                 where staff.IsWorking
-                                 select staff).ToList();
+            (from staff in StudioStaffs
+             where staff.IsWorking
+             select staff).ToList();
 
         #endregion
 
@@ -104,7 +109,7 @@ namespace GameStdioManager.Models.Studio
         /// <param name="game"></param>
         public void AddDevelopingGame(Game.Game game)
         {
-            if(!StudioDevelopingGames.Contains(game))StudioDevelopingGames.Add(game);
+            if (!StudioDevelopingGames.Contains(game)) StudioDevelopingGames.Add(game);
         }
 
         /// <summary>
@@ -113,7 +118,7 @@ namespace GameStdioManager.Models.Studio
         /// <param name="game"></param>
         public void RemoveDevelopingGame(Game.Game game)
         {
-            if(StudioDevelopingGames.Contains(game))StudioDevelopingGames.Remove(game);
+            if (StudioDevelopingGames.Contains(game)) StudioDevelopingGames.Remove(game);
         }
 
         /// <summary>
@@ -133,8 +138,6 @@ namespace GameStdioManager.Models.Studio
         {
             if (StudioDevelopedGames.Contains(game)) StudioDevelopedGames.Remove(game);
         }
-
-
 
         #endregion
 

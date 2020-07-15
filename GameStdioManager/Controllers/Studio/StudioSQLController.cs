@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using GameStdioManager.Controllers.Game;
 using GameStdioManager.Controllers.Staff;
+using GameStdioManager.Pages;
 
 namespace GameStdioManager.Controllers.Studio
 {
@@ -80,7 +81,7 @@ namespace GameStdioManager.Controllers.Studio
 
                 while (result.Read())
                 {
-                    studio.AddStaff(StaffSQLController.ReadStaffInfoSql(result["StaffNumber"].ToString()));
+                    studio.AddStaff(PageBase.FindStaff(result["StaffNumber"].ToString()));
                 }
 
                 result.Close();

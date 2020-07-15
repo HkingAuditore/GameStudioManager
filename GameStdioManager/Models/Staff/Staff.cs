@@ -158,12 +158,30 @@ namespace GameStdioManager.Models.Staff
         /// <summary>
         ///     员工薪水
         /// </summary>
-        public int StaffSalary { get; set; }
+        private int _staffSalary;
+        public int StaffSalary
+        {
+            get => this._staffSalary;
+            set => this._staffSalary = value >= 0 ? value : 0;
+        }
 
         /// <summary>
         ///     员工职称
         /// </summary>
-        public Rank StaffRank { get; set; }
+        private Rank _staffRank;
+        public Rank StaffRank
+        {
+            get => this._staffRank;
+            set
+            {
+                if (value >= 0 && value <= (Rank) 6)
+                    _staffRank = value;
+                else if (value < 0)
+                    _staffRank = 0;
+                else
+                    _staffRank = (Rank) 6;
+            }
+        }
 
         /// <summary>
         ///     员工职业
@@ -185,7 +203,21 @@ namespace GameStdioManager.Models.Staff
         /// <summary>
         ///     忠诚
         /// </summary>
-        public int StaffLoyalty { get; set; }
+        private int _staffLoyalty;
+
+        public int StaffLoyalty
+        {
+            get => this._staffLoyalty;
+            set
+            {
+                if (value <= 100 && value >= 0)
+                    _staffLoyalty = value;
+                else if (value > 100)
+                    _staffLoyalty = 100;
+                else
+                    _staffLoyalty = 0;
+            }
+        }
 
         #endregion 能力点数
 

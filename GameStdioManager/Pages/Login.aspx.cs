@@ -23,6 +23,7 @@ namespace GameStdioManager.Pages
         {
             var lc =new LoginController(C_PlayerNumber.Text, C_Password.Text);
             PageBase.PagePlayer = lc.PlayerTarget;
+            PageBase.StaffList = lc.StaffList;
             if (lc.IsCorrespond)
             {
                 Session["PlayerNumber"] = lc.PlayerTarget.PlayerNumber;

@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
 using GameStdioManager.Models.Staff;
+using GameStdioManager.Pages;
 
 namespace GameStdioManager.Controllers.Staff
 {
@@ -226,7 +227,7 @@ namespace GameStdioManager.Controllers.Staff
                 {
                     while (result.Read())
                     {
-                        developerList.Add(studio.FindStaff(result["DeveloperStaffNumber"].ToString()));
+                        developerList.Add(PageBase.FindStaff(result["DeveloperStaffNumber"].ToString()));
                     }
                 }
 
@@ -235,6 +236,30 @@ namespace GameStdioManager.Controllers.Staff
 
             return developerList;
 
+        }
+
+        public static List<Models.Staff.Staff> GenerateStaffList()
+        {
+            List<Models.Staff.Staff> staffList = new List<Models.Staff.Staff>();
+            using (var sqlConnection = new SqlConnection(ConString))
+            {
+                var sqlCommand = new SqlCommand("SELECT StaffNumber FROM StaffInfo", sqlConnection);
+
+                sqlConnection.Open();
+                var result = sqlCommand.ExecuteReader();
+
+                if (result.HasRows)
+                {
+                    while (result.Read())
+                    {
+                       staffList.Add(ReadStaffInfoSql(result["StaffNumber"].ToString()));
+                    }
+                }
+
+                result.Close();
+            }
+
+            return staffList;
         }
     }
 }

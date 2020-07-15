@@ -1,8 +1,11 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Web.UI;
 using GameStdioManager.Controllers.Player;
 using GameStdioManager.Models;
 using GameStdioManager.Models.Player;
+using GameStdioManager.Models.Staff;
 using GameStdioManager.Models.Studio;
 
 namespace GameStdioManager.Pages
@@ -11,6 +14,7 @@ namespace GameStdioManager.Pages
     {
         public static Player PagePlayer = null;
         public static StudioBehavior PageGame = null;
+        public static List<Staff> StaffList = null;
 
         public static void SaveGame()
         {
@@ -26,5 +30,9 @@ namespace GameStdioManager.Pages
 
         }
 
+        public static Staff FindStaff(string staffNumber) =>
+            (from s in StaffList
+             where s.StaffNumber == staffNumber
+             select s)?.First();
     }
 }
