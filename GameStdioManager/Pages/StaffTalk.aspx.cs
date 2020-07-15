@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using GameStdioManager.Controllers.Staff;
 using GameStdioManager.Models.Staff;
 
 namespace GameStdioManager.Pages
@@ -23,6 +25,7 @@ namespace GameStdioManager.Pages
                 B_Promote.Enabled = false;
                 B_Reward.Enabled = false;
             }
+            // ScriptManager.RegisterStartupScript(Page, typeof(string), "GetCheckTime", "GetCheckTime(1,true);", true);
         }
 
         protected void D_Staff_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -44,9 +47,8 @@ namespace GameStdioManager.Pages
         private void Refresh()
         {
             L_StaffName.Text         = _talkStaff.StaffName.ToString();
-            // L_StaffHP.Text           = "体力值：" + _talkStaff.StaffStrength.ToString();
-            // L_StaffIntelligence.Text = "智力值：" + _talkStaff.StaffIntelligence.ToString();
-            // L_StaffTalkLoyalty.Text  = "忠诚度：" + _talkStaff.StaffLoyalty.ToString();
+            ScriptManager.RegisterStartupScript(Page, typeof(string), "Draw", "Draw();", true);
+
 
             if (_talkStaff.StaffStudio != PageBase.PagePlayer.PlayerStudioNumber)
             {
@@ -100,5 +102,9 @@ namespace GameStdioManager.Pages
         protected int GetStaffIntelligence() => _talkStaff?.StaffIntelligence ?? 0;
         protected int GetStaffLoyalty() => _talkStaff?.StaffLoyalty ?? 0;
         protected string GetStaffName() => _talkStaff?.StaffName ?? "";
+
+
+        [WebMethod]
+        public static int GetStaffCheck(int hour, bool isWork) => _talkStaff == null ? 0 : StaffSQLController.GetStaffCheckTimes(_talkStaff, hour, isWork);
     }
 }

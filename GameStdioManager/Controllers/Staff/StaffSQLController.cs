@@ -285,23 +285,68 @@ namespace GameStdioManager.Controllers.Staff
         /// <param name="isWork">打卡状态，true为上班，false为下班</param>
         public static void CheckSql(Models.Staff.Staff staff, bool isWork)
         {
+            try
+            {
+                using (var sqlConnection = new SqlConnection(ConString))
+                {
+                    sqlConnection.Open();
+                    var sqlCommand = new SqlCommand("insert_checkLog", sqlConnection)
+                                     {
+                                         CommandType = CommandType.StoredProcedure
+                                     };
+                    sqlCommand.Parameters.Add(new SqlParameter("@sender", SqlDbType.VarChar,  255));
+                    sqlCommand.Parameters.Add(new SqlParameter("@state",  SqlDbType.TinyInt,  255));
+                    sqlCommand.Parameters.Add(new SqlParameter("@date",   SqlDbType.DateTime, 255));
+
+                    sqlCommand.Parameters["@sender"].Value = staff.StaffNumber.ToString();
+                    sqlCommand.Parameters["@state"].Value  = isWork ? 1 : 0;
+                    sqlCommand.Parameters["@date"].Value   = SimulatorTimer.GameTimeNow.ToString();
+
+
+                    sqlCommand.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="staff">查询的员工</param>
+        /// <param name="hour">查询打卡区间</param>
+        /// <param name="isWork">查询打卡状态，T为上班，F为下班</param>
+        /// <returns></returns>
+        public static int GetStaffCheckTimes(Models.Staff.Staff staff, int hour, bool isWork)
+        {
             using (var sqlConnection = new SqlConnection(ConString))
             {
-                sqlConnection.Open();
-                var sqlCommand = new SqlCommand("insert_checkLog", sqlConnection)
+                var sqlCommand = new SqlCommand("select_checkLog", sqlConnection)
                                  {
                                      CommandType = CommandType.StoredProcedure
                                  };
-                sqlCommand.Parameters.Add(new SqlParameter("@sender", SqlDbType.VarChar,  255));
-                sqlCommand.Parameters.Add(new SqlParameter("@state",  SqlDbType.TinyInt,  255));
-                sqlCommand.Parameters.Add(new SqlParameter("@date",   SqlDbType.DateTime, 255));
+
+                sqlCommand.Parameters.Add(new SqlParameter("@sender", SqlDbType.VarChar, 255));
+                sqlCommand.Parameters.Add(new SqlParameter("@state",  SqlDbType.TinyInt, 255));
+                sqlCommand.Parameters.Add(new SqlParameter("@hour",   SqlDbType.Int,     255));
 
                 sqlCommand.Parameters["@sender"].Value = staff.StaffNumber.ToString();
                 sqlCommand.Parameters["@state"].Value  = isWork ? 1 : 0;
-                sqlCommand.Parameters["@date"].Value   = SimulatorTimer.GameTimeNow.ToString();
+                sqlCommand.Parameters["@hour"].Value   = hour;
 
+                sqlConnection.Open();
+                var result = sqlCommand.ExecuteReader();
 
-                sqlCommand.ExecuteNonQuery();
+                if (result.HasRows)
+                {
+                    result.Read();
+                    return Int32.Parse(result["TIMES"].ToString());
+                }
+
+                result.Close();
+                return -1;
             }
         }
     }
