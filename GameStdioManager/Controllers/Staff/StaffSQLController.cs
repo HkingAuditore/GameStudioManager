@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
+using GameStdioManager.Models;
 using GameStdioManager.Models.Staff;
 using GameStdioManager.Pages;
 
@@ -261,5 +262,37 @@ namespace GameStdioManager.Controllers.Staff
 
             return staffList;
         }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="staff">打卡员工</param>
+        /// <param name="isWork">打卡状态，true为上班，false为下班</param>
+        public static void CheckSql(Models.Staff.Staff staff, bool isWork)
+        {
+            using (var sqlConnection = new SqlConnection(ConString))
+            {
+                sqlConnection.Open();
+                var sqlCommand = new SqlCommand("insert_checkLog", sqlConnection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                sqlCommand.Parameters.Add(new SqlParameter("@sender", SqlDbType.VarChar, 255));
+                sqlCommand.Parameters.Add(new SqlParameter("@state", SqlDbType.TinyInt, 255));
+                sqlCommand.Parameters.Add(new SqlParameter("@date", SqlDbType.DateTime, 255));
+
+                sqlCommand.Parameters["@sender"].Value = staff.StaffNumber.ToString();
+                sqlCommand.Parameters["@state"].Value = isWork ? 1 : 0;
+                sqlCommand.Parameters["@date"].Value = SimulatorTimer.GameTimeNow.ToString();
+
+
+
+                sqlCommand.ExecuteNonQuery();
+
+            }
+
+        }
+
     }
 }

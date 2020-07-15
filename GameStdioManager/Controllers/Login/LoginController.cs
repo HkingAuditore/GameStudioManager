@@ -74,9 +74,9 @@ namespace GameStdioManager.Controllers.Login
                                  {
                                      CommandType = CommandType.StoredProcedure
                                  };
-                sqlCommand.Parameters.Add(new SqlParameter("@studio", SqlDbType.NVarChar, 256));
-                sqlCommand.Parameters.Add(new SqlParameter("@password", SqlDbType.NVarChar, 256));
-                sqlCommand.Parameters.Add(new SqlParameter("@number", SqlDbType.NVarChar, 256));
+                sqlCommand.Parameters.Add(new SqlParameter("@studio", SqlDbType.VarChar, 255));
+                sqlCommand.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar, 255));
+                sqlCommand.Parameters.Add(new SqlParameter("@number", SqlDbType.VarChar, 255));
 
                 sqlCommand.Parameters["@studio"].Value = player.PlayerStudio.StudioNumber;
                 sqlCommand.Parameters["@password"].Value = password;

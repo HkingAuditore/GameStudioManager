@@ -208,5 +208,6 @@ namespace GameStdioManager.Controllers.Studio
                 sqlCommand.ExecuteNonQuery();
             }
         }
+
     }
 }

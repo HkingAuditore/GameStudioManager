@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Xml.Linq;
+using GameStdioManager.Controllers.Staff;
 using GameStdioManager.Models.Checkpoint;
+using Microsoft.Ajax.Utilities;
 
 namespace GameStdioManager.Models.Staff
 {
@@ -80,6 +82,7 @@ namespace GameStdioManager.Models.Staff
         public static void StartWork(SimulatorBase sender, CheckpointArgs args)
         {
             ((Staff) sender).IsWorking = true;
+            StaffSQLController.CheckSql((Staff)sender,true);
             Debug.WriteLine(((Staff) sender).StaffName + "上班！");
             SimulatorTimer.SpeedSetNormal();
         }
@@ -144,6 +147,8 @@ namespace GameStdioManager.Models.Staff
         {
             var staff = (Staff) sender;
             staff.IsWorking = false;
+            StaffSQLController.CheckSql(staff, false);
+
             Debug.WriteLine(((Staff) sender).StaffName + "下班！");
             if (staff.StaffStudioObject.FindWorkingStaffs().Count == 0) SimulatorTimer.SpeedSetQuick();
         }

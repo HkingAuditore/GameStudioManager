@@ -45,10 +45,14 @@ namespace GameStdioManager.Views.Game.DevelopedInfo
         {
             foreach (var developer in LineGame.Developers)
             {
-                Developer dv = (Developer)LoadControl("Developer.ascx");
-                dv.ThisDeveloper = developer;
-                dv.ParentViewLine = this;
-                C_Developers.Controls.Add(dv);
+                if (developer.StaffStudio == PageBase.PagePlayer.PlayerStudioNumber)
+                {
+                    Developer dv = (Developer)LoadControl("Developer.ascx");
+                    dv.ThisDeveloper = developer;
+                    dv.ParentViewLine = this;
+                    C_Developers.Controls.Add(dv);
+
+                }
             }
 
 
