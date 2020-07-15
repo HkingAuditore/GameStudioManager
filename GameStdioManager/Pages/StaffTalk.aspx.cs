@@ -44,9 +44,9 @@ namespace GameStdioManager.Pages
         private void Refresh()
         {
             L_StaffName.Text         = _talkStaff.StaffName.ToString();
-            L_StaffHP.Text           = "体力值：" + _talkStaff.StaffStrength.ToString();
-            L_StaffIntelligence.Text = "智力值：" + _talkStaff.StaffIntelligence.ToString();
-            L_StaffTalkLoyalty.Text  = "忠诚度：" + _talkStaff.StaffLoyalty.ToString();
+            // L_StaffHP.Text           = "体力值：" + _talkStaff.StaffStrength.ToString();
+            // L_StaffIntelligence.Text = "智力值：" + _talkStaff.StaffIntelligence.ToString();
+            // L_StaffTalkLoyalty.Text  = "忠诚度：" + _talkStaff.StaffLoyalty.ToString();
 
             if (_talkStaff.StaffStudio != PageBase.PagePlayer.PlayerStudioNumber)
             {
@@ -95,5 +95,10 @@ namespace GameStdioManager.Pages
             L_StaffTalkContent.Text = _talkStaff.Talk(TalkChoice.Fire);
             Refresh();
         }
+
+        protected int GetStaffHP() => _talkStaff?.StaffStrength ?? 0;
+        protected int GetStaffIntelligence() => _talkStaff?.StaffIntelligence ?? 0;
+        protected int GetStaffLoyalty() => _talkStaff?.StaffLoyalty ?? 0;
+        protected string GetStaffName() => _talkStaff?.StaffName ?? "";
     }
 }

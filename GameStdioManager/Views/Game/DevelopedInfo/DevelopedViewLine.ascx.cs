@@ -61,6 +61,7 @@ namespace GameStdioManager.Views.Game.DevelopedInfo
         protected void Page_Load(object sender, EventArgs e)
         {
             UpdateView();
+            ScriptManager.RegisterStartupScript(Page, typeof(string), "Draw", "DrawChar();", true);
         }
 
     }

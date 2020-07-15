@@ -64,9 +64,21 @@ namespace GameStdioManager.Models
         /// <summary>
         ///     重载时间
         /// </summary>
+        
         private void ReloadTimer()
         {
-            GameTimeNow = PageBase.PagePlayer.PlayerNowTime;
+            try
+            {
+                GameTimeNow = PageBase.PagePlayer.PlayerNowTime;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Console.WriteLine(PageBase.PagePlayer);
+                Console.WriteLine(PageBase.PagePlayer.PlayerNowTime);
+                throw;
+            }
         }
 
         /// <summary>
@@ -171,7 +183,7 @@ namespace GameStdioManager.Models
         {
             var xd = new XDocument(new XElement("CheckpointList"));
             (from checkpoint in _timeTable
-             where checkpoint.CheckpointCanBeSaved == true
+             where checkpoint.CheckpointCanBeSaved
              select checkpoint).ForEach(cp => xd.Element("CheckpointList")?.Add(cp.ConvertCheckpointToXElement()));
             Debug.WriteLine(xd);
 
@@ -188,8 +200,8 @@ namespace GameStdioManager.Models
         public static void ReadCheckpointListXml(Player.Player player)
         {
             // var path = HttpContext.Current.Server.MapPath("~/Data/CheckpointList/checkpoints.xml");
-            var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data/"+player.PlayerNumber+"/checkpoints.xml");
-            if (Directory.Exists(path))
+            var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data\\"+player.PlayerNumber+"\\checkpoints.xml");
+            if (File.Exists(path))
             {
                 var xd = XDocument.Load(path);
 
@@ -229,7 +241,7 @@ namespace GameStdioManager.Models
                     if (!_timeTable[i].CheckpointIsConstant)
                         RemoveCheckpoint(_timeTable[i]);
                     // 完成检查点后自动存盘
-                    PageBase.SaveGame();
+                    // PageBase.SaveGame();
                     PlayerSqlController
                        .UpdatePlayerInfoSql(PlayerSqlController.ReadPlayerInfoSql(PageBase.PagePlayer.PlayerNumber,false),
                                             PageBase.PagePlayer);

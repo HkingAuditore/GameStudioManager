@@ -29,7 +29,7 @@ namespace GameStdioManager.Models.Game
         public static void UpdateSales(SimulatorBase sender, CheckpointArgs args)
         {
             var game = (Game) sender;
-            int tmpSales = (int) ((game.GameArt + game.GameMusic) * game.GameFun * 0.1);
+            int tmpSales = (int) ((game.GameArt + game.GameMusic) * game.GameFun * 0.1 * (1/(SimulatorTimer.GameTimeNow - game.GameFinishDevelopTime).TotalDays));
             game.GameSales += tmpSales;
             game.GameStudioObject.StudioProperty += game.GamePrice * tmpSales;
         }

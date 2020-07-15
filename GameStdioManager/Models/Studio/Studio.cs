@@ -65,6 +65,7 @@ namespace GameStdioManager.Models.Studio
         public void AddStaff(Staff.Staff staff)
         {
             StudioStaffs.Add(staff);
+            staff.StaffStudio = this.StudioNumber;
             staff.StaffStudioObject = this;
         }
 

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 using GameStdioManager.Controllers.Staff;
@@ -152,9 +153,10 @@ namespace GameStdioManager.Controllers.Game
 
             }
             // 留了一个Catch，记得处理
-            catch
+            catch(Exception e)
             {
-                
+                Debug.WriteLine(e.Message);
+                Debug.WriteLine("无变化");
             }
         }
 

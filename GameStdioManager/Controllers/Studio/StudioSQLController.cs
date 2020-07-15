@@ -118,6 +118,7 @@ namespace GameStdioManager.Controllers.Studio
                     else
                     {
                         studio.AddDevelopedGame(game);
+                        // game.StartSales();
                     }
                 }
 
@@ -200,12 +201,21 @@ namespace GameStdioManager.Controllers.Studio
             commandStringBuilder.Append(" WHERE StudioNumber = " + ConvertStringToSql(origin.StudioNumber));
 
             // 执行
-            using (var sqlConnection = new SqlConnection(ConString))
+            try
             {
-                var sqlCommand = new SqlCommand(commandStringBuilder.ToString(), sqlConnection);
+                using (var sqlConnection = new SqlConnection(ConString))
+                {
+                    var sqlCommand = new SqlCommand(commandStringBuilder.ToString(), sqlConnection);
 
-                sqlConnection.Open();
-                sqlCommand.ExecuteNonQuery();
+                    sqlConnection.Open();
+                    sqlCommand.ExecuteNonQuery();
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("无变化"+e.Message);
+                Console.WriteLine(commandStringBuilder.ToString());
             }
         }
 

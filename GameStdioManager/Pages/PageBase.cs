@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web.UI;
 using GameStdioManager.Controllers.Player;
+using GameStdioManager.Controllers.Studio;
 using GameStdioManager.Models;
 using GameStdioManager.Models.Player;
 using GameStdioManager.Models.Staff;
@@ -23,6 +24,8 @@ namespace GameStdioManager.Pages
             PlayerSqlController
                .UpdatePlayerInfoSql(PlayerSqlController.ReadPlayerInfoSql(PageBase.PagePlayer.PlayerNumber,false),
                                     PageBase.PagePlayer);
+            StudioSQLController.UpdateStudioInfoSql(StudioSQLController.ReadStudioInfoSql(PageBase.PagePlayer.PlayerStudio.StudioNumber,false),
+                                                    PageBase.PagePlayer.PlayerStudio);
             PageBase.PagePlayer.PlayerStudio.SaveSalesGameData();
             SimulatorTimer.SaveCheckpointListXml(PageBase.PagePlayer);
             PagePlayer.SaveStaffCurWorkDataListXml();

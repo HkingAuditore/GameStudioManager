@@ -287,6 +287,13 @@ namespace GameStdioManager.Models.Staff
         //
         // }
 
+        public void Join(Studio.Studio studio)
+        {
+            this.StaffStudio = studio.StudioNumber;
+            this.StaffStudioObject = studio;
+            studio.AddStaff(this);
+        }
+
         #endregion
 
 

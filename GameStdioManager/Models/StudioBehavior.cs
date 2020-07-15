@@ -12,11 +12,7 @@ namespace GameStdioManager.Models
 
         public StudioBehavior(bool isReload)
         {
-            
-            if (!isReload)
-                _timer = new SimulatorTimer(false);
-            else
-                _timer = new SimulatorTimer(true);
+            _timer = new SimulatorTimer(isReload);
 
             GameStart += SimulatorTimer.TimerUpdate;
         }

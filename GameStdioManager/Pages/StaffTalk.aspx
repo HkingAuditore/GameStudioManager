@@ -35,44 +35,92 @@
     </div>
     <div class="row" style="margin: 2%; padding: 2%; border-radius: 10px; border: 2px solid rgba(33, 33, 33, 0.67)">
         <div class="col-lg-12">
-        </div>
-        <div class="col-lg-12">
+            <%-- <div class="row"> --%>
+            <%--     <div class="col-lg-12"> --%>
+            <%--         <asp:Label ID="L_StaffHP" runat="server" Text="体力值："></asp:Label> --%>
+            <%--     </div> --%>
+            <%-- </div> --%>
+            <%-- <div class="row"> --%>
+            <%--     <div class="col-lg-12"> --%>
+            <%--         <asp:Label ID="L_StaffIntelligence" runat="server" Text="智力值："></asp:Label> --%>
+            <%--     </div> --%>
+            <%-- </div> --%>
+            <%-- <div class="row"> --%>
+            <%--     <div class="col-lg-12"> --%>
+            <%--         <asp:Label ID="L_StaffTalkLoyalty" runat="server" Text="忠诚度："></asp:Label> --%>
+            <%--     </div> --%>
+            <%-- </div> --%>
             <div class="row">
                 <div class="col-lg-12">
-                    <asp:Label ID="L_StaffHP" runat="server" Text="体力值："></asp:Label>
+                    <div id="main" style="width: 600px; height: 300px;"></div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <asp:Label ID="L_StaffIntelligence" runat="server" Text="智力值："></asp:Label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <asp:Label ID="L_StaffTalkLoyalty" runat="server" Text="忠诚度："></asp:Label>
-                </div>
+                <script type="text/javascript">
+                    
+                    var myChart = echarts.init(document.getElementById('main'));
+                    var option = {
+                        title: {
+                            text: '能力值'
+                        },
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            left: 'center',
+                            data: ['体力', '智力', '忠诚']
+                        },
+                        radar: [
+                            {
+                                indicator: [
+                                    { text: '体力', max: 30 },
+                                    { text: '智力', max: 100 },
+                                    { text: '忠诚', max: 100 }
+                                ],
+                                center: ['25%', '40%'],
+                                radius: 80
+                            }
+                        ],
+                        series: [
+                            {
+                                type: 'radar',
+                                tooltip: {
+                                    trigger: 'item'
+                                },
+                                areaStyle: {},
+                                data: [
+                                    {
+                                        value: [<%=GetStaffHP()%>, <%=GetStaffIntelligence()%>, <%=GetStaffLoyalty()%>],
+                                        name: '<%=GetStaffName()%>'
+                                    }
+                                ]
+                            }
+                        ]
+
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                </script>
             </div>
         </div>
     </div>
     <div class="row" style="margin: 2%; padding: 2%; border-radius: 10px; border: 2px solid rgba(33, 33, 33, 0.67)">
 
 
-
-                <div class="col-lg-1">
-                    <asp:Button ID="B_Reward" runat="server" Text="奖励" OnClick="B_Reward_OnClick" CssClass="btn btn-primary"/>
-                </div>
-                <div class="col-lg-1">
-                    <asp:Button ID="B_Penalize" runat="server" Text="惩罚" OnClick="B_Penalize_OnClick" CssClass="btn btn-primary"/>
-                </div>
-                <div class="col-lg-1">
-                    <asp:Button ID="B_Promote" runat="server" Text="升职" OnClick="B_Promote_OnClick" CssClass="btn btn-primary"/>
-                </div>
-                <div class="col-lg-1">
-                    <asp:Button ID="B_Demote" runat="server" Text="降职" OnClick="B_Demote_OnClick" CssClass="btn btn-primary"/>
-                </div>
-                <div class="col-lg-1">
-                    <asp:Button ID="B_Fire" runat="server" Text="辞退" OnClick="B_Fire_OnClick" CssClass="btn btn-primary"/>
-                </div>
+        <div class="col-lg-1">
+            <asp:Button ID="B_Reward" runat="server" Text="奖励" OnClick="B_Reward_OnClick" CssClass="btn btn-primary"/>
+        </div>
+        <div class="col-lg-1">
+            <asp:Button ID="B_Penalize" runat="server" Text="惩罚" OnClick="B_Penalize_OnClick" CssClass="btn btn-primary"/>
+        </div>
+        <div class="col-lg-1">
+            <asp:Button ID="B_Promote" runat="server" Text="升职" OnClick="B_Promote_OnClick" CssClass="btn btn-primary"/>
+        </div>
+        <div class="col-lg-1">
+            <asp:Button ID="B_Demote" runat="server" Text="降职" OnClick="B_Demote_OnClick" CssClass="btn btn-primary"/>
+        </div>
+        <div class="col-lg-1">
+            <asp:Button ID="B_Fire" runat="server" Text="辞退" OnClick="B_Fire_OnClick" CssClass="btn btn-primary"/>
+        </div>
 
 
     </div>

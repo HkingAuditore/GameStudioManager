@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 using GameStdioManager.Controllers.Studio;
@@ -10,7 +11,7 @@ namespace GameStdioManager.Controllers.Player
 {
     public class PlayerSqlController : ControllerBase
     {
-        public static Models.Player.Player ReadPlayerInfoSql(string playerNumber,bool isNew)
+        public static Models.Player.Player ReadPlayerInfoSql(string playerNumber, bool isNew)
         {
             Models.Player.Player player = null;
 
@@ -31,9 +32,10 @@ namespace GameStdioManager.Controllers.Player
                     result.Read();
                     player =
                         new Models.Player.Player(StudioSQLController.ReadStudioInfoSql(result["PlayerStudioNumber"]
-                                                                                          .ToString(), isNew), playerNumber);
+                                                                                          .ToString(), isNew),
+                                                 playerNumber);
                     player.PlayerStudioNumber = result["PlayerStudioNumber"].ToString();
-                    player.PlayerNumber = result["PlayerNumber"].ToString();
+                    player.PlayerNumber       = result["PlayerNumber"].ToString();
                     player.PlayerStartTime    = DateTime.Parse(result["PlayerStartTime"].ToString());
                     player.PlayerNowTime      = DateTime.Parse(result["PlayerNowTime"].ToString());
                 }
@@ -69,10 +71,11 @@ namespace GameStdioManager.Controllers.Player
                     if (targetProperty.PropertyType.Name == "String" || targetProperty.PropertyType.Name == "DateTime")
                         commandStringBuilder.Append(targetProperty.Name + " = " +
                                                     ConvertStringToSql(target
-                                                                      .GetPropertyValue(targetProperty.Name).ToString()));
+                                                                      .GetPropertyValue(targetProperty.Name)
+                                                                      .ToString()));
                     else
                         commandStringBuilder.Append(targetProperty.Name + " = " +
-                                                    (int)target.GetPropertyValue(targetProperty.Name));
+                                                    (int) target.GetPropertyValue(targetProperty.Name));
 
                     if (cur++ < updateList.Count) commandStringBuilder.Append(", ");
                 }
@@ -80,14 +83,22 @@ namespace GameStdioManager.Controllers.Player
                 commandStringBuilder.Append(" WHERE PlayerNumber = " + ConvertStringToSql(origin.PlayerNumber));
 
                 // 执行
-                using (var sqlConnection = new SqlConnection(ConString))
+                try
                 {
-                    var sqlCommand = new SqlCommand(commandStringBuilder.ToString(), sqlConnection);
+                    using (var sqlConnection = new SqlConnection(ConString))
+                    {
+                        var sqlCommand = new SqlCommand(commandStringBuilder.ToString(), sqlConnection);
 
-                    sqlConnection.Open();
-                    sqlCommand.ExecuteNonQuery();
+                        sqlConnection.Open();
+                        sqlCommand.ExecuteNonQuery();
+                    }
                 }
-
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                    Debug.WriteLine("无变化");
+                    // throw;
+                }
             }
             catch (Exception e)
             {
@@ -95,5 +106,4 @@ namespace GameStdioManager.Controllers.Player
             }
         }
     }
-
 }

@@ -14,23 +14,14 @@
     <link href="../Content/bootstrap.css" rel="stylesheet"/>
     <link href="../Content/bootstrap-theme.css" rel="stylesheet"/>
 
-    <%-- <script type="text/javascript" src="../Scripts/jquery-3.3.1.intellisense.js"></script> --%>
-    <%-- <script type="text/javascript" src="../Scripts/jquery-3.3.1.js"></script> --%>
-    <%-- <script type="text/javascript" src="../Scripts/jquery-3.3.1.min.js"></script> --%>
-    <%-- <script type="text/javascript" src="../Scripts/jquery-3.3.1.slim.js"></script> --%>
-    <%-- <script type="text/javascript" src="../Scripts/jquery-3.3.1.slim.min.js"></script> --%>
-    <%-- <script type="text/javascript" src="../Scripts/jquery.validate-vsdoc.js"></script> --%>
-    <%-- <script type="text/javascript" src="../Scripts/jquery.validate.js"></script> --%>
-    <%-- <script type="text/javascript" src="../Scripts/jquery.validate.min.js"></script> --%>
-    <%-- <script type="text/javascript" src="../Scripts/jquery.validate.unobtrusive.js"></script> --%>
-    <%-- <script type="text/javascript" src="../Scripts/jquery.validate.unobtrusive.min.js"></script> --%>
-    
     <script type="text/javascript" src="../Scripts/JQuery.js"></script>
     <script type="text/javascript" src="../Scripts/modernizr-2.8.3.js"></script>
     <script type="text/javascript" src="../Scripts/bootstrap.js"></script>
     <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
+
     <script type="text/javascript" src="../Scripts/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="../Scripts/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="../Scripts/echarts/dist/echarts.min.js"></script>
 
 
     <title></title>
@@ -51,13 +42,13 @@
         <div class="col-lg-1">
             <asp:Button ID="L_Studio" runat="server" Text="工作室" CssClass="title-link" OnClick="L_Studio_OnClick"/>
         </div>
-        <div class="offset-lg-5 col-lg-2">
+        <div class="offset-lg-4 col-lg-3">
             <asp:Button ID="B_SaveGame" runat="server" Text="存档" CssClass="btn btn-primary" OnClick="B_SaveGame_OnClick"/>
             <asp:Label ID="La_StudioName" runat="server" Text="工作室名称"></asp:Label>
             <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
             <asp:UpdatePanel ID="UpDate_StudioProperty" runat="server">
                 <ContentTemplate>
-                    <asp:Label ID="La_StudioProperty" runat="server" Text="工作室财产"></asp:Label>
+                    现金：¥<asp:Label ID="La_StudioProperty" runat="server" Text="工作室财产"></asp:Label>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>

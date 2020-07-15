@@ -16,7 +16,7 @@ namespace GameStdioManager.Views.Staff
     {
         public static readonly string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
 
-        private static List<Models.Staff.Staff> _studioStaffs = PageBase.PagePlayer.PlayerStudio.StudioStaffs;
+        private static List<Models.Staff.Staff> _otherStaffs = PageBase.PagePlayer.PlayerStudio.StudioStaffs;
 
 
 
@@ -37,7 +37,7 @@ namespace GameStdioManager.Views.Staff
 
         private void UpdateLines()
         {
-            (from staff in _studioStaffs
+            (from staff in _otherStaffs
              select staff).ForEach(staff =>
                                    {
                                        StaffViewLine dl = (StaffViewLine)LoadControl("StaffViewLine.ascx");

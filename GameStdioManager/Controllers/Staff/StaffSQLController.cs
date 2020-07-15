@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 using GameStdioManager.Models;
@@ -170,12 +171,20 @@ namespace GameStdioManager.Controllers.Staff
             commandStringBuilder.Append(" WHERE StaffNumber = " + ConvertStringToSql(origin.StaffNumber));
 
             // 执行
-            using (var sqlConnection = new SqlConnection(ConString))
+            try
             {
-                var sqlCommand = new SqlCommand(commandStringBuilder.ToString(), sqlConnection);
+                using (var sqlConnection = new SqlConnection(ConString))
+                {
+                    var sqlCommand = new SqlCommand(commandStringBuilder.ToString(), sqlConnection);
 
-                sqlConnection.Open();
-                sqlCommand.ExecuteNonQuery();
+                    sqlConnection.Open();
+                    sqlCommand.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                Debug.WriteLine("无变化！");
             }
         }
 
@@ -185,7 +194,10 @@ namespace GameStdioManager.Controllers.Staff
             using (var sqlConnection = new SqlConnection(ConString))
             {
                 // 使用了Target占位符表示目标ID
-                var sqlCommand = new SqlCommand("SELECT DeveloperStaffNumber FROM DeveloperRelation WHERE ((DeveloperGameNumber = @Target))", sqlConnection);
+                var sqlCommand =
+                    new
+                        SqlCommand("SELECT DeveloperStaffNumber FROM DeveloperRelation WHERE ((DeveloperGameNumber = @Target))",
+                                   sqlConnection);
                 // 构造Parameter对象
                 var targetSqlParameter = new SqlParameter("@Target", SqlDbType.VarChar, 255);
                 targetSqlParameter.Value = gameNumber;
@@ -206,16 +218,19 @@ namespace GameStdioManager.Controllers.Staff
             }
 
             return developerList;
-
         }
 
-        public static List<Models.Staff.Staff> GetDevelopersListFromStudioSql(string gameNumber,Models.Studio.Studio studio)
+        public static List<Models.Staff.Staff> GetDevelopersListFromStudioSql(
+            string gameNumber, Models.Studio.Studio studio)
         {
             List<Models.Staff.Staff> developerList = new List<Models.Staff.Staff>();
             using (var sqlConnection = new SqlConnection(ConString))
             {
                 // 使用了Target占位符表示目标ID
-                var sqlCommand = new SqlCommand("SELECT DeveloperStaffNumber FROM DeveloperRelation WHERE ((DeveloperGameNumber = @Target))", sqlConnection);
+                var sqlCommand =
+                    new
+                        SqlCommand("SELECT DeveloperStaffNumber FROM DeveloperRelation WHERE ((DeveloperGameNumber = @Target))",
+                                   sqlConnection);
                 // 构造Parameter对象
                 var targetSqlParameter = new SqlParameter("@Target", SqlDbType.VarChar, 255);
                 targetSqlParameter.Value = gameNumber;
@@ -236,7 +251,6 @@ namespace GameStdioManager.Controllers.Staff
             }
 
             return developerList;
-
         }
 
         public static List<Models.Staff.Staff> GenerateStaffList()
@@ -253,7 +267,7 @@ namespace GameStdioManager.Controllers.Staff
                 {
                     while (result.Read())
                     {
-                       staffList.Add(ReadStaffInfoSql(result["StaffNumber"].ToString()));
+                        staffList.Add(ReadStaffInfoSql(result["StaffNumber"].ToString()));
                     }
                 }
 
@@ -275,24 +289,20 @@ namespace GameStdioManager.Controllers.Staff
             {
                 sqlConnection.Open();
                 var sqlCommand = new SqlCommand("insert_checkLog", sqlConnection)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
-                sqlCommand.Parameters.Add(new SqlParameter("@sender", SqlDbType.VarChar, 255));
-                sqlCommand.Parameters.Add(new SqlParameter("@state", SqlDbType.TinyInt, 255));
-                sqlCommand.Parameters.Add(new SqlParameter("@date", SqlDbType.DateTime, 255));
+                                 {
+                                     CommandType = CommandType.StoredProcedure
+                                 };
+                sqlCommand.Parameters.Add(new SqlParameter("@sender", SqlDbType.VarChar,  255));
+                sqlCommand.Parameters.Add(new SqlParameter("@state",  SqlDbType.TinyInt,  255));
+                sqlCommand.Parameters.Add(new SqlParameter("@date",   SqlDbType.DateTime, 255));
 
                 sqlCommand.Parameters["@sender"].Value = staff.StaffNumber.ToString();
-                sqlCommand.Parameters["@state"].Value = isWork ? 1 : 0;
-                sqlCommand.Parameters["@date"].Value = SimulatorTimer.GameTimeNow.ToString();
-
+                sqlCommand.Parameters["@state"].Value  = isWork ? 1 : 0;
+                sqlCommand.Parameters["@date"].Value   = SimulatorTimer.GameTimeNow.ToString();
 
 
                 sqlCommand.ExecuteNonQuery();
-
             }
-
         }
-
     }
 }
