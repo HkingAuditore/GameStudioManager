@@ -338,15 +338,48 @@ namespace GameStdioManager.Controllers.Staff
 
                 sqlConnection.Open();
                 var result = sqlCommand.ExecuteReader();
-
+                int re = -1;
                 if (result.HasRows)
                 {
                     result.Read();
-                    return Int32.Parse(result["TIMES"].ToString());
+                    re = Int32.Parse(result["TIMES"].ToString());
                 }
 
                 result.Close();
-                return -1;
+                return re;
+            }
+        }
+
+
+        public static int[] GetStaffCheckTimesArray(Models.Staff.Staff staff, bool isWork)
+        {
+            using (var sqlConnection = new SqlConnection(ConString))
+            {
+                var sqlCommand = new SqlCommand("select_checkLogArray", sqlConnection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                sqlCommand.Parameters.Add(new SqlParameter("@sender", SqlDbType.VarChar, 255));
+                sqlCommand.Parameters.Add(new SqlParameter("@state", SqlDbType.TinyInt, 255));
+
+                sqlCommand.Parameters["@sender"].Value = staff.StaffNumber.ToString();
+                sqlCommand.Parameters["@state"].Value = isWork ? 1 : 0;
+
+                sqlConnection.Open();
+                var result = sqlCommand.ExecuteReader();
+
+                int[] times = new int[24];
+                if (result.HasRows)
+                {
+                    while (result.Read())
+                    {
+                        times[Int32.Parse(result["HOUR"].ToString())] = Int32.Parse(result["TIMES"].ToString());
+                    }
+                }
+
+                result.Close();
+                return times;
             }
         }
     }

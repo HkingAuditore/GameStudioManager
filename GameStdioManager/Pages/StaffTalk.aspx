@@ -93,6 +93,7 @@
                 </script>
                 <script type="text/javascript">
                     Draw();
+
                     function GetCheckTime(hour, isWork) {
                         var t;
                         $.ajax({
@@ -102,6 +103,26 @@
                             async: false,    //异步
                             contentType: "application/json; charset=utf-8",
                             data: "{hour:'" + hour + "',isWork:'" + isWork + "'}",
+                            success: function (data) {
+                                t = data.d;
+                            },
+                            error: function () {
+                                alert("统计出错！");
+                            }
+                        });
+                        console.log("t" + t);
+                        return t;
+                    }
+
+                    function GetCheckTimes(isWork) {
+                        var t;
+                        $.ajax({
+                            url: "StaffTalk.aspx/GetStaffCheckArray",
+                            type: "POST",
+                            dataType: "json",
+                            async: false,    //异步
+                            contentType: "application/json; charset=utf-8",
+                            data: "{isWork:'" + isWork + "'}",
                             success: function (data) {
                                 console.log("data" + data.d);
                                 t = data.d;
@@ -127,6 +148,9 @@
 
                         var option = {
                             color: ['#5793f3', '#d14a61'],
+                            title: {
+                                text: '上下班打卡时间分布'
+                            },
                             tooltip: {
                                 trigger: 'axis',
                                 axisPointer: {
@@ -160,11 +184,11 @@
 
                             },
                             series: [{
-                                data: GetCheckTimeArray(true)  ,
+                                data: GetCheckTimes(true)  ,
                                 type:'bar',
                                 name:'上班打卡次数'
                             },{
-                                data: GetCheckTimeArray(false) ,
+                                data: GetCheckTimes(false) ,
                                 type:'bar',
                                 name:'下班打卡次数'
                             }]

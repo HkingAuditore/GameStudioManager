@@ -106,5 +106,8 @@ namespace GameStdioManager.Pages
 
         [WebMethod]
         public static int GetStaffCheck(int hour, bool isWork) => _talkStaff == null ? 0 : StaffSQLController.GetStaffCheckTimes(_talkStaff, hour, isWork);
+
+        [WebMethod]
+        public static int[] GetStaffCheckArray(bool isWork) => _talkStaff == null ? new int[24] : StaffSQLController.GetStaffCheckTimesArray(_talkStaff, isWork);
     }
 }
