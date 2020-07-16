@@ -10,6 +10,13 @@ namespace GameStdioManager.Models
         public int EnumInt { get; }
     }
 
+    public class SimulatorException : ApplicationException
+    {
+        public int ExceptionNumber;
+
+        public SimulatorException(string message,int exceptionNumber) : base(message) => ExceptionNumber = exceptionNumber;
+    }
+
     public interface IPropertyGetter
     {
         object GetPropertyValue(string propertyName);

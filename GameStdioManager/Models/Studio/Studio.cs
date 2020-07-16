@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using GameStdioManager.Models.Checkpoint;
 using WebGrease.Css.Extensions;
 
 namespace GameStdioManager.Models.Studio
@@ -13,6 +14,8 @@ namespace GameStdioManager.Models.Studio
             StudioName       = studioName;
             StudioProperty   = studioProperty;
             StudioReputation = studioReputation;
+            GetMaintenanceCheckpoint();
+
         }
 
         /// <summary>
@@ -53,6 +56,19 @@ namespace GameStdioManager.Models.Studio
 
         #endregion 接口实现
 
+
+        public int ChangeProperty(int cash)
+        {
+            if ((this.StudioProperty + cash) >= 0)
+                this.StudioProperty += cash;
+            else
+            {
+                throw new SimulatorException("金钱不足", 101);
+            }
+
+            return this.StudioProperty;
+        }
+
         #endregion 类基本操作
 
         #region 员工操作
@@ -65,8 +81,9 @@ namespace GameStdioManager.Models.Studio
         public void AddStaff(Staff.Staff staff)
         {
             StudioStaffs.Add(staff);
-            staff.StaffStudio = this.StudioNumber;
+            staff.StaffStudio       = this.StudioNumber;
             staff.StaffStudioObject = this;
+            this.ChangeProperty((staff.StaffSalary / 2));
         }
 
         public void RemoveStaff(Staff.Staff staff)
@@ -85,9 +102,9 @@ namespace GameStdioManager.Models.Studio
         {
             try
             {
-               return (from s in StudioStaffs
-                              where s.StaffNumber == staffNumber
-                              select s)?.First();
+                return (from s in StudioStaffs
+                        where s.StaffNumber == staffNumber
+                        select s)?.First();
             }
             catch (System.InvalidOperationException e)
             {
@@ -152,10 +169,54 @@ namespace GameStdioManager.Models.Studio
              where g.GameNumber == value
              select g).First();
 
+        /// <summary>
+        /// 存储游戏销售数据
+        /// </summary>
         public void SaveSalesGameData()
         {
             (from g in StudioDevelopedGames
              select g).ForEach(game => game.UpdateSql());
         }
+
+
+        #region 工作室维护
+
+        public Checkpoint.Checkpoint GetMaintenanceCheckpoint()
+        {
+            var dt = new DateTime(SimulatorTimer.GameTimeNow.Year,
+                                  SimulatorTimer.GameTimeNow.Month,
+                                  1,
+                                  0,
+                                  0,
+                                  0
+                                 );
+
+            return new Checkpoint.Checkpoint(StudioNumber,
+                                             dt,
+                                             new[] { "SettleMaintenance" },
+                                             null,
+                                             "CheckMaintenance",
+                                             this,
+                                             null,
+                                             "Studio",
+                                             true, false);
+        }
+
+        public static void SettleMaintenance(SimulatorBase sender, CheckpointArgs args)
+        {
+            Studio studio = (Studio) sender;
+            var cost = (from staff in studio.StudioStaffs
+                        select staff.StaffSalary).Aggregate(0, (current, s) => current + s);
+            studio.ChangeProperty(cost);
+        }
+
+        public static void MaintenanceUpdate(SimulatorBase sender, CheckpointArgs args)
+        {
+
+        }
+
+        public static bool CheckMaintenance(SimulatorBase sender, CheckpointArgs args) => SimulatorTimer.GameTimeNow.Day == 1;
+
+        #endregion
     }
 }

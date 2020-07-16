@@ -14,8 +14,8 @@ namespace GameStdioManager.Controllers.Login
 {
     public class LoginController : ControllerBase
     {
-        private string _playerNumber;
-        private string _password;
+        public string PlayerNumber;
+        private readonly string _password;
 
         public Models.Player.Player PlayerTarget;
         public List<Models.Staff.Staff> StaffList;
@@ -24,12 +24,12 @@ namespace GameStdioManager.Controllers.Login
 
         public LoginController(string playerNumber,string password)
         {
-            _playerNumber = playerNumber;
+            PlayerNumber = playerNumber;
             _password = password;
-            GetPlayer();
+            GetPlayerCorrespond();
         }
 
-        private Models.Player.Player GetPlayer()
+        private Models.Player.Player GetPlayerCorrespond()
         {
             using (var sqlConnection = new SqlConnection(ConString))
             {
@@ -37,7 +37,7 @@ namespace GameStdioManager.Controllers.Login
                 var sqlCommand = new SqlCommand("SELECT * FROM PlayerInfo WHERE PlayerNumber = @Target", sqlConnection);
                 // 构造Parameter对象
                 var targetSqlParameter = new SqlParameter("@Target", SqlDbType.VarChar, 255);
-                targetSqlParameter.Value = _playerNumber;
+                targetSqlParameter.Value = PlayerNumber;
                 sqlCommand.Parameters.Add(targetSqlParameter);
 
                 sqlConnection.Open();
@@ -49,12 +49,6 @@ namespace GameStdioManager.Controllers.Login
                     if (result["PlayerPassword"].ToString() == _password)
                     {
                         IsCorrespond = true;
-                        StaffList = StaffSQLController.GenerateStaffList();
-
-                        //TODO 这里要优化
-                        PageBase.StaffList = StaffList;
-
-                        PlayerTarget = PlayerSqlController.ReadPlayerInfoSql(_playerNumber,true);
                     }
                 }
 

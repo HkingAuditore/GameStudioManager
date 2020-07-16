@@ -120,6 +120,13 @@ namespace GameStdioManager.Models.Game
             Debug.WriteLine(game.GameName + " GameArt Temp:" + (int)(((float)game.GameFun + funCapability) * (1 + controlCapability) * (0.5f + programCapability)) + ". In " + SimulatorTimer.GameTimeNow);
             Debug.WriteLine(game.GameName + " GameArt Capability:" + artCapability + ". In " + SimulatorTimer.GameTimeNow);
             args.UpdateParm += args.UpdateSpeed;
+
+
+            //支付开发经费
+            int cost = (from gameDeveloper in game.Developers
+                        select gameDeveloper.StaffSalary).Aggregate(0, (current, s) => current + s);
+            game.GameStudioObject.ChangeProperty(cost / 10);
+
             UpdateDevelopEvent?.Invoke(sender, args);
         }
 

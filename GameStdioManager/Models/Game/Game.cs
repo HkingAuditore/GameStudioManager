@@ -152,6 +152,8 @@ namespace GameStdioManager.Models.Game
         public void UpdateSql() =>
             GameSQLController.UpdateGameInfoSql(GameSQLController.ReadGameInfoSql(this.GameNumber),this);
 
+       
+
         #endregion 逻辑
     }
 }

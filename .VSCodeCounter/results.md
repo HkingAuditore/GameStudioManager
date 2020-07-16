@@ -1,10 +1,10 @@
 # Summary
 
-Date : 2020-07-15 22:19:38
+Date : 2020-07-16 00:14:52
 
 Directory f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager
 
-Total : 1411 files,  556288 codes, 174171 comments, 96115 blanks, all 826574 lines
+Total : 1411 files,  556441 codes, 174176 comments, 96141 blanks, all 826758 lines
 
 [details](details.md)
 
@@ -12,10 +12,10 @@ Total : 1411 files,  556288 codes, 174171 comments, 96115 blanks, all 826574 lin
 | language | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
 | JavaScript | 660 | 393,056 | 164,584 | 82,800 | 640,440 |
-| HTML | 376 | 83,670 | 6,717 | 10,238 | 100,625 |
+| HTML | 376 | 83,757 | 6,717 | 10,248 | 100,722 |
 | JSON | 225 | 50,649 | 0 | 24 | 50,673 |
 | CSS | 16 | 20,878 | 148 | 1,554 | 22,580 |
-| C# | 95 | 4,099 | 2,664 | 1,195 | 7,958 |
+| C# | 95 | 4,165 | 2,669 | 1,211 | 8,045 |
 | XML | 20 | 2,953 | 6 | 106 | 3,065 |
 | YAML | 5 | 606 | 31 | 34 | 671 |
 | Markdown | 6 | 223 | 21 | 148 | 392 |
@@ -26,15 +26,15 @@ Total : 1411 files,  556288 codes, 174171 comments, 96115 blanks, all 826574 lin
 ## Directories
 | path | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| . | 1,411 | 556,288 | 174,171 | 96,115 | 826,574 |
+| . | 1,411 | 556,441 | 174,176 | 96,141 | 826,758 |
 | App_Start | 3 | 49 | 3 | 8 | 60 |
 | Content | 11 | 20,355 | 70 | 1,484 | 21,909 |
 | Content\tmp | 5 | 7,341 | 29 | 10 | 7,380 |
-| Controllers | 8 | 840 | 132 | 163 | 1,135 |
+| Controllers | 8 | 899 | 139 | 175 | 1,213 |
 | Controllers\Game | 2 | 216 | 40 | 41 | 297 |
 | Controllers\Login | 1 | 71 | 3 | 18 | 92 |
 | Controllers\Player | 1 | 85 | 11 | 13 | 109 |
-| Controllers\Staff | 1 | 235 | 34 | 39 | 308 |
+| Controllers\Staff | 1 | 294 | 41 | 51 | 386 |
 | Controllers\Studio | 1 | 156 | 33 | 34 | 223 |
 | Data | 2 | 55 | 0 | 0 | 55 |
 | Data\0 | 2 | 55 | 0 | 0 | 55 |
@@ -44,7 +44,7 @@ Total : 1411 files,  556288 codes, 174171 comments, 96115 blanks, all 826574 lin
 | Models\Player | 1 | 49 | 7 | 13 | 69 |
 | Models\Staff | 3 | 459 | 112 | 96 | 667 |
 | Models\Studio | 1 | 86 | 47 | 28 | 161 |
-| Pages | 29 | 1,004 | 327 | 222 | 1,553 |
+| Pages | 29 | 1,098 | 325 | 236 | 1,659 |
 | Properties | 2 | 26 | 25 | 10 | 61 |
 | Scripts | 1,267 | 528,035 | 171,431 | 93,211 | 792,677 |
 | Scripts\echarts | 1,249 | 496,162 | 161,441 | 85,220 | 742,823 |

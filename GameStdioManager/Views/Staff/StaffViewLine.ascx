@@ -14,35 +14,35 @@
     <div class="col-lg-1">
         <asp:Label ID="L_StaffSalary" runat="server" Text="薪水" Visible="True"></asp:Label>
         <asp:TextBox ID="T_StaffSalary" runat="server" Visible="False"></asp:TextBox>
-        <asp:ImageButton ID="B_StaffSalarySetting" runat="server" Height="22px" ImageUrl="~/Resource/UI/Game/Sales/Setting.png" Width="22px" OnClick="Setting_OnClick"/>
+        <%-- <asp:ImageButton ID="B_StaffSalarySetting" runat="server" Height="22px" ImageUrl="~/Resource/UI/Game/Sales/Setting.png" Width="22px" OnClick="Setting_OnClick"/> --%>
     </div>
 
     <div class="col-lg-1">
         <asp:Label ID="L_StaffRank" runat="server" Text="职称" Visible="True"></asp:Label>
-        <asp:DropDownList ID="D_StaffRank" runat="server" Visible="False">
-            <asp:ListItem Value="0">实习生</asp:ListItem>
-            <asp:ListItem Value="1">初级</asp:ListItem>
-            <asp:ListItem Value="2">中级</asp:ListItem>
-            <asp:ListItem Value="3">高级</asp:ListItem>
-            <asp:ListItem Value="4">资深</asp:ListItem>
-            <asp:ListItem Value="5">专家</asp:ListItem>
-            <asp:ListItem Value="6">行业领袖</asp:ListItem>
-        </asp:DropDownList>
+        <%-- <asp:DropDownList ID="D_StaffRank" runat="server" Visible="False"> --%>
+        <%--     <asp:ListItem Value="0">实习生</asp:ListItem> --%>
+        <%--     <asp:ListItem Value="1">初级</asp:ListItem> --%>
+        <%--     <asp:ListItem Value="2">中级</asp:ListItem> --%>
+        <%--     <asp:ListItem Value="3">高级</asp:ListItem> --%>
+        <%--     <asp:ListItem Value="4">资深</asp:ListItem> --%>
+        <%--     <asp:ListItem Value="5">专家</asp:ListItem> --%>
+        <%--     <asp:ListItem Value="6">行业领袖</asp:ListItem> --%>
+        <%-- </asp:DropDownList> --%>
 
-        <asp:ImageButton ID="B_StaffRankSetting" runat="server" Height="22px" ImageUrl="~/Resource/UI/Game/Sales/Setting.png" Width="22px" OnClick="Setting_OnClick"/>
+        <%-- <asp:ImageButton ID="B_StaffRankSetting" runat="server" Height="22px" ImageUrl="~/Resource/UI/Game/Sales/Setting.png" Width="22px" OnClick="Setting_OnClick"/> --%>
 
     </div>
 
     <div class="col-lg-1">
         <asp:Label ID="L_StaffOccupation" runat="server" Text="职业" Visible="True"></asp:Label>
-        <asp:DropDownList ID="D_StaffOccupation" runat="server" Visible="False">
-            <asp:ListItem Value="0">制作人</asp:ListItem>
-            <asp:ListItem Value="1">策划</asp:ListItem>
-            <asp:ListItem Value="2">美术</asp:ListItem>
-            <asp:ListItem Value="3">程序</asp:ListItem>
-            <asp:ListItem Value="4">音乐</asp:ListItem>
-        </asp:DropDownList>
-        <asp:ImageButton ID="B_StaffOccupationSetting" runat="server" Height="22px" ImageUrl="~/Resource/UI/Game/Sales/Setting.png" Width="22px" OnClick="Setting_OnClick"/>
+        <%-- <asp:DropDownList ID="D_StaffOccupation" runat="server" Visible="False"> --%>
+        <%--     <asp:ListItem Value="0">制作人</asp:ListItem> --%>
+        <%--     <asp:ListItem Value="1">策划</asp:ListItem> --%>
+        <%--     <asp:ListItem Value="2">美术</asp:ListItem> --%>
+        <%--     <asp:ListItem Value="3">程序</asp:ListItem> --%>
+        <%--     <asp:ListItem Value="4">音乐</asp:ListItem> --%>
+        <%-- </asp:DropDownList> --%>
+        <%-- <asp:ImageButton ID="B_StaffOccupationSetting" runat="server" Height="22px" ImageUrl="~/Resource/UI/Game/Sales/Setting.png" Width="22px" OnClick="Setting_OnClick"/> --%>
     </div>
 
     <div class="col-lg-1">

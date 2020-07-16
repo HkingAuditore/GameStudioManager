@@ -124,6 +124,7 @@
     <Compile Include="Controllers\Game\GameDevelopmentRelationSqlController.cs" />
     <Compile Include="Controllers\Game\GameSQLController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Loader.cs" />
     <Compile Include="Controllers\Login\LoginController.cs" />
     <Compile Include="Controllers\Player\PlayerSqlController.cs" />
     <Compile Include="Controllers\Staff\StaffSQLController.cs" />

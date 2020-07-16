@@ -58,15 +58,6 @@ namespace GameStdioManager.Views.Staff {
         protected global::System.Web.UI.WebControls.TextBox T_StaffSalary;
         
         /// <summary>
-        /// B_StaffSalarySetting 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton B_StaffSalarySetting;
-        
-        /// <summary>
         /// L_StaffRank 控件。
         /// </summary>
         /// <remarks>
@@ -76,24 +67,6 @@ namespace GameStdioManager.Views.Staff {
         protected global::System.Web.UI.WebControls.Label L_StaffRank;
         
         /// <summary>
-        /// D_StaffRank 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList D_StaffRank;
-        
-        /// <summary>
-        /// B_StaffRankSetting 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton B_StaffRankSetting;
-        
-        /// <summary>
         /// L_StaffOccupation 控件。
         /// </summary>
         /// <remarks>
@@ -101,24 +74,6 @@ namespace GameStdioManager.Views.Staff {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label L_StaffOccupation;
-        
-        /// <summary>
-        /// D_StaffOccupation 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList D_StaffOccupation;
-        
-        /// <summary>
-        /// B_StaffOccupationSetting 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton B_StaffOccupationSetting;
         
         /// <summary>
         /// L_StaffStrength 控件。

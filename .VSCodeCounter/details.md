@@ -1,10 +1,10 @@
 # Details
 
-Date : 2020-07-15 22:19:37
+Date : 2020-07-16 00:14:52
 
 Directory f:\MyCSharp\GameStdioManager\GameStudioManager\GameStdioManager
 
-Total : 1411 files,  556288 codes, 174171 comments, 96115 blanks, all 826574 lines
+Total : 1411 files,  556441 codes, 174176 comments, 96141 blanks, all 826758 lines
 
 [summary](results.md)
 
@@ -31,7 +31,7 @@ Total : 1411 files,  556288 codes, 174171 comments, 96115 blanks, all 826574 lin
 | [GameStdioManager/Controllers/HomeController.cs](/GameStdioManager/Controllers/HomeController.cs) | C# | 18 | 0 | 5 | 23 |
 | [GameStdioManager/Controllers/Login/LoginController.cs](/GameStdioManager/Controllers/Login/LoginController.cs) | C# | 71 | 3 | 18 | 92 |
 | [GameStdioManager/Controllers/Player/PlayerSqlController.cs](/GameStdioManager/Controllers/Player/PlayerSqlController.cs) | C# | 85 | 11 | 13 | 109 |
-| [GameStdioManager/Controllers/Staff/StaffSQLController.cs](/GameStdioManager/Controllers/Staff/StaffSQLController.cs) | C# | 235 | 34 | 39 | 308 |
+| [GameStdioManager/Controllers/Staff/StaffSQLController.cs](/GameStdioManager/Controllers/Staff/StaffSQLController.cs) | C# | 294 | 41 | 51 | 386 |
 | [GameStdioManager/Controllers/Studio/StudioSQLController.cs](/GameStdioManager/Controllers/Studio/StudioSQLController.cs) | C# | 156 | 33 | 34 | 223 |
 | [GameStdioManager/Data/0/StaffCurWorkData.xml](/GameStdioManager/Data/0/StaffCurWorkData.xml) | XML | 33 | 0 | 0 | 33 |
 | [GameStdioManager/Data/0/checkpoints.xml](/GameStdioManager/Data/0/checkpoints.xml) | XML | 22 | 0 | 0 | 22 |
@@ -77,8 +77,8 @@ Total : 1411 files,  556288 codes, 174171 comments, 96115 blanks, all 826574 lin
 | [GameStdioManager/Pages/StaffEmploy.aspx](/GameStdioManager/Pages/StaffEmploy.aspx) | HTML | 9 | 0 | 5 | 14 |
 | [GameStdioManager/Pages/StaffEmploy.aspx.cs](/GameStdioManager/Pages/StaffEmploy.aspx.cs) | C# | 16 | 0 | 2 | 18 |
 | [GameStdioManager/Pages/StaffEmploy.aspx.designer.cs](/GameStdioManager/Pages/StaffEmploy.aspx.designer.cs) | C# | 5 | 15 | 5 | 25 |
-| [GameStdioManager/Pages/StaffTalk.aspx](/GameStdioManager/Pages/StaffTalk.aspx) | HTML | 115 | 0 | 13 | 128 |
-| [GameStdioManager/Pages/StaffTalk.aspx.cs](/GameStdioManager/Pages/StaffTalk.aspx.cs) | C# | 88 | 3 | 13 | 104 |
+| [GameStdioManager/Pages/StaffTalk.aspx](/GameStdioManager/Pages/StaffTalk.aspx) | HTML | 202 | 0 | 23 | 225 |
+| [GameStdioManager/Pages/StaffTalk.aspx.cs](/GameStdioManager/Pages/StaffTalk.aspx.cs) | C# | 95 | 1 | 17 | 113 |
 | [GameStdioManager/Pages/StaffTalk.aspx.designer.cs](/GameStdioManager/Pages/StaffTalk.aspx.designer.cs) | C# | 13 | 71 | 13 | 97 |
 | [GameStdioManager/Pages/StudioEdit.aspx](/GameStdioManager/Pages/StudioEdit.aspx) | HTML | 13 | 0 | 7 | 20 |
 | [GameStdioManager/Pages/StudioEdit.aspx.cs](/GameStdioManager/Pages/StudioEdit.aspx.cs) | C# | 15 | 0 | 2 | 17 |
