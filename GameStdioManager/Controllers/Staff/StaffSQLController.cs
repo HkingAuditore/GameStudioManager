@@ -221,7 +221,7 @@ namespace GameStdioManager.Controllers.Staff
         }
 
         public static List<Models.Staff.Staff> GetDevelopersListFromStudioSql(
-            string gameNumber, Models.Studio.Studio studio)
+            string gameNumber, Models.Studio.Studio studio,Loader loader)
         {
             List<Models.Staff.Staff> developerList = new List<Models.Staff.Staff>();
             using (var sqlConnection = new SqlConnection(ConString))
@@ -243,7 +243,7 @@ namespace GameStdioManager.Controllers.Staff
                 {
                     while (result.Read())
                     {
-                        developerList.Add(PageBase.FindStaff(result["DeveloperStaffNumber"].ToString()));
+                        developerList.Add(loader.FindStaff(result["DeveloperStaffNumber"].ToString()));
                     }
                 }
 

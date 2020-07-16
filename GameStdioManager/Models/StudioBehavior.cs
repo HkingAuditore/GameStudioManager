@@ -1,4 +1,5 @@
 ﻿using System;
+using GameStdioManager.Models.Checkpoint;
 
 namespace GameStdioManager.Models
 {
@@ -13,8 +14,6 @@ namespace GameStdioManager.Models
         public StudioBehavior(bool isReload)
         {
             _timer = new SimulatorTimer(isReload);
-
-            GameStart += SimulatorTimer.TimerUpdate;
         }
 
         /// <summary>
@@ -23,7 +22,12 @@ namespace GameStdioManager.Models
         // public SimulatorTimer GameTimer;
 
         /// <summary>
-        ///     游戏开始
+        ///     游戏初始化
+        /// </summary>
+        public static event EventHandler<StudioBehaviorArgs> GameInit;
+
+        /// <summary>
+        /// 游戏开始
         /// </summary>
         public static event EventHandler<StudioBehaviorArgs> GameStart;
 
@@ -33,11 +37,11 @@ namespace GameStdioManager.Models
         public static event EventHandler<StudioBehaviorArgs> GameReload;
 
         /// <summary>
-        ///     游戏开始
+        ///     游戏初始化
         /// </summary>
-        public void Start()
+        public void Init()
         {
-            GameStart?.Invoke(this, null);
+            GameInit?.Invoke(this, null);
         }
 
         /// <summary>
@@ -46,6 +50,14 @@ namespace GameStdioManager.Models
         public void Reload()
         {
             GameReload?.Invoke(this, null);
+        }
+
+        /// <summary>
+        ///     游戏开始
+        /// </summary>
+        public void Start()
+        {
+            GameStart?.Invoke(this,null);
         }
     }
 }

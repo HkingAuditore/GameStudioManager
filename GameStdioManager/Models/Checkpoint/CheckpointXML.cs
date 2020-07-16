@@ -118,6 +118,7 @@ namespace GameStdioManager.Models.Checkpoint
             switch (xe.Attribute("CheckpointTypeIndicator")?.Value)
             {
                 case "Game":
+                    //TODO 这里Game的加载也不太行
                     obj =
                         player.PlayerStudio.FindGame(xe.Attribute("CheckpointTransferObject")?.Value);
                     if (((Game.Game) obj).GameIsDeveloping)
@@ -135,8 +136,7 @@ namespace GameStdioManager.Models.Checkpoint
                 case "Studio":
                     // TODO 这里的Studio读取方式不行，要优化
                     obj =
-                        StudioSQLController
-                           .ReadStudioInfoSql(xe.Attribute("CheckpointTransferObject")?.Value,false);
+                        PageBase.FindStudio(xe.Attribute("CheckpointTransferObject")?.Value);
                     break;
             }
 

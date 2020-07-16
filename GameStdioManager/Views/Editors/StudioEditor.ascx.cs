@@ -5,6 +5,7 @@ using System.Web.UI.WebControls;
 using GameStdioManager.Controllers;
 using GameStdioManager.Controllers.Studio;
 using GameStdioManager.Models.Studio;
+using GameStdioManager.Pages;
 using WebGrease.Css.Extensions;
 
 namespace GameStdioManager.Views.Editors
@@ -24,13 +25,13 @@ namespace GameStdioManager.Views.Editors
 
         protected void ReadFromSQL_OnClick(object sender, EventArgs e)
         {
-            ShowStudioInfo(StudioSQLController.ReadStudioInfoSql(StudioNumber.Text.Trim(),false));
+            ShowStudioInfo(StudioSQLController.ReadStudioInfoSql(StudioNumber.Text.Trim(),false,PageBase.Loader));
             StudioNumber.ReadOnly = true;
         }
 
         protected void Update_OnClick(object sender, EventArgs e)
         {
-            StudioSQLController.UpdateStudioInfoSql(StudioSQLController.ReadStudioInfoSql(StudioNumber.Text.Trim(),false),
+            StudioSQLController.UpdateStudioInfoSql(StudioSQLController.ReadStudioInfoSql(StudioNumber.Text.Trim(),false, PageBase.Loader),
                                                     GenerateStudioThisPanel());
         }
 

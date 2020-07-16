@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using GameStdioManager.Controllers;
 using GameStdioManager.Controllers.Login;
 using GameStdioManager.Views;
 
@@ -22,15 +23,25 @@ namespace GameStdioManager.Pages
         protected void Confirm_OnClick(object sender, EventArgs e)
         {
             var lc =new LoginController(C_PlayerNumber.Text, C_Password.Text);
-            PageBase.PagePlayer = lc.PlayerTarget;
-            PageBase.StaffList = lc.StaffList;
             if (lc.IsCorrespond)
             {
-                Session["PlayerNumber"] = lc.PlayerTarget.PlayerNumber;
-                Session["PlayerStudioNumber"] = lc.PlayerTarget.PlayerStudio.StudioNumber;
-                Debug.WriteLine(PageBase.PagePlayer.PlayerStudio.StudioName);
+                // Debug.WriteLine(PageBase.PagePlayer.PlayerStudio.StudioName);
                 result = true;
-                Server.Transfer("GameDevelopment.aspx");
+                Loader loader = new Loader(lc);
+                Session["PlayerNumber"] = loader.PlayerTarget.PlayerStudioNumber;
+                Session["PlayerStudioNumber"] = loader.PlayerTarget.PlayerStudio.StudioNumber;
+
+                PageBase.PagePlayer = loader.PlayerTarget;
+                PageBase.StaffList = loader.StaffList;
+                PageBase.PageGame = loader.GameBehavior;
+                PageBase.StudioList = loader.StudioList;
+                PageBase.Loader = loader;
+
+                loader.GameInit();
+                loader.GameStart();
+
+                if(loader.IsLoaded && loader.IsInit && loader.IsStart)
+                    Server.Transfer("GameDevelopment.aspx");
 
             }
             else
@@ -41,10 +52,7 @@ namespace GameStdioManager.Pages
         }
 
         [WebMethod]
-        public static string GetResult()
-        {
-            return result ? "1" : "0";
-        }
+        public static string GetResult() => result ? "1" : "0";
 
         protected void Register_OnClick(object sender, EventArgs e)
         {

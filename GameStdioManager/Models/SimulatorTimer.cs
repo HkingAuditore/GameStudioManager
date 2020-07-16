@@ -31,6 +31,7 @@ namespace GameStdioManager.Models
             {
                 ReloadTimer();
             }
+            StudioBehavior.GameInit += SimulatorTimer.TimerUpdate;
 
             _gameTimer = new Timer(1000);
         }
@@ -243,7 +244,7 @@ namespace GameStdioManager.Models
                     // 完成检查点后自动存盘
                     // PageBase.SaveGame();
                     PlayerSqlController
-                       .UpdatePlayerInfoSql(PlayerSqlController.ReadPlayerInfoSql(PageBase.PagePlayer.PlayerNumber,false),
+                       .UpdatePlayerInfoSql(PlayerSqlController.ReadPlayerInfoSql(PageBase.PagePlayer.PlayerNumber,false,PageBase.Loader),
                                             PageBase.PagePlayer);
                     continue;
                 }

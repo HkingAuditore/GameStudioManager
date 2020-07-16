@@ -17,8 +17,8 @@ namespace GameStdioManager.Controllers.Login
         public string PlayerNumber;
         private readonly string _password;
 
-        public Models.Player.Player PlayerTarget;
-        public List<Models.Staff.Staff> StaffList;
+        // public Models.Player.Player PlayerTarget;
+        // public List<Models.Staff.Staff> StaffList;
         public bool IsCorrespond;
 
 
@@ -29,7 +29,7 @@ namespace GameStdioManager.Controllers.Login
             GetPlayerCorrespond();
         }
 
-        private Models.Player.Player GetPlayerCorrespond()
+        private void GetPlayerCorrespond()
         {
             using (var sqlConnection = new SqlConnection(ConString))
             {
@@ -54,8 +54,6 @@ namespace GameStdioManager.Controllers.Login
 
                 result.Close();
             }
-
-            return PlayerTarget;
 
         }
 

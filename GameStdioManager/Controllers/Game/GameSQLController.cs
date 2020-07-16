@@ -199,7 +199,7 @@ namespace GameStdioManager.Controllers.Game
         /// </summary>
         /// <param name="gameNumber"></param>
         /// <returns></returns>
-        public static Models.Game.Game ReadGameInfoFromStudioSql(string gameNumber,Models.Studio.Studio studio)
+        public static Models.Game.Game ReadGameInfoFromStudioSql(string gameNumber,Models.Studio.Studio studio,Loader loader)
         {
             Models.Game.Game game = null;
 
@@ -231,7 +231,7 @@ namespace GameStdioManager.Controllers.Game
                                                );
                     game.GameStartDevelopTime = DateTime.Parse(result["GameStartDevelopTime"].ToString());
                     game.GameFinishDevelopTime = DateTime.Parse(result["GameFinishDevelopTime"].ToString());
-                    game.Developers = StaffSQLController.GetDevelopersListFromStudioSql(game.GameNumber,studio);
+                    game.Developers = StaffSQLController.GetDevelopersListFromStudioSql(game.GameNumber,studio,loader);
                     game.GameStudioObject = studio;
                 }
 

@@ -66,6 +66,9 @@ namespace GameStdioManager.Models.Staff
                                                             project.RemoveDeveloper(this);
                                                     });
             this.StaffStudio       = "无业";
+            this.WeekdaysLength = 0;
+            this.TimeToWork = -1;
+            this.TimeToQuit = -1;
             this.StaffStudioObject = null;
             this.UpdateSql();
             this.StaffLoyalty = (int)(0.6 * this.StaffLoyalty);

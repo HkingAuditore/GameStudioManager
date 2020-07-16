@@ -16,7 +16,7 @@ namespace GameStdioManager
             if (game == null)
             {
                 game = new StudioBehavior(true);
-                game.Start();
+                game.Init();
                 
                 SimulatorTimer.ReadCheckpointListXml(PageBase.PagePlayer);
 

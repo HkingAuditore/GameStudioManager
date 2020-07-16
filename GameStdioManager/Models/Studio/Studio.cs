@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using GameStdioManager.Models.Checkpoint;
 using WebGrease.Css.Extensions;
@@ -14,8 +15,8 @@ namespace GameStdioManager.Models.Studio
             StudioName       = studioName;
             StudioProperty   = studioProperty;
             StudioReputation = studioReputation;
-            GetMaintenanceCheckpoint();
 
+            StudioBehavior.GameStart += this.RegisterMaintenanceCheckpoint;
         }
 
         /// <summary>
@@ -181,6 +182,11 @@ namespace GameStdioManager.Models.Studio
 
         #region 工作室维护
 
+        public void RegisterMaintenanceCheckpoint(object sender, EventArgs e)
+        {
+            SimulatorTimer.AddCheckpoint(GetMaintenanceCheckpoint());
+        }
+
         public Checkpoint.Checkpoint GetMaintenanceCheckpoint()
         {
             var dt = new DateTime(SimulatorTimer.GameTimeNow.Year,
@@ -208,6 +214,7 @@ namespace GameStdioManager.Models.Studio
             var cost = (from staff in studio.StudioStaffs
                         select staff.StaffSalary).Aggregate(0, (current, s) => current + s);
             studio.ChangeProperty(cost);
+            Debug.WriteLine("已扣维护费 ￥" + cost);
         }
 
         public static void MaintenanceUpdate(SimulatorBase sender, CheckpointArgs args)

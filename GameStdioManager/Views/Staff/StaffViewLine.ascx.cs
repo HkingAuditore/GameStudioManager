@@ -68,7 +68,7 @@ namespace GameStdioManager.Views.Staff
                 {
                     try
                     {
-                        LineStaff.GetType().GetProperty(propertyName)?.SetValue(LineStaff, ((TextBox)ct).Text);
+                        LineStaff.GetType().GetProperty(propertyName)?.SetValue(LineStaff, int.Parse(((TextBox)ct).Text));
 
                     }
                     catch (Exception exception)

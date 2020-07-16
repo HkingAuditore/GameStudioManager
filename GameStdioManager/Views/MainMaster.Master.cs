@@ -7,26 +7,19 @@ using GameStdioManager.Models.Checkpoint;
 using GameStdioManager.Pages;
 using System.Web.Script.Services;
 using System.Web.Services;
+using GameStdioManager.Controllers;
 
 namespace GameStdioManager.Views
 {
     public partial class MainMaster : MasterPage
     {
         public static string MasterPlayerNumber;
-        public static event CheckpointHandler GameInit;
         public static bool GameInitChecker = false;
+        
 
-        private void MasterGameInit()
+        private void MasterPageInit()
         {
-            PageBase.PageGame = new StudioBehavior(true);
-            if(PageBase.PagePlayer.PlayerStudio.FindWorkingStaffs().Count == 0)
-                SimulatorTimer.SpeedSetQuick();
-            PageBase.PageGame.Start();
-            SimulatorTimer.ReadCheckpointListXml(PageBase.PagePlayer);
-            PageBase.PagePlayer.ReadStaffCurWorkDataListXml();
-
             La_StudioName.Text = PageBase.PagePlayer.PlayerStudio.StudioName;
-
             GameInitChecker = true;
         }
 
@@ -34,8 +27,7 @@ namespace GameStdioManager.Views
         {
             if (!GameInitChecker)
             {
-                MasterGameInit();
-                GameInit?.Invoke(PageBase.PagePlayer,null);
+                MasterPageInit();
             }
 
             La_StudioName.Text = PageBase.PagePlayer.PlayerStudio.StudioName;

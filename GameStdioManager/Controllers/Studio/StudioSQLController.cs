@@ -17,7 +17,7 @@ namespace GameStdioManager.Controllers.Studio
         /// </summary>
         /// <param name="staffNumber">工作室编号</param>
         /// <returns></returns>
-        public static Models.Studio.Studio ReadStudioInfoSql(string studioNumber,bool isNew)
+        public static Models.Studio.Studio ReadStudioInfoSql(string studioNumber,bool isNew,Loader loader)
         {
             Models.Studio.Studio studio = null;
 
@@ -41,7 +41,7 @@ namespace GameStdioManager.Controllers.Studio
                                                       int.Parse(result["StudioProperty"].ToString()),
                                                       int.Parse(result["StudioReputation"].ToString())
                                                      );
-                    FillStudioStaffSql(studio);
+                    FillStudioStaffSql(studio, loader);
                     if (isNew)
                     {
                         foreach (var staff in studio.StudioStaffs)
@@ -51,7 +51,7 @@ namespace GameStdioManager.Controllers.Studio
 
                     }
 
-                    FillStudioGameSql(studio);
+                    FillStudioGameSql(studio, loader);
 
                 }
 
@@ -65,7 +65,7 @@ namespace GameStdioManager.Controllers.Studio
         /// 向Studio中填充员工
         /// </summary>
         /// <param name="studio"></param>
-        public static void FillStudioStaffSql(Models.Studio.Studio studio)
+        public static void FillStudioStaffSql(Models.Studio.Studio studio,Loader loader)
         {
             using (var sqlConnection = new SqlConnection(ConString))
             {
@@ -81,7 +81,7 @@ namespace GameStdioManager.Controllers.Studio
 
                 while (result.Read())
                 {
-                    studio.AddStaff(PageBase.FindStaff(result["StaffNumber"].ToString()));
+                    studio.AddStaff(loader.FindStaff(result["StaffNumber"].ToString()));
                 }
 
                 result.Close();
@@ -93,7 +93,7 @@ namespace GameStdioManager.Controllers.Studio
         /// 向Studio中填充游戏
         /// </summary>
         /// <param name="studio"></param>
-        public static void FillStudioGameSql(Models.Studio.Studio studio)
+        public static void FillStudioGameSql(Models.Studio.Studio studio,Loader loader)
         {
             using (var sqlConnection = new SqlConnection(ConString))
             {
@@ -109,7 +109,7 @@ namespace GameStdioManager.Controllers.Studio
 
                 while (result.Read())
                 {
-                    Models.Game.Game game = GameSQLController.ReadGameInfoFromStudioSql(result["GameNumber"].ToString(),studio);
+                    Models.Game.Game game = GameSQLController.ReadGameInfoFromStudioSql(result["GameNumber"].ToString(),studio,loader);
 
                     if (game.GameIsDeveloping)
                     {
@@ -219,5 +219,29 @@ namespace GameStdioManager.Controllers.Studio
             }
         }
 
+        public static List<Models.Studio.Studio> GenerateStudioList(Loader loader)
+        {
+            List<Models.Studio.Studio> studioList = new List<Models.Studio.Studio>();
+            using (var sqlConnection = new SqlConnection(ConString))
+            {
+                var sqlCommand = new SqlCommand("SELECT StudioNumber FROM StudioInfo", sqlConnection);
+
+                sqlConnection.Open();
+                var result = sqlCommand.ExecuteReader();
+
+                if (result.HasRows)
+                {
+                    while (result.Read())
+                    {
+                        studioList.Add(ReadStudioInfoSql(result["StudioNumber"].ToString(),true,loader));
+                    }
+                }
+
+                result.Close();
+            }
+
+            return studioList;
+
+        }
     }
 }
