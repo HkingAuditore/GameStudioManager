@@ -11,6 +11,8 @@
     </div>
     <div class="col-lg-1">
         意向薪水
+        <asp:ImageButton ID="B_Salary" runat="server" Height="22px" ImageUrl="~/Resource/UI/Game/Sales/Setting.png" Width="22px" OnClick="B_Salary_OnClick"/>
+
     </div>
     <div class="col-lg-1">
         意向职称
@@ -20,12 +22,17 @@
     </div>
     <div class="col-lg-1">
         体力
+        <asp:ImageButton ID="B_HP" runat="server" Height="22px" ImageUrl="~/Resource/UI/Game/Sales/Setting.png" Width="22px" OnClick="B_HP_OnClick"/>
     </div>
     <div class="col-lg-1">
         智力
+        <asp:ImageButton ID="B_Intelligence" runat="server" Height="22px" ImageUrl="~/Resource/UI/Game/Sales/Setting.png" Width="22px" OnClick="B_Intelligence_OnClick"/>
+
     </div>
     <div class="col-lg-1">
         忠诚
+        <asp:ImageButton ID="B_Loyalty" runat="server" Height="22px" ImageUrl="~/Resource/UI/Game/Sales/Setting.png" Width="22px" OnClick="B_Loyalty_OnClick"/>
+
     </div>
     <div class="col-lg-1">
         性格

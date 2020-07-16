@@ -213,7 +213,7 @@ namespace GameStdioManager.Models.Studio
             Studio studio = (Studio) sender;
             var cost = (from staff in studio.StudioStaffs
                         select staff.StaffSalary).Aggregate(0, (current, s) => current + s);
-            studio.ChangeProperty(cost);
+            studio.ChangeProperty(-cost);
             Debug.WriteLine("已扣维护费 ￥" + cost);
         }
 

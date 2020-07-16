@@ -60,9 +60,9 @@
                         radar: [
                             {
                                 indicator: [
-                                    { text: '体力', max: 30 },
-                                    { text: '智力', max: 100 },
-                                    { text: '忠诚', max: 100 }
+                                    { text: '体力', max: 60 },
+                                    { text: '智力', max: 110 },
+                                    { text: '忠诚', max: 110 }
                                 ],
                                 center: ['50%', '50%'],
                                 radius: 80

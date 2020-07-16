@@ -18,7 +18,7 @@ namespace GameStdioManager.Pages
         public static StudioBehavior PageGame = null;
         public static List<Staff> StaffList = null;
         public static List<Studio> StudioList = null;
-        public static Loader Loader;
+        public static Loader Loader = null;
 
         public static void SaveGame()
         {

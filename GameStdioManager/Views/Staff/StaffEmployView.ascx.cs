@@ -15,13 +15,18 @@ namespace GameStdioManager.Views.Staff
     {
         public static readonly string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
 
-        private static List<Models.Staff.Staff> _studioStaffs = PageBase.StaffList;
-
+        private static List<Models.Staff.Staff> _studioStaffs = null;
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                _studioStaffs = (from staff in PageBase.StaffList
+                                 where staff.StaffStudio !=
+                                       PageBase.PagePlayer.PlayerStudioNumber
+                                 select staff).ToList();
+            }
             if (!SimulatorTimer.IsTicking())
             {
                 UP_UpdatePanel.UpdateMode = UpdatePanelUpdateMode.Conditional;
@@ -30,21 +35,60 @@ namespace GameStdioManager.Views.Staff
             {
                 UP_UpdatePanel.UpdateMode = UpdatePanelUpdateMode.Always;
             }
+
             UpdateLines();
         }
 
 
         private void UpdateLines()
         {
-            (from staff in PageBase.StaffList
-             where staff.StaffStudio !=
-                   PageBase.PagePlayer.PlayerStudioNumber
-             select staff).ForEach(staff =>
-                                   {
-                                       StaffEmployViewLine dl = (StaffEmployViewLine)LoadControl("StaffEmployViewLine.ascx");
-                                       dl.LineStaff = staff;
-                                       GamesView.Controls.Add(dl);
-                                   });
+            _studioStaffs?.ForEach(staff =>
+                                  {
+                                      StaffEmployViewLine dl =
+                                          (StaffEmployViewLine) LoadControl("StaffEmployViewLine.ascx");
+                                      dl.LineStaff = staff;
+                                      GamesView.Controls.Add(dl);
+                                  });
+        }
+
+        protected void B_Salary_OnClick(object sender, ImageClickEventArgs e)
+        {
+            var tmp = (from staff in _studioStaffs
+                       orderby staff.StaffSalary descending 
+                       select staff).ToList();
+            _studioStaffs = tmp;
+            UpdateLines();
+
+        }
+
+        protected void B_HP_OnClick(object sender, ImageClickEventArgs e)
+        {
+            var tmp = (from staff in _studioStaffs
+                             orderby staff.StaffStrength descending
+                             select staff).ToList();
+            _studioStaffs = tmp;
+            UpdateLines();
+
+        }
+
+        protected void B_Intelligence_OnClick(object sender, ImageClickEventArgs e)
+        {
+            var tmp = (from staff in _studioStaffs
+                       orderby staff.StaffIntelligence descending
+                       select staff).ToList();
+            _studioStaffs = tmp;
+            UpdateLines();
+
+        }
+
+        protected void B_Loyalty_OnClick(object sender, ImageClickEventArgs e)
+        {
+            var tmp = (from staff in _studioStaffs
+                       orderby staff.StaffLoyalty descending
+                       select staff).ToList();
+            _studioStaffs = tmp;
+            UpdateLines();
+
         }
     }
 }

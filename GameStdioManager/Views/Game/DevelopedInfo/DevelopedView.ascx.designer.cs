@@ -13,6 +13,24 @@ namespace GameStdioManager.Views.Game.DevelopedInfo {
     public partial class DevelopedView {
         
         /// <summary>
+        /// T_Search 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox T_Search;
+        
+        /// <summary>
+        /// B_Search 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton B_Search;
+        
+        /// <summary>
         /// UP_UpdatePanel 控件。
         /// </summary>
         /// <remarks>

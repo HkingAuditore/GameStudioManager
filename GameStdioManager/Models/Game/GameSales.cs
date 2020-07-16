@@ -1,4 +1,5 @@
-﻿using GameStdioManager.Models.Checkpoint;
+﻿using System;
+using GameStdioManager.Models.Checkpoint;
 
 namespace GameStdioManager.Models.Game
 {
@@ -29,7 +30,7 @@ namespace GameStdioManager.Models.Game
         public static void UpdateSales(SimulatorBase sender, CheckpointArgs args)
         {
             var game = (Game) sender;
-            int tmpSales = (int) ((game.GameArt + game.GameMusic) * game.GameFun * 0.1 * (1/(SimulatorTimer.GameTimeNow - game.GameFinishDevelopTime).TotalDays));
+            int tmpSales = (int) ((game.GameArt + game.GameMusic) * game.GameFun * 0.1 * Math.Abs(1/(SimulatorTimer.GameTimeNow - game.GameFinishDevelopTime).TotalDays));
             game.GameSales += tmpSales;
             game.GameStudioObject.StudioProperty += game.GamePrice * tmpSales;
         }

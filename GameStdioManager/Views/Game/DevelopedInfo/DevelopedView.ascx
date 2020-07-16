@@ -26,8 +26,13 @@
     <div class="col-lg-1">
         音乐
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
         开发人员
+    </div>
+    <div class="col-lg-1">
+        搜索：<asp:TextBox ID="T_Search" runat="server"></asp:TextBox>
+        <asp:ImageButton ID="B_Search" runat="server" Height="22px" ImageUrl="~/Resource/UI/Game/Sales/Setting.png" Width="22px" OnClick="B_Search_OnClick"/>
+
     </div>
 
 </div>

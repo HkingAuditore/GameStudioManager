@@ -125,7 +125,7 @@ namespace GameStdioManager.Models.Game
             //支付开发经费
             int cost = (from gameDeveloper in game.Developers
                         select gameDeveloper.StaffSalary).Aggregate(0, (current, s) => current + s);
-            game.GameStudioObject.ChangeProperty(cost / 10);
+            game.GameStudioObject.ChangeProperty(-cost / 10);
 
             UpdateDevelopEvent?.Invoke(sender, args);
         }
